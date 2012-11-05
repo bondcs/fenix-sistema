@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="fnx_financeiro.registro.form.type">fnx_financeirobundle_registrotype</parameter>
         <parameter key="fnx_financeiro.registro.form.name">fnx_financeirobundle_registrotype_form</parameter>
+        <parameter key="fnx_financeiro.registro.entity.class.name">FnxFinanceiroBundle:Registro</parameter>
         <!--
         <parameter key="fnx_admin.usuario.form.validation_groups" type="collection">
             <parameter>register</parameter>

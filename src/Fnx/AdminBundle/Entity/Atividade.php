@@ -76,7 +76,7 @@ class Atividade
     /**
      * @var object $servico
      * 
-     * @ORM\ManyToOne(targetEntity="Servico", fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="Servico", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(name="servico_id", referencedColumnName="id")
      * 
      * @Assert\NotBlank()
@@ -114,13 +114,6 @@ class Atividade
      * @var ArrayCollection $locais
      */
     private $locais;
-    
-    /**
-     * 
-     * @ORM\OneToMany(targetEntity="Servico", mappedBy="atividade", cascade={"all"})
-     * @var ArrayCollection $locais
-     */
-    private $servicos;
     
     /**
      * 

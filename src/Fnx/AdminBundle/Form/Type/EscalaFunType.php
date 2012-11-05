@@ -62,6 +62,10 @@ class EscalaFunType extends AbstractType
     }
     
     public function getDefaultOptions(array $options) {
-        return array("em" => null);
+        return array("em" => null,
+                     "validation_groups" => array(
+                            "registration",
+                            "Default"
+                     ));
     }
 }

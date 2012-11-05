@@ -194,7 +194,8 @@ function filtrarGeral(){
                             }));
                             
         oTableTransacaoGeral.dataTable().fnReloadAjax();
-
+        
+        $(".doc").val("");
         return false;
     })
     

@@ -4,12 +4,14 @@ namespace Fnx\FinanceiroBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Fnx\AdminBundle\Validator\Constraints as FnxAssert;
 
 /**
  * Fnx\FinanceiroBundle\Entity\Registro
  *
  * @ORM\Table(name="registro")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Registro
 {
@@ -47,12 +49,14 @@ class Registro
      *
      * @var object $conta
      * @ORM\ManyToOne(targetEntity="Conta", inversedBy="registros", cascade={"persist"}, fetch="LAZY")
+     * @Assert\NotBlank()
      */
     private $conta;
     
     /**
      * @var array collection $parcelas
      * @ORM\OneToMany(targetEntity="Parcela", mappedBy="registro", cascade={"all"}, orphanRemoval=true)
+     * 
      */
     private $parcelas;
     
@@ -61,12 +65,36 @@ class Registro
      * @ORM\ManyToOne(targetEntity="Fnx\AdminBundle\Entity\Categoria", cascade={"persist"}, fetch="LAZY")
      */
     private $categoria;
+    
+    /**
+     * @var date $primeriaParcela
+     *
+     * @ORM\Column(name="dt_primeiraParcela", type="date")
+     */
+    private $primeiraParcela;
+    
+    /**
+     * @var date $valor
+     *
+     * @ORM\Column(name="valorTotal", type="float")
+     */
+    private $valor;
 
 
     public function __construct() {
         $this->parcelas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->data = new \DateTime();
         $this->ativo = true;
+    }
+    
+    /**
+     * @ORM\PrePersist @ORM\PreUpdate
+     */
+    public function formataDinheiroDb(){
+        if (is_string($this->valor)){
+            $this->valor = substr(str_replace(",", ".", $this->valor),3);
+        }
+        
     }
 
     /**
@@ -215,5 +243,45 @@ class Registro
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * Set primeiraParcela
+     *
+     * @param date $primeiraParcela
+     */
+    public function setPrimeiraParcela($primeiraParcela)
+    {
+        $this->primeiraParcela = $primeiraParcela;
+    }
+
+    /**
+     * Get primeiraParcela
+     *
+     * @return date 
+     */
+    public function getPrimeiraParcela()
+    {
+        return $this->primeiraParcela;
+    }
+
+    /**
+     * Set valor
+     *
+     * @param float $valor
+     */
+    public function setValor($valor)
+    {
+        $this->valor = $valor;
+    }
+
+    /**
+     * Get valor
+     *
+     * @return float 
+     */
+    public function getValor()
+    {
+        return $this->valor;
     }
 }

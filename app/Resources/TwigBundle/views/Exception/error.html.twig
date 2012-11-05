@@ -1,0 +1,24 @@
+{% extends 'FnxAdminBundle::layout.html.twig' %}
+{% block title %}
+    Erro {{ status_code }}
+{% endblock %}
+{% block conteudo %}
+{% if status_code == '404' %}
+    {#<h1>Página não encontrada</h1>#}
+    <div style="text-align: center; margin-top: 100px;">
+    <img style="" src="{{ asset("bundles/fnxadmin/images/erro-404-02.png")}}"/>
+    </div>
+{% elseif status_code == '403'%}
+    <div style="text-align: center; margin-top: 30px;">
+    <img height="200" style="" src="{{ asset("bundles/fnxadmin/images/403-04.png")}}"/>
+    </div>
+{% else %}
+    <h1>Erro inesperado</h1>
+    <p>
+        {{ exception.message|e|replace({"\n": '<br />'})|format_file_from_text }}
+    </p>
+    <div>
+        <strong>{{ status_code }}</strong> {{ status_text }} - {{ exception.class|abbr_class }}
+    </div>
+{% endif %}
+{% endblock %}

@@ -30,6 +30,7 @@ function onTableAjaxLocal(){
             "bProcessing": true,
             "sAjaxSource": urlSource,
             "aoColumns": [
+                { "mDataProp": "descricao" },
                 { "mDataProp": "cidade.nome" },
                 { "mDataProp": "bairro" },
                 { "mDataProp": "rua" },
@@ -40,7 +41,7 @@ function onTableAjaxLocal(){
                 { "mDataProp": "id" },
                     
              ],
-            "aoColumnDefs": [{"bVisible": false, "aTargets": [6]}],
+            "aoColumnDefs": [{"bVisible": false, "aTargets": [7]}],
             "bAutoWidth": false,
             "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
                 var total = 0;
@@ -61,7 +62,7 @@ function onTableAjaxLocal(){
                             "sButtonText": "Adicionar",
                             "fnClick" : function(){
                                 if (clickTableTerminate()){
-                                   ajaxLoadDialog(urlAdd);
+                                   ajaxLoadDialog(urlAdd, "Local");
                                 }
                             }
                         },
@@ -74,7 +75,7 @@ function onTableAjaxLocal(){
                                if (clickTableTerminate()){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}));
+                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}), "Local");
                                }
                                  
                             }

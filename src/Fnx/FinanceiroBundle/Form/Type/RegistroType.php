@@ -10,26 +10,36 @@ use Symfony\Component\Validator\Constraints\Collection;
 
 class RegistroType extends AbstractType
 {
+
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
             ->add('conta', 'entity', array(
                   'label' => 'Conta:*',
                   'class' => 'FnxFinanceiroBundle:Conta',
-                  'empty_value' => 'Selecione uma conta'
             )) 
             ->add('valor', 'text', array(
                   'label' => 'Valor:*',
-                  'attr' => array('class' => 'moeda'),
+                  'attr' => array('class' => 'moeda zero'),
+                  'data' => '0'
             ))
             ->add('formaPagamento', 'entity', array(
-                  'empty_value' => 'Selecione uma opção',
                   'label' => 'Pagamento:*',
                   'class' => 'FnxFinanceiroBundle:FormaPagamento',
+                  'property_path' => false,
             ))
-            ->add('parcela', 'text', array(
+            ->add('primeiraParcela', 'date', array(
+                        'label' => '1º Parcela:*',
+                        'input' => 'datetime',
+                        'widget' => 'single_text',
+                        'format' => 'dd/MM/yyyy',
+                        'data' => new \DateTime
+             ))
+            ->add('numeroParcela', 'text', array(
                   'label' => 'Nº Parcelas:*',
+                  'attr' => array('class' => 'um'),
                   'data' => 1,
+                  'property_path' => false,
             ))
         ;
     }
@@ -37,14 +47,13 @@ class RegistroType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         $collectionConstraint = new Collection(array(
-            'conta' => new NotBlank(),
             //'descricao' => new NotBlank(),
-            'valor' => new Dinheiro(),
             'formaPagamento' => new NotBlank(),
             'parcela' => new NotBlank(),
         ));
         
-        return array('validation_constraint' => $collectionConstraint);
+        return array(
+                     'data_class' => "Fnx\FinanceiroBundle\Entity\Registro");
     }
 
     public function getName()

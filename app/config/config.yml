@@ -14,7 +14,7 @@ framework:
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     session:
-        default_locale: %locale%
+        default_locale: us
         auto_start:     true
 
 # Twig Configuration
@@ -59,6 +59,3 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
-
-parameters:
-    fnx_admin.descanco.normal: 12

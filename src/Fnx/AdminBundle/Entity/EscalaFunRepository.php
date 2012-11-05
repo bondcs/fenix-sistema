@@ -63,6 +63,48 @@ class EscalaFunRepository extends EntityRepository
                 ->getResult();
     }
     
+    public function loadEscalaPatru($data, $objeto = false){
+            $inicio = new \DateTime(substr($this->conv_data_to_us($data),0,10)." 00:00:00");
+            $fim = new \DateTime(substr($this->conv_data_to_us($data),0,10)." 23:59:00");
+            
+            $qb = $this->createQueryBuilder('e')
+                  ->select('e','f','s')
+                  ->innerJoin('e.funcionarios', 'f')
+                  ->innerJoin('e.servicoEscala', 's')
+                  ->where("s.nome = :nome")
+                  ->andWhere(("e.inicio between :inicio and :fim " ))
+                  ->setParameters(array("nome" => "Patrulhamento",
+                                        "inicio" => $inicio,
+                                        "fim" => $fim))
+                  ->getQuery();
+              
+            if ($objeto == false){
+                return $qb->getArrayResult();
+            }else{
+                return $qb->getResult();
+            }
+                  
+                 
+       }
+       
+    public function locaEscalaByData($dataCliente){
+        $inicio = new \DateTime(substr($this->conv_data_to_us($dataCliente),0,10)." 00:00:00");
+        $fim = new \DateTime(substr($this->conv_data_to_us($dataCliente),0,10)." 23:59:00");
+        
+        $data = $this->getEntityManager()->createQuery("SELECT max(e.inicio) FROM FnxAdminBundle:EscalaFun e")
+                                         ->getResult();
+        
+        $dataObject = new \DateTime($data[0][1]);
+        if ($dataObject >= $inicio && $dataObject <= $fim){
+            $dataObject->modify("-1 days");
+        }
+        
+        return $this->loadEscalaPatru($this->conv_data_to_br($dataObject->format("Y-m-d")), true);
+        
+    }
+    
+    
+
     public static function conv_data_to_us($date){
 	$dia = substr($date,0,2);
 	$mes = substr($date,3,2);
@@ -70,5 +112,13 @@ class EscalaFunRepository extends EntityRepository
         $hora = substr($date, 11,2);
         $min = substr($date, 14,2);
 	return "{$ano}-{$mes}-{$dia} {$hora}:{$min} ";
-     }
-}
+    }
+    
+    public static function conv_data_to_br($date){
+        $ano = substr($date,0,4);
+        $mes = substr($date,5,2);
+        $dia = substr($date,8,2);
+        return "{$dia}/{$mes}/{$ano}";
+        
+    }
+}   

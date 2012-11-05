@@ -1,0 +1,19 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/yepsuasmartwig/jquery4php-assets/js/plugins/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
+
+{% endblock %}
+    
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/yepsuasmartwig/jquery4php-assets/styles/fullcalendar/jquery.fullcalendar.css')}}" />
+    
+{% endblock %}
+
+{% block title %} Calendário {% endblock %}
+
+{% block conteudo %}
+
+    {{ component_render(calendar) }}
+
+{% endblock %}

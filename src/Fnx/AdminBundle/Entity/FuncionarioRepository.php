@@ -29,6 +29,17 @@ class FuncionarioRepository extends EntityRepository {
 
         return $qb->getQuery()->getArrayResult();
     }
+    
+    public function loadFuncionarioByUsuario($id){
+        return $this->createQueryBuilder("f")
+                ->select("f", "u")
+                ->join("f.usuario ", "u")
+                ->where("u.id = :id")
+                ->setParameters(array("id" => $id))
+                ->getQuery()
+                ->getResult();
+        
+    }
 
 
 }

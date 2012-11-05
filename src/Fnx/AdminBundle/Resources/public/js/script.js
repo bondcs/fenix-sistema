@@ -456,13 +456,14 @@ function initTimePicker(){
     return false;
 }
 
-function ajaxLoadDialog(url){
+function ajaxLoadDialog(url, title){
 
     $.ajax({
             type: 'GET',
             url: url,
             success: function(result){
                 $(".simpleDialog").html(result);
+                $(".simpleDialog").dialog( "option", "title", title || "" );
                 $(".simpleDialog").dialog('open');
                 onReadyAjax();
                 return false;
@@ -590,6 +591,12 @@ function notifity(tipo){
         $.pnotify({
             title: 'Sucesso!',
             text: 'Pagamentos gerados.',
+            type: 'notice'
+        });
+    }else if (tipo == "erroEscala01"){
+        $.pnotify({
+            title: 'Erro!',
+            text: 'Já possui uma(s) escala(s) cadastrada(s).',
             type: 'notice'
         });
     }
@@ -817,5 +824,20 @@ function sempreZero(){
         }
     })
     
+    $('.um').focusout(function(){
+        if (validarInteiro($(this).val()) == "" || $(this).val() == 0){
+        $(this).val(1)
+        }
+    })
+    
 }
+
+function validarInteiro(valor){
+    valor = parseInt(valor)
+    if (isNaN(valor)) {
+          return ""
+    }else{
+          return valor
+    }
+} 
 

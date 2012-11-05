@@ -84,7 +84,7 @@ function onTableAjaxSalario(){
                                   var form = $("#formSalario")
                                   $.ajax({
                                         type: 'POST',
-                                        url: Routing.generate("salarioPagamento"),
+                                        url: Routing.generate("salarioPagamento", {'mes' : $(".mes").val()}),
                                         data: form.serialize(),
                                         success: function(result){
                                             notifity(result['notifity']);
@@ -143,13 +143,11 @@ function onTableAjaxSalario(){
 function filtrarSalarios(){
     
     $('.mes, .ano').change(function(){
-        
         oTableSalario.fnNewAjax(Routing.generate("escalaSalario", {'mes' : $(".mes").val(),'ano' : $(".ano").val()}));                   
         oTableSalario.dataTable().fnReloadAjax();
         return false;
     })
-    
-    
+      
 }
 //
 //$(".tableSalario tbody td.check").live("click", function(){

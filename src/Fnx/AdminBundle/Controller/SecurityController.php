@@ -10,6 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Fnx\AdminBundle\Form\Type\ChangePasswordType;
+use Fnx\AdminBundle\Entity\Usuario;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 /**
  * Description of SecurityController
  *
@@ -49,6 +52,36 @@ class SecurityController extends Controller{
     public function logoutAction()
     {
         // The security layer will intercept this request
+    }
+    
+    /**
+     * @Route("/adm/change-password", name="_security_change_password_a")
+     * @Template()
+     */
+    public function senhaEditAction(){  
+        $usuarioLogado = $this->get('security.context')->getToken()->getUser();
+        $form = $this->createForm(new ChangePasswordType);
+        
+        $request = $this->getRequest();
+        if ($request->getMethod() == "POST"){
+            $form->bindRequest($request);
+            if ($form->isValid()){
+                $em = $this->getDoctrine()->getEntityManager();
+                $data = $form->getData();
+                $usuarioLogado->setSalt(md5(time()));
+                $encoder = new MessageDigestPasswordEncoder('sha512', true, 10);
+                $password = $encoder->encodePassword($data['password'], $usuarioLogado->getSalt());
+                $usuarioLogado->setPassword($password);
+                $em->persist($usuarioLogado);
+                $em->flush();
+                
+                $this->get("session")->setFlash("success", "Senha alterada.");
+                return $this->redirect($this->generateUrl("adminHome"));
+            }
+        }
+        
+        return array("form" => $form->createView());
+        
     }
 }
 

@@ -78,17 +78,21 @@ class MovimentacaoRepository extends EntityRepository
               ->innerJoin('r.conta', 'c')
               ->innerJoin('m.formaPagamento', 'fp');
         
-        
-        switch ($data){
-            case "r":
-                $qb->where('m.data > :inicio AND m.data < :fim');
-                break;
-            case "p":
-                $qb->where('m.data_pagamento > :inicio AND m.data_pagamento < :fim');
-                break;
-            case "v":
-                $qb->where('p.dt_vencimento > :inicio AND p.dt_vencimento < :fim');
-                break;
+        if ($doc == 0){
+            switch ($data){
+                case "r":
+                    $qb->where('m.data > :inicio AND m.data < :fim');
+                    break;
+                case "p":
+                    $qb->where('m.data_pagamento > :inicio AND m.data_pagamento < :fim');
+                    break;
+                case "v":
+                    $qb->where('p.dt_vencimento > :inicio AND p.dt_vencimento < :fim');
+                    break;
+            }
+            
+            $qb->setParameters(array("inicio" => $inicio,
+                                 "fim" => $fim));
         }
         
         if ($categoria != 0){
@@ -127,9 +131,7 @@ class MovimentacaoRepository extends EntityRepository
         
         $qb->andWhere('c.id = :conta');
         $qb->andWhere('r.ativo = :true');
-        $qb->setParameters(array("inicio" => $inicio,
-                                 "fim" => $fim,
-                                 "conta" => $conta,
+        $qb->setParameters(array("conta" => $conta,
                                  "true" => true));
         
         //var_dump($qb->getDQL());

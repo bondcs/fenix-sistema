@@ -34,6 +34,7 @@
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableParcelas.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableTransacoes.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableTransacoesGeral.js') }}"></script>
+        <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxpatrulha/js/tables/tableEscalaPatru.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/multiselect/js/ui.multiselect.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/multiselect/js/plugins/scrollTo/jquery.scrollTo-min.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/pnotify/jquery.pnotify.min.js') }}"></script>
@@ -60,7 +61,7 @@
                     <ul>
                     <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a>
                         <ul>
-                            <li><a href='#'><span>Alterar Senha</span></a></li>
+                            <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
                         </ul>
                     </li>
                     <li class='has-sub '><a href='#'><span>Gerência</span></a>
@@ -78,7 +79,6 @@
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
                         </ul>
                     </li>
-                    <li class='has-sub '><a href='#'><span>Patrulhamento</span></a></li>
 		    <li class='has-sub '><a href='{{path('PedidoListar')}}'><span>Pedidos</span></a></li>
                     </ul>
                         <div id="info">
@@ -123,7 +123,39 @@
                                 <div class="label"><span>Funcionário</span></div>
                             </div>
                         </a>
+                        <a href="{{path('calenderHome')}}">
+                            <div class="box-menu">
+                                <div class="img"><img height="60px" src="{{ asset("bundles/fnxadmin/images/calender-icon.png")}}" /></div>
+                                <div class="label"><span>Calendário</span></div>
+                            </div>
+                        </a>
                     </div>
+                    
+                     <div class="ui-panel-content ui-widget-content profile-index " style="width:auto;">
+                        <h4 class="ui-panel-title ui-widget-header ">Minhas Informações</h4>
+                        <table class="infos">
+                            <tr>
+                                <th>Nome</th>
+                                <td>{{funcionario.nome|default('-')}}</td>
+                            </tr>
+                            <tr>
+                                <th>Telefone</th>
+                                <td>{{funcionario.telefone|default('-')}}</td>
+                            </tr>
+                            <tr>
+                                <th>Usuário</th>
+                                <td>{{funcionario.usuario.username|default('-')}}</td>
+                            </tr>
+                            <tr>
+                                <th>Cpf</th>
+                                <td>{{funcionario.cpf|default('-')}}</td>
+                            </tr>
+                            <tr>
+                                <th>Profile</th>
+                                <td><a class="link-name" href="{{path("funcionarioShow", {"id" : funcionario.id|default('-')})}}">Profile</a></td>
+                            </tr>
+                        </table>
+                     </div>
                 {% endblock %}
             </section>
 

@@ -85,7 +85,7 @@ class SalarioPagamento
         return $this->salario->getSalario()+ $this->bonus + $this->salario->getFuncionario()->getDependentes()*$valorDependente;
     }
     
-    public function efetuaPagamento($contaSalario, Categoria $categoria, $valorDependente, $formaPagamento ){
+    public function efetuaPagamento($contaSalario, Categoria $categoria, $valorDependente, $formaPagamento, $mes ){
         
         $valorPago = $this->calculaSalario($valorDependente);
         
@@ -96,7 +96,9 @@ class SalarioPagamento
             $this->registro = new Registro();
             $this->registro->setConta($contaSalario);
             $this->registro->setCategoria($categoria);
-            $this->registro->setDescricao($this->salario->getFuncionario()->getNome()." recebeu ".$valorPago."R$");
+            $this->registro->setDescricao($this->salario->getFuncionario()->getNome()." recebeu ".$valorPago." R$ - Mês: ".$mes);
+            $this->registro->setPrimeiraParcela(new \DateTime);
+            $this->registro->setValor($valorPago);
             $contaSalario->addRegistro($this->registro);
 
             $parcela = new Parcela();

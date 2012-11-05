@@ -1,0 +1,25 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+
+{% block title %} Alterar senha {% endblock %}
+
+{% block conteudo %}
+
+ <div class="ui-panel-content ui-widget-content " style="width:auto">
+   <h4 class="ui-panel-title ui-widget-header ">Alterar senha</h4>
+   <div id="box-form">
+    <form novalidate="" class="cms" action="{{ path('_security_change_password_a') }}" method="post" {{ form_enctype(form) }}>
+    <div class="myform">     
+        {{form_errors(form)}}
+            <div class="repeats">
+                <div> 
+                {{ form_widget(form.password, {"id" : "password"})}}
+                </div> 
+            </div>
+         
+        {{ form_row(form._token) }}
+        <input type="submit" value="Submit"/>
+    </form>
+     </div>
+    </div>
+ </div>
+{% endblock %}

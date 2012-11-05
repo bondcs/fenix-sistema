@@ -3,6 +3,18 @@
         <div class="myform">         
                     {{ form_errors(form) }}
                 
+                    <div class="hide">
+                        {{ form_errors(form.parcela.registro.conta)}}
+                        {{ form_label(form.parcela.registro.conta)}}    
+                        {{ form_widget(form.parcela.registro.conta,{'attr' : {'readonly' : 'readonly'}})}}
+                    </div>
+                
+                    <div class="hide">
+                        {{ form_errors(form.parcela.registro.descricao)}}
+                        {{ form_label(form.parcela.registro.descricao)}}    
+                        {{ form_widget(form.parcela.registro.descricao,{'attr' : {'readonly' : 'readonly'}})}}
+                    </div>
+                
                     <div class="picker">
                         {{ form_errors(form.parcela.dt_vencimento)}}
                         {{ form_label(form.parcela.dt_vencimento)}}    

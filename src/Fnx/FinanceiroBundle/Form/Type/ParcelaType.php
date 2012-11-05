@@ -15,7 +15,7 @@ class ParcelaType extends AbstractType
                         'input' => 'datetime',
                         'widget' => 'single_text',
                         'format' => 'dd/MM/yyyy'
-             ))
+             ))  
             ->add('finalizado', "checkbox", array(
                         'label' => 'Finalizado:*'
               ))

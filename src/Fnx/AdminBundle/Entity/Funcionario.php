@@ -102,7 +102,7 @@ class Funcionario
        
     /**
      * Escalas excepcionais.
-     * @ORM\ManyToMany(targetEntity="EscalaFun", mappedBy="funcionarios", cascade={"persist, remove"})
+     * @ORM\ManyToMany(targetEntity="EscalaFun", mappedBy="funcionarios", cascade={"persist"})
      */
     private $escalasEx;
     

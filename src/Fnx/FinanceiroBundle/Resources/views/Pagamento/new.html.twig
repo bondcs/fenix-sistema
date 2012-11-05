@@ -1,7 +1,7 @@
 <div class="box-form-pagamento">
     <div class="ui-panel-content ui-widget-content " style="width:auto;">
     <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
-    <form novalidate="" class="cms ajax-form-pagamento" style="padding: 15px;" action="{{ path('pagamentoCreate',{'id' : id}) }}" method="post" {{ form_enctype(form) }}>
+    <form novalidate="" class="cms" style="padding: 15px;" action="{{ path('pagamentoCreate',{'id' : id}) }}" method="post" {{ form_enctype(form) }}>
              {{form_errors(form)}}
             <div class="myform">
 
@@ -29,10 +29,16 @@
                 {{ form_widget(form.valor, {'attr' : { 'style' : 'width:33%'}})}}
             </div>
             
+            <div class="picker">
+                {{ form_errors(form.primeiraParcela)}}
+                {{ form_label(form.primeiraParcela)}}    
+                {{ form_widget(form.primeiraParcela)}}
+            </div>    
+            
             <div>
-                {{ form_errors(form.parcela)}}
-                {{ form_label(form.parcela)}}    
-                {{ form_widget(form.parcela, {'attr' : { 'style' : 'width:11%'}})}}
+                {{ form_errors(form.numeroParcela)}}
+                {{ form_label(form.numeroParcela)}}    
+                {{ form_widget(form.numeroParcela, {'attr' : { 'style' : 'width:11%'}})}}
             </div>
 
         </div>    

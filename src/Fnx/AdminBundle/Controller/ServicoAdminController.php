@@ -80,7 +80,7 @@ class ServicoAdminController extends Controller
         }
 
         return array(
-            'entity' => $entity,
+            'id' => $id,
             'form'   => $form->createView()
         );
     }

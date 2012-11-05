@@ -45,28 +45,29 @@ class RegistroFormHandler {
     
     public function onSuccess(Registro $registro){
         
-        $data = $this->form->getData();
-        $registro->setConta($data['conta']);
+        $registro->setConta($this->form["conta"]->getData());
         $categoria = $this->em->createQuery("SELECT c FROM FnxAdminBundle:Categoria c WHERE c.nome = :param")->setParameter("param", "Atividade")->getSingleResult();
         $registro->setCategoria($categoria);
-//        $registro->setDescricao($data['descricao']);
-        
-        for ($i = 0; $i < $data['parcela']; $i++){
+        $primeiroVencimento = $this->form["primeiraParcela"]->getData();
+        $formato = $primeiroVencimento->format("Y-m-d");
+        $registro->setPrimeiraParcela($primeiroVencimento);
+        $registro->setValor($this->form["valor"]->getData());
+        for ($i = 0; $i < $this->form["numeroParcela"]->getData(); $i++){
+             $vencimento = new \Datetime($formato);
              $parcela = new Parcela();
-             $parcela->setDtVencimento(new \DateTime('+'.$i.' month'));
+             $parcela->setDtVencimento($vencimento->modify('+'.$i.' month'));
              $parcela->setRegistro($registro);
              $parcela->setNumero($i+1);
-             
              $movimentacao = new Movimentacao();
-             $movimentacao->setFormaPagamento($data['formaPagamento']);
+             $movimentacao->setFormaPagamento($this->form['formaPagamento']->getData());
              $movimentacao->setParcela($parcela);
              $movimentacao->setMovimentacao('r');
-             $movimentacao->setValor($registro->calculaParcela($data['parcela'], $data['valor']));
+             $movimentacao->setValor($registro->calculaParcela($this->form["numeroParcela"]->getData(), $registro->getValor()));
              $registro->addParcela($parcela);
              $parcela->setMovimentacao($movimentacao);
         }
         
-        $conta = $data['conta'];
+        $conta = $this->form["conta"]->getData();
         $conta->addRegistro($registro);
         //var_dump($registro->getParcelas()->get(0)->getMovimentacao()->getValor());die();
         $this->em->persist($registro);

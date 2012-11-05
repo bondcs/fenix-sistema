@@ -114,12 +114,12 @@ function onTableAjaxServicoAdmin(){
 
 function filtrarServicos(){
     
-    $('.mes, .ano').change(function(){
-        
-       // oTableServicoAdmin.fnNewAjax(Routing.generate("escalaSalario", {'mes' : $(".mes").val(),'ano' : $(".ano").val()}));                   
-        oTableServicoAdmin.dataTable().fnReloadAjax();
-        return false;
-    })
+//    $('.mes, .ano').change(function(){
+//        
+//       // oTableServicoAdmin.fnNewAjax(Routing.generate("escalaSalario", {'mes' : $(".mes").val(),'ano' : $(".ano").val()}));                   
+//        oTableServicoAdmin.dataTable().fnReloadAjax();
+//        return false;
+//    })
     
     
 }

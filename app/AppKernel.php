@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Yepsua\SmarTwigBundle\YepsuaSmarTwigBundle(),
             new Fnx\PedidoBundle\FnxPedidoBundle(),
             new Fnx\FinanceiroBundle\FnxFinanceiroBundle(),
+            new Fnx\PatrulhaBundle\FnxPatrulhaBundle(),
+            new Fnx\CalenderBundle\FnxCalenderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -19,6 +19,12 @@
                         {{ form_label(form.parcela.registro.categoria)}}    
                         {{ form_widget(form.parcela.registro.categoria,{'attr' : {'readonly' : 'readonly'}})}}
                     </div>
+                
+                    <div class="hide">
+                        {{ form_errors(form.parcela.finalizado)}}
+                        {{ form_label(form.parcela.finalizado)}}    
+                        {{ form_widget(form.parcela.finalizado,{'attr' : {'readonly' : 'readonly'}})}}
+                    </div>
                     
                     <div class="picker">
                         {{ form_errors(form.parcela.dt_vencimento)}}

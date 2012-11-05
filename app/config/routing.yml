@@ -1,3 +1,13 @@
+FnxCalenderBundle:
+    resource: "@FnxCalenderBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+FnxPatrulhaBundle:
+    resource: "@FnxPatrulhaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 FnxFinanceiroBundle:
     resource: "@FnxFinanceiroBundle/Controller/"
     type:     annotation

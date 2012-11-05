@@ -138,7 +138,7 @@ class Role extends CoreRole implements RoleInterface{
      *
      * @param Acme\AdminBundle\Entity\User $users
      */
-    public function addUser(\Fnx\AdminBundle\Entity\Usuarios $usuarios)
+    public function addUser(\Fnx\AdminBundle\Entity\Usuario $usuarios)
     {
         $this->usuarios[] = $usuarios;
     }

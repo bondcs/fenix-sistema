@@ -76,10 +76,10 @@ class SalarioController extends Controller{
     }
     
     /**
-     * @Route("/salario-pagamento", name="salarioPagamento", options={"expose" = true})
+     * @Route("/salario-pagamento/{mes}", name="salarioPagamento", options={"expose" = true})
      * @Template()
      */
-    public function pagamentoAction(){
+    public function pagamentoAction($mes){
         
         $pagamentos = $this->get("request")->request->get("pagamentos");
         $response = array();
@@ -96,7 +96,7 @@ class SalarioController extends Controller{
                 $pagamento->setValorPago($pagamento->calculaSalario($config->getValorDependente()));
                 $pagamento->setDataPagamento(new \DateTime());
                 $pagamento->setPago(true);
-                if ($pagamento->efetuaPagamento($config->getContaSalario(), $categoria, $config->getValorDependente(), $config->getFormaPagamentoSalario())){
+                if ($pagamento->efetuaPagamento($config->getContaSalario(), $categoria, $config->getValorDependente(), $config->getFormaPagamentoSalario(), $mes)){
                     $em->persist($pagamento);
                     $em->flush();
                     $response = array('notifity' => 'add');

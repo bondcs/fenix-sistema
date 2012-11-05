@@ -26,6 +26,10 @@ class UserFixtures implements FixtureInterface{
         $role->setNome("ROLE_ADMIN");
         $manager->persist($role);
         
+        $role2 = new Role();
+        $role2->setNome("ROLE_FUNCIONARIO");
+        $manager->persist($role2);
+        
         $usuario = new Usuario();
         $usuario->setUserName("admin");
         $usuario->setSalt(md5(time()));

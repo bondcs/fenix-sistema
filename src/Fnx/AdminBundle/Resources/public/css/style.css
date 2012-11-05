@@ -46,12 +46,16 @@ li{list-style: none;}
 .username {color:white; margin-bottom: 50px; position: relative; bottom: 8px; font-weight: bold; font-size: 13px;}
 
 /* menu inicial */
-#all-menu {margin: 20px;}
-#all-menu a {text-decoration: none; color: #025A8D; margin-right: 15px;}
-.box-menu{ display: inline-block; height: 100px; width: 130px; background-color: #ffffff; border: 1px solid #cccccc; padding-top: 10px;}
+#all-menu {margin: 5px;}
+#all-menu a {float: left; text-decoration: none; color: #025A8D; margin-right: 15px;}
+.box-menu{ height: 100px; width: 160px; background-color: #ffffff; border: 1px solid #cccccc; padding-top: 10px;}
 .box-menu:hover{border-color: black}
 .img {text-align: center;}
 .label{text-align: center;}
+
+/* profile index */
+
+.profile-index{float: right;}
 
 
 
@@ -116,7 +120,7 @@ form.cms input[type="button"]
     {float: right; margin-top: 10px; margin-left: 4px;}
 form.cms .myform ul li { color: #ff0000; margin-bottom: 5px; }
 form.cms .myform fieldset{padding: 15px; border: 1px solid #9FAFD1}
-form.cms .myform fieldset legend {padding: 0.2em 0.5em; border:1px solid; font-size:90%; text-align:right; display: none;}
+form.cms .myform fieldset legend {padding: 0.1em 0.2em; border:1px solid; font-size:90%; text-align:right; border: 0px;}
 
 form.cms .myform a.button{font-size: 0.8em;}
 
@@ -280,6 +284,7 @@ div.innerRow{display: none; }
 .verdeCel {color: #0a0}
 .vermelhoCel {color:#ff0000}
 #responsavel legend {display: block}
+#fnx_adminbundle_escalapatrutype_inicio{ clear: none}
 
 /*.box-table thead tr th:last-child{display: none !important;}
 .box-table tbody tr td:last-child{display: none !important;}*/
@@ -315,5 +320,5 @@ div.innerRow{display: none; }
 .inicio,.fim {height: 20px}
 .filter div {display: inline-block; padding-right: 2px; margin-bottom: 7px;}
 .filter .picker > input {width: 110px;}
-.filter input[type="button"]{padding: 0px;}
+.filter input[type="button"]{padding: 1px; font-size: 0.9em !important}
 .tipoData input{margin-right: 0.5em; margin-left: 0.2em}

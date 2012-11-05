@@ -37,11 +37,11 @@
 {% endblock %}
 
 {% block conteudo %}
-    {% if atividade.servico.nome == 'Segurança de Evento'%}
+    {% if atividade.servico.nome == 'Segurança'%}
         {% include 'FnxAdminBundle:Servico:segurancadeevento.html.twig' %}
     {% endif %}
      
-    {% if atividade.servico.nome == 'Vigilância Eletrônica'%}
+    {% if atividade.servico.nome == 'Patrulhamento'%}
         {% include 'FnxAdminBundle:Servico:monitoramento.html.twig' %}
     {% endif %}
      

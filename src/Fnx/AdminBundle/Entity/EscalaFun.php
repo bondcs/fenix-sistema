@@ -51,7 +51,7 @@ class EscalaFun
      * @var string $local
      *
      * @ORM\Column(name="local", type="string", length=80)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration"})
      */
     private $local;
     
@@ -60,13 +60,13 @@ class EscalaFun
      * @var object $categoria
      * 
      * @ORM\ManyToOne(targetEntity="ServicoEscala", cascade={"persist"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration"})
      */
     private $servicoEscala;
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Funcionario", inversedBy="escalasEx", cascade={"persist, remove"}, fetch="LAZY")
+     * @ORM\ManyToMany(targetEntity="Funcionario", inversedBy="escalasEx", cascade={"persist"}, fetch="LAZY")
      * @Assert\NotBlank()
      * @ORM\OrderBy({"nome" = "ASC"})
      */
@@ -79,6 +79,12 @@ class EscalaFun
      */
     private $ativo;
     
+    public function atualizarEscalaFim(){
+        $diferença = $this->getInicio()->diff($this->getFim());
+        $this->setFim($diferença->h);
+    }
+
+
     /**
      * Get id
      *
@@ -155,7 +161,11 @@ class EscalaFun
         return $this->ativo = true;
     }
     
-    /**
+    public function setFuncionarios($funcionarios){
+        $this->funcionarios = $funcionarios;
+    }
+
+        /**
      * Add funcionarios
      *
      * @param Fnx\AdminBundle\Entity\Funcionario $funcionarios

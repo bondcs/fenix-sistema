@@ -77,6 +77,9 @@ class MovimentacaoController extends Controller{
             }
                 
             $movimentacao->getParcela()->setNumero(0);
+            $registro = $movimentacao->getParcela()->getRegistro();
+            $registro->setValor($movimentacao->getValor());
+            $registro->setPrimeiraParcela($movimentacao->getParcela()->getDtVencimento());
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($movimentacao);
             $em->flush();

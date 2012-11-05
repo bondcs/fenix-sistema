@@ -22,7 +22,7 @@ class SalarioType extends AbstractType{
     public function buildForm(FormBuilder $builder, array $options) {
         
         $builder->add('salario', 'text', array(
-               'label' => 'Salário:',
+               'label' => 'Salário:*',
             ))  
             ->add('valor', 'text', array(
                'label' => 'Valor:',

@@ -20,13 +20,13 @@ class ServicoFixture implements FixtureInterface{
     public function load(ObjectManager $manager){
         
         $servico = new Servico();
-        $servico->setNome("Segurança de Evento");
+        $servico->setNome("Segurança");
         
         $servico2 = new Servico();
         $servico2->setNome("Verificação de Propriedade");
         
         $servico3 = new Servico();
-        $servico3->setNome("Vigilância Eletrônica");
+        $servico3->setNome("Patrulhamento");
         
         $servico4 = new Servico();
         $servico4->setNome("Administração");

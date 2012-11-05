@@ -9,7 +9,7 @@
         <div id="header-login">Fenix</div>
         <div id="box-login">
             {% if error %}
-            <div class="error">{{ error.message }}</div>
+            <div class="error">{{ error.message|trans({},'validators') }}</div>
             {% endif %}                 
             <form action="{{ path('_security_check_a') }}" method="POST" class="cms">
             <div class="myform"> 

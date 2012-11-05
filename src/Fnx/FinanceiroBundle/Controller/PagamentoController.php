@@ -55,10 +55,9 @@ class PagamentoController extends Controller{
         $atividade->setRegistro($registro);
         $registro->setDescricao($atividade->getContrato()->getCliente()->getNome()." - ".$atividade->getNome());
         $process = $formHandler->process($registro);
-        
         if ($process){
             $this->get('session')->setFlash("success","Registro efetuado.");
-            return $this->responseAjax(array("url" => $this->generateUrl("atividadeShow", array('id' => $id)), "notifity" => "add"));
+            return $this->redirect($this->generateUrl("atividadeShow", array('id' => $id)));
         }
 
         return array('form' => $form->createView(),
@@ -106,17 +105,18 @@ class PagamentoController extends Controller{
         $parcelasBanco = $this->getDoctrine()->getRepository("FnxFinanceiroBundle:Movimentacao")->loadParcela($id);
         //var_dump($parcelasBanco);die();
         $parcelas['aaData'] = array();
-        
-        foreach ($parcelasBanco[0]['registro']['parcelas'] as $key => $value) {
-            $value['dt_vencimento']= $value['dt_vencimento']->format('d/m/Y');
-            $value['movimentacao']['data'] = $value['movimentacao']['data']->format('d/m/Y H:i:s');
-            $value['movimentacao']['valorNumber'] = $value['movimentacao']['valor'];
-            $value['movimentacao']['valor'] = number_format($value['movimentacao']['valor'],2,',','.');
-            $value['movimentacao']['data_pagamento'] = $value['movimentacao']['data_pagamento'] ? $value['movimentacao']['data_pagamento']->format('d/m/Y H:i:s') : '-';
-            $value['movimentacao']['valor_pagoNumber'] = $value['movimentacao']['valor_pago'];
-            $value['movimentacao']['valor_pago'] = number_format($value['movimentacao']['valor_pago'],2,',','.');
-            
-            $parcelas['aaData'][] = $value;
+        if ($parcelasBanco != null){
+            foreach ($parcelasBanco[0]['registro']['parcelas'] as $key => $value) {
+                $value['dt_vencimento']= $value['dt_vencimento']->format('d/m/Y');
+                $value['movimentacao']['data'] = $value['movimentacao']['data']->format('d/m/Y H:i:s');
+                $value['movimentacao']['valorNumber'] = $value['movimentacao']['valor'];
+                $value['movimentacao']['valor'] = number_format($value['movimentacao']['valor'],2,',','.');
+                $value['movimentacao']['data_pagamento'] = $value['movimentacao']['data_pagamento'] ? $value['movimentacao']['data_pagamento']->format('d/m/Y H:i:s') : '-';
+                $value['movimentacao']['valor_pagoNumber'] = $value['movimentacao']['valor_pago'];
+                $value['movimentacao']['valor_pago'] = number_format($value['movimentacao']['valor_pago'],2,',','.');
+
+                $parcelas['aaData'][] = $value;
+            }
         }
        
         
@@ -152,6 +152,7 @@ class PagamentoController extends Controller{
         $request = $this->getRequest();
         $form->bindRequest($request);
         if ($form->isValid()){
+            
             $em = $this->getDoctrine()->getEntityManager();
             $atividade = $em->find("FnxAdminBundle:Atividade", $id);
             $registro = $atividade->getRegistro();

@@ -101,17 +101,17 @@ class FilterType extends AbstractType
                 'data' => "a"
              ))
             ->add('meses', 'choice', array(
-                'label' => 'Mês:',
+                'label' => 'Mes:',
                 "required" => false,
-                'choices' => array( 01 => "Janeiro",
-                                    02 => "Fevereiro",
-                                    03 => "Março",
-                                    04 => "Abril",
-                                    05 => "Maio",
-                                    06 => "Junho",
-                                    07 => "Julho",
-                                    08 => "Agosto",
-                                    09 => "Setembro",
+                'choices' => array( 1 => "Janeiro",
+                                    2 => "Fevereiro",
+                                    3 => "Março",
+                                    4 => "Abril",
+                                    5 => "Maio",
+                                    6 => "Junho",
+                                    7 => "Julho",
+                                    8 => "Agosto",
+                                    9 => "Setembro",
                                     10 => "Outubro",
                                     11 => "Novembro",
                                     12 => "Dezembro"),
@@ -125,8 +125,14 @@ class FilterType extends AbstractType
                  "label" => "Doc:",
                  "required" => false,
              ))
-             
-        ;
+             ->add("data","date", array(
+                 "label" => "Data:",
+                 "format" => "dd-MM-yyy",
+                 'input' => 'datetime',
+                 'widget' => 'single_text',
+                 "data" => $hoje,
+                 "required" => false
+             ));
     }
 
     public function getName()
