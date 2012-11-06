@@ -12,13 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class AtividadeRepository extends EntityRepository
 {
-    
     public function loadLocal(){
         return $this->getEntityManager()
                     ->createQuery("SELECT l,a,c FROM FnxAdminBundle:Local l
                                    JOIN l.atividade a
                                    JOIN l.cidade c
                                    WHERE a.arquivado = :false")
+                                   ->setParameters(array("false" => false))
+                                   ->getResult();
+    }
+    
+    public function loadAtividade(){
+        return $this->getEntityManager()
+                    ->createQuery("SELECT a,c,cl,s FROM FnxAdminBundle:Atividade a
+                                   JOIN a.contrato c
+                                   JOIN c.cliente cl
+                                   JOIN a.servico s
+                                   WHERE a.arquivado = :false
+                                   AND a.dtInicio <> ''
+                                   AND a.dtFim <> ''")
                                    ->setParameters(array("false" => false))
                                    ->getResult();
     }

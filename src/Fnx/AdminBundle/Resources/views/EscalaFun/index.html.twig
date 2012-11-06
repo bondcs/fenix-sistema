@@ -36,18 +36,6 @@
        <div class="box-filter">
            <form novalidate="novalidate" class="filter" method="POST" action="">
             {{form_errors(formFilter)}}
-            {#<input id="habilitarEscala" name="habilitar" style="margin-right: 2px;" type="checkbox" value="h">
-            <div class='datepicker bold'>
-                   {{ form_errors(formFilter.inicioTime)}}
-                   {{ form_label(formFilter.inicioTime)}}    
-                   {{ form_widget(formFilter.inicioTime,{'attr' : {'class' : 'inicio', 'disabled' : 'disabled'}})}}
-            </div>
-
-            <div class='datepicker bold'>
-                   {{ form_errors(formFilter.fimTime)}}
-                   {{ form_label(formFilter.fimTime)}}    
-                   {{ form_widget(formFilter.fimTime,{'attr' : {'class' : 'fim', 'disabled' : 'disabled' }})}}
-            </div> #}
             <div class='bold'>
                    {{ form_errors(formFilter.status)}}
                    {{ form_label(formFilter.status)}}    
@@ -59,7 +47,12 @@
                    {{ form_label(formFilter.servico)}}    
                    {{ form_widget(formFilter.servico,{'attr' : {'class' : 'servico'}})}}
             </div> 
-
+            
+            <div class='picker bold'>
+                   {{ form_errors(formFilter.inicio)}}
+                   {{ form_label(formFilter.inicio)}}    
+                   {{ form_widget(formFilter.inicio,{'attr' : {'class' : 'inicio'}})}}
+            </div>
             <input id="filtrarEscala" type="button" value="Filtrar">
         </form>
        </div> 

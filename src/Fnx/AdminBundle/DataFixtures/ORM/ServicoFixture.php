@@ -21,15 +21,20 @@ class ServicoFixture implements FixtureInterface{
         
         $servico = new Servico();
         $servico->setNome("Segurança");
+        $servico->setCor("Teal");
+        
         
         $servico2 = new Servico();
         $servico2->setNome("Verificação de Propriedade");
+        $servico2->setCor("Brown");
         
         $servico3 = new Servico();
-        $servico3->setNome("Patrulhamento");
+        $servico3->setNome("Monitoramento");
+        $servico3->setCor("");
         
         $servico4 = new Servico();
         $servico4->setNome("Administração");
+        $servico4->setCor("");
         
         $manager->persist($servico);
         $manager->persist($servico2);

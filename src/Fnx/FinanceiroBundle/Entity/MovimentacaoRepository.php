@@ -91,8 +91,10 @@ class MovimentacaoRepository extends EntityRepository
                     break;
             }
             
-            $qb->setParameters(array("inicio" => $inicio,
-                                 "fim" => $fim));
+            if ($data != "a"){
+                $qb->setParameters(array("inicio" => $inicio,
+                                     "fim" => $fim));
+            }
         }
         
         if ($categoria != 0){

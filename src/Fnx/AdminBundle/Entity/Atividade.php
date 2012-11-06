@@ -181,6 +181,20 @@ class Atividade
      */
     private $complemento;
     
+    /**
+     * @var datetime $dtInicio
+     *
+     * @ORM\Column(name="dtInicio", type="datetime", nullable=true)
+     */
+    private $dtInicio;
+
+    /**
+     * @var datetime $dtFim
+     *
+     * @ORM\Column(name="dtFim", type="datetime", nullable=true)
+     */
+    private $dtFim;
+    
    
     public function __construct() {
         $this->created = new \DateTime();
@@ -661,5 +675,45 @@ class Atividade
     public function getServicos()
     {
         return $this->servicos;
+    }
+
+    /**
+     * Set dtInicio
+     *
+     * @param datetime $dtInicio
+     */
+    public function setDtInicio($dtInicio)
+    {
+        $this->dtInicio = $dtInicio;
+    }
+
+    /**
+     * Get dtInicio
+     *
+     * @return datetime 
+     */
+    public function getDtInicio()
+    {
+        return $this->dtInicio;
+    }
+
+    /**
+     * Set dtFim
+     *
+     * @param datetime $dtFim
+     */
+    public function setDtFim($dtFim)
+    {
+        $this->dtFim = $dtFim;
+    }
+
+    /**
+     * Get dtFim
+     *
+     * @return datetime 
+     */
+    public function getDtFim()
+    {
+        return $this->dtFim;
     }
 }

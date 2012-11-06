@@ -22,7 +22,7 @@ class FilterType extends AbstractType
                         'label' => 'Início:',
                         'input' => 'datetime',
                         'widget' => 'single_text',
-                        'format' => 'dd/MM/yyyy HH:mm:ss',
+                        'format' => 'dd/MM/yyyy',
                         'data' => new \Datetime('-1 days'),
              ))
             ->add('inicioTime', 'date', array(
@@ -59,8 +59,7 @@ class FilterType extends AbstractType
                 'multiple' => false,
                 "required" => false,
                 'choices' => array('r' => 'Registrado', 'p' => 'Pagamento', 'v' => 'Vencimento'),
-                'attr' => array('class' => 'tipoData'),
-                'data' => 'r'
+                'attr' => array('class' => 'tipoData')
              ))
            ->add('conta', 'entity', array(
                 'label' => 'Conta:',

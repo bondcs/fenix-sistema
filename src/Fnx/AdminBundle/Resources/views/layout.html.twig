@@ -130,32 +130,38 @@
                             </div>
                         </a>
                     </div>
-                    
-                     <div class="ui-panel-content ui-widget-content profile-index " style="width:auto;">
-                        <h4 class="ui-panel-title ui-widget-header ">Minhas Informações</h4>
-                        <table class="infos">
-                            <tr>
-                                <th>Nome</th>
-                                <td>{{funcionario.nome|default('-')}}</td>
-                            </tr>
-                            <tr>
-                                <th>Telefone</th>
-                                <td>{{funcionario.telefone|default('-')}}</td>
-                            </tr>
-                            <tr>
-                                <th>Usuário</th>
-                                <td>{{funcionario.usuario.username|default('-')}}</td>
-                            </tr>
-                            <tr>
-                                <th>Cpf</th>
-                                <td>{{funcionario.cpf|default('-')}}</td>
-                            </tr>
-                            <tr>
-                                <th>Profile</th>
-                                <td><a class="link-name" href="{{path("funcionarioShow", {"id" : funcionario.id|default('-')})}}">Profile</a></td>
-                            </tr>
-                        </table>
+                     <div class="profile-index">
+                        <div class="ui-panel-content ui-widget-content " style="width:97.5%;">
+                           <h4 class="ui-panel-title ui-widget-header ">Minhas Informações</h4>
+                           <table class="infos">
+                               <tr>
+                                   <th>Nome</th>
+                                   <td>{{funcionario.nome|default('-')}}</td>
+                               </tr>
+                               <tr>
+                                   <th>Telefone</th>
+                                   <td>{{funcionario.telefone|default('-')}}</td>
+                               </tr>
+                               <tr>
+                                   <th>Usuário</th>
+                                   <td>{{funcionario.usuario.username|default('-')}}</td>
+                               </tr>
+                               <tr>
+                                   <th>Cpf</th>
+                                   <td>{{funcionario.cpf|default('-')}}</td>
+                               </tr>
+                               <tr>
+                                   <th>Profile</th>
+                                   <td><a class="link-name" href="{{path("funcionarioShow", {"id" : funcionario.id|default('-')})}}">Profile</a></td>
+                               </tr>
+                           </table>
+                        </div>
+                        <div>
+                            <div id="datepicker" style="margin-top:10px;">  
+                            </div>
+                        </div>
                      </div>
+                    
                 {% endblock %}
             </section>
 

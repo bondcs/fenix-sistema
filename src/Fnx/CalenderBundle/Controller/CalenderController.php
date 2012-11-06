@@ -17,26 +17,52 @@ class CalenderController extends Controller
      */
     public function indexAction()
     {
-         \YsJQuery::useComponent(\YsJQueryConstant::COMPONENT_JQFULL_CALENDAR);
+    \YsJQuery::useComponent(\YsJQueryConstant::COMPONENT_JQFULL_CALENDAR);
     
     $calendar = new \YsFullCalendar('myCalendarId');
-
-    $event = new \YsCalendarEvent('eventId','My Event Title');
-    $event->setStart(new \DateTime());
-    $event->setEnd(new \DateTime('+1 day'));
-    $event->setAllDay(false);
-    $event->setColor('red');
-    $calendar->addEvent($event);
-
-    $event = new \YsCalendarEvent(123456,'Event 2');
-    $event->setStart(new \DateTime());
-    $event->setEnd(new \DateTime('+2 hour'));
-    $event->setAllDay(false);
-    $event->setColor('green');
-    $event->
-
-    $calendar->addEvent($event);
+    $calendar->setAllDaySlot(true);
+    $dias = array("Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab");
+    $meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
+    $calendar->setDayNamesShort($dias);
+    $calendar->setMonthNames($meses);
+    $calendar->setButtonText(array("today" => "Hoje"));
+    $calendar->setTheme(true);
+    $calendar->setFirstDay(0);
     
-    return array('calendar' => $calendar);
+    $escalasFun = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->findBy(array("ativo" => true));
+    
+    foreach ($escalasFun as $key => $value) {
+        $nome = "";
+        
+        foreach ($value->getFuncionarios() as $keyFun => $funcionario){
+             $nome = $keyFun == 0 ? $funcionario->getNome() : $nome." - ".$funcionario->getNome();
+        }
+        
+        $event = new \YsCalendarEvent($key, $nome."(".$value->getDescricao().")");
+        $event->setStart($value->getInicio());
+        $event->setColor($value->getServicoEscala()->getCor());
+        if ($value->getServicoEscala()->getNome() == "Patrulhamento"){
+            $event->setUrl($this->generateUrl("escalaPatruIndex", array("data" => $value->getInicio()->format("Y-m-d"))));
+        }
+        
+        $calendar->addEvent($event);
+    }
+    
+    $atividades = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->loadAtividade();
+
+    foreach ($atividades as $key => $value) {
+       $event = new \YsCalendarEvent($key, $value->getNome()." (".$value->getContrato()->getCliente()->getNome().")");
+       $event->setStart($value->getdtInicio());
+       $event->setEnd($value->getdtFim());
+       $event->setColor($value->getServico()->getCor());
+       $event->setUrl($this->generateUrl("atividadeShow", array("id" => $value->getId())));
+       $calendar->addEvent($event);
+    }
+   
+    $servicos = $this->getDoctrine()->getRepository("FnxAdminBundle:ServicoEscala")->findAll();
+
+    return array("calendar" => $calendar,
+                 "servicos" => $servicos,
+                 "atividades" => $atividades);
     }
 }

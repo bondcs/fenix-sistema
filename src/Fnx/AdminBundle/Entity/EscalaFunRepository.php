@@ -33,7 +33,8 @@ class EscalaFunRepository extends EntityRepository
                 $qb->andWhere("s.id = :servico")
                 ->setParameter("servico", $servico);
             }
-
+            
+            $qb->andWhere("s.nome <> 'Patrulhamento'");
             return $qb->getQuery()->getArrayResult();
                  
        }
@@ -91,7 +92,7 @@ class EscalaFunRepository extends EntityRepository
         $inicio = new \DateTime(substr($this->conv_data_to_us($dataCliente),0,10)." 00:00:00");
         $fim = new \DateTime(substr($this->conv_data_to_us($dataCliente),0,10)." 23:59:00");
         
-        $data = $this->getEntityManager()->createQuery("SELECT max(e.inicio) FROM FnxAdminBundle:EscalaFun e")
+        $data = $this->getEntityManager()->createQuery("SELECT max(e.inicio) FROM FnxAdminBundle:EscalaFun e JOIN e.servicoEscala s WHERE s.nome = 'Patrulhamento' ")
                                          ->getResult();
         
         $dataObject = new \DateTime($data[0][1]);

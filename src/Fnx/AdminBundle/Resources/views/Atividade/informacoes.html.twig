@@ -1,4 +1,4 @@
-<div class="ui-panel-content ui-widget-content " style="width:40%; ">
+<div class="ui-panel-content ui-widget-content " style="width:99.6%; ">
     <h4 class="ui-panel-title ui-widget-header">Atividade</h4>
     <table class="infos">
                 <tr>
@@ -13,19 +13,15 @@
                     <th>Serviço:</th>
                     <td>{{atividade.servico.nome}}</td>
                 </tr>
-    </table>
-</div>
-
-<div class="ui-panel-content ui-widget-content " style="width:40%; ">
-    <h4 class="ui-panel-title ui-widget-header">Sistema</h4>
-    <table class="infos">
+                
+                {#<tr>
                     <th>Criado:</th>
                     <td>{{atividade.created|date("d/m/Y h:m:i")}}</td>
                 </tr>
                 <tr>
                     <th>Alterado:</th>
                     <td>{{atividade.updated|date("d/m/Y h:m:i")}}</td>
-                </tr>
+                </tr>#}
                 <tr>
                     <th>Status:</th>
                     <td id="status" class="{{ atividade.arquivado ? ' vermelhoCel': ' verdeCel' }}">{{ atividade.arquivado ? 'Arquivado': "Ativo" }}</td>
@@ -33,3 +29,4 @@
                 </tr> 
     </table>
 </div>
+

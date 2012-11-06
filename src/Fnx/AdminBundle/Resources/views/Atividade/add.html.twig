@@ -43,6 +43,18 @@
             {{ form_label(form.servico)}}    
             {{ form_widget(form.servico, {"id" : "servico"})}}
         </div>
+            
+        <div class="datepickerImage">
+            {{ form_errors(form.dtInicio)}}
+            {{ form_label(form.dtInicio)}}    
+            {{ form_widget(form.dtInicio)}}
+        </div>
+
+        <div class="datepickerImage">
+            {{ form_errors(form.dtFim)}}
+            {{ form_label(form.dtFim)}}    
+            {{ form_widget(form.dtFim)}}
+        </div>
         
         <div> 
             {{ form_errors(form.cep)}}

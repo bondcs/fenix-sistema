@@ -75,6 +75,20 @@ class AtividadeType extends AbstractType{
             ))
             ->add('numero','text', array(
                 'label' => 'Numero:'
+            ))
+            ->add('dtInicio', 'date', array(
+                        'label' => 'Início:',
+                        'input' => 'datetime',
+                        'widget' => 'single_text',
+                        'required' => true,
+                        'format' => 'dd/MM/yyyy HH:mm'
+             ))
+            ->add('dtFim', 'date', array(
+                        'label' => 'Fim:',
+                        'input' => 'datetime',
+                        'widget' => 'single_text',
+                        'required' => true,
+                        'format' => 'dd/MM/yyyy HH:mm'    
             ));
          
     }

@@ -28,64 +28,39 @@
                 <li><a href="#tabs-3">Atividades</a></li>
     </ul>
   <div id="tabs-1">
-  <div class="ui-panel-content ui-widget-content" style="width:600px; height: 12.5em">
-      <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
-      <table class="infos">
-            <tr>
-                <th>Nome:</th>
-                <td>{{cliente.nome}}</td>
-            <tr>
-            <tr>
-                <th>Telefone:</th>
-                <td>{{cliente.telefone}}</td>
-            <tr>
+    <div class="ui-panel-content ui-widget-content" style="width:99.6%;">
+        <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
+        <table class="infos">
+              <tr>
+                  <th>Nome:</th>
+                  <td>{{cliente.nome}}</td>
+              <tr>
+              <tr>
+                  <th>Telefone:</th>
+                  <td>{{cliente.telefone}}</td>
+              <tr>
 
-            {% if cliente.pessoa == "f" %}
-                <tr>
-                    <th>Cpf:</th>
-                    <td>{{cliente.cpf}}</td>
-                <tr>
-                <tr>
-                    <th>Tipo:</th>
-                    <td>Físico</td>
-                <tr>
-            {% else %}
-                <tr>
-                    <th>Cnpj:</th>
-                    <td>{{cliente.cnpj}}</td>
-                </tr>
-                <tr>
-                    <th>Tipo:</th>
-                    <td>Jurídico</td>
-                <tr>
-            {% endif %}
-      </table>
-  </div>
-   <div class="ui-panel-content ui-widget-content " style="width:39.4%;; ">
-      <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
-      <table class="infos">
-            <tr>
-                <th>Cep:</th>
-                <td>{{cliente.cep|default("-")}}</td>
-            <tr>
-            <tr>
-                <th>Estado:</th>
-                <td>{{ cliente.cidade.estado.nome|default("-")}}</td>
-            <tr>
-            <tr>
-                <th>Cidade:</th>
-                <td>{{ cliente.cidade.nome|default("-")}}</td>
-            <tr>
-            <tr>
-                <th>Bairro:</th>
-                <td>{{ cliente.bairro|default("-") }}</td>
-            <tr>
-            <tr>
-                <th>Rua:</th>
-                <td>{{ cliente.rua ~ " " ~ cliente.numero|default("-") }}</td>
-            <tr>
-      </table>
-  </div>
+              {% if cliente.pessoa == "f" %}
+                  <tr>
+                      <th>Cpf:</th>
+                      <td>{{cliente.cpf}}</td>
+                  <tr>
+                  <tr>
+                      <th>Tipo:</th>
+                      <td>Físico</td>
+                  <tr>
+              {% else %}
+                  <tr>
+                      <th>Cnpj:</th>
+                      <td>{{cliente.cnpj}}</td>
+                  </tr>
+                  <tr>
+                      <th>Tipo:</th>
+                      <td>Jurídico</td>
+                  <tr>
+              {% endif %}
+        </table>
+    </div>
   </div>
   <div id="tabs-2" style="padding: 0px;">
       {% include "FnxAdminBundle:Responsavel:table.html.twig" %}

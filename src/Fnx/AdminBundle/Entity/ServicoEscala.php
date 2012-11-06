@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Fnx\AdminBundle\Entity\ServicoEscala
  *
  * @ORM\Table(name="servicoEscala")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Fnx\AdminBundle\Entity\ServicoEscalaRepository")
  */
 class ServicoEscala
 {
@@ -37,6 +37,14 @@ class ServicoEscala
      * @Assert\NotBlank()
      */
     private $descricao;
+    
+    /**
+     * @var string $cor
+     *
+     * @ORM\Column(name="cor", type="string", length=20)
+     * @Assert\NotBlank()
+     */
+    private $cor;
     
     /**
      *  
@@ -117,5 +125,25 @@ class ServicoEscala
     public function getEditavel()
     {
         return $this->editavel;
+    }
+
+    /**
+     * Set cor
+     *
+     * @param string $cor
+     */
+    public function setCor($cor)
+    {
+        $this->cor = $cor;
+    }
+
+    /**
+     * Get cor
+     *
+     * @return string 
+     */
+    public function getCor()
+    {
+        return $this->cor;
     }
 }

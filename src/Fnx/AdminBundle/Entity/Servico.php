@@ -27,6 +27,13 @@ class Servico
      * @ORM\Column(name="nome", type="string", length=45)
      */
     private $nome;
+    
+    /**
+     * @var string $cor
+     *
+     * @ORM\Column(name="cor", type="string", length=20)
+     */
+    private $cor;
 
     /**
      * @var time $descanso
@@ -246,5 +253,25 @@ class Servico
     public function getMultiHoraExtra()
     {
         return $this->multiHoraExtra;
+    }
+
+    /**
+     * Set cor
+     *
+     * @param string $cor
+     */
+    public function setCor($cor)
+    {
+        $this->cor = $cor;
+    }
+
+    /**
+     * Get cor
+     *
+     * @return string 
+     */
+    public function getCor()
+    {
+        return $this->cor;
     }
 }

@@ -21,7 +21,7 @@ class ServicoEscalaFixture implements FixtureInterface{
         
         $servico = new ServicoEscala();
         $servico->setNome("Segurança");
-        $servico->setDescricao("Pode participar de serviços de segurança em geral");
+        $servico->setDescricao("Responsável por serviços de segurança em geral");
         $servico->setEditavel(false);
         
         $servico2 = new ServicoEscala();

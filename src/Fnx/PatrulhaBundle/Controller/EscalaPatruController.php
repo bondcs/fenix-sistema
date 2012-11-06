@@ -25,12 +25,16 @@ class EscalaPatruController extends Controller{
     
     
     /**
-     * @Route("/", name="escalaPatruIndex")
+     * @Route("/{data}", name="escalaPatruIndex", defaults={"data" = null})
      * @Template()
      */
-    public function indexAction(){
+    public function indexAction($data){
         $locais = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->loadLocal();
         $formFilter = $this->createForm(new FilterType());
+        if ($data != null){
+            $data = new \DateTime($data);
+            $formFilter["data"]->setData($data);
+            }
         
         return array("formFilter" => $formFilter->createView(),
                      "entities" => $locais);
@@ -229,7 +233,7 @@ class EscalaPatruController extends Controller{
         
         $escalasBanco = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->loadEscalaPatru($data);
         $escalas['aaData'] = array();
-        
+  
         foreach ($escalasBanco as $key => $value) {
             $value['funcionariosString'] = "";
             foreach ($value['funcionarios'] as $keyFun => $funcionario ){

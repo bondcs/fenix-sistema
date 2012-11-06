@@ -20,7 +20,7 @@ function onTableAjaxTransacaoGeral(){
             "sAjaxSource": Routing.generate("ajaxTransacaoGeral", {'inicio' : $(".inicio").val(),
                                                 'fim' : $(".fim").val(),
                                                 'tipo' : $(".tipo").val(),
-                                                'data' : $(".tipoData input:checked").val(),
+                                                'data' : $(".tipoData input:checked").val() ? $(".tipoData input:checked").val() : 'a',
                                                 'conta' : $(".conta").val(),
                                                 'categoria' : $(".categoria").val() ? $(".categoria").val() : 0,
                                                 'doc' : $(".doc").val() ? $(".doc").val() : 0
@@ -187,7 +187,7 @@ function filtrarGeral(){
                             {'inicio' : $(".inicio").val(),
                              'fim' : $(".fim").val(),
                              'tipo' : $(".tipo").val(),
-                             'data' : $(".tipoData input:checked").val(),    
+                             'data' : $(".tipoData input:checked").val() ? $(".tipoData input:checked").val() : 'a',    
                              'conta' : $(".conta").val(),
                              'categoria' : $(".categoria").val() ? $(".categoria").val() : 0,
                              'doc' : $(".doc").val() ? $(".doc").val() : 0

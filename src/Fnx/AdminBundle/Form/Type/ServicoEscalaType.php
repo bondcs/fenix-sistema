@@ -16,6 +16,15 @@ class ServicoEscalaType extends AbstractType
             ->add('descricao','textarea',array(
                   'label' => 'Descrição:*'
             ))
+            ->add('cor','choice',array(
+                  'label' => 'Cor:*',
+                  'choices' => array('red' => 'Vermelho',
+                                     'green' => 'Verde',
+                                     'blue' => 'Azul',
+                                     'orange' => 'Laranjado',
+                                     'silver' => 'Prata',
+                                     'gray' => 'Cinza') 
+            ))
         ;
     }
 

@@ -7,13 +7,19 @@
     
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/yepsuasmartwig/jquery4php-assets/styles/fullcalendar/jquery.fullcalendar.css')}}" />
-    
 {% endblock %}
 
 {% block title %} Calendário {% endblock %}
 
 {% block conteudo %}
-
-    {{ component_render(calendar) }}
+<div id="legenda">
+    {% for servico in servicos %}
+        <div class="wrapper-color"><div class="cor" style="background-color: {{servico.cor}}"></div><span>{{servico.nome~"(Escala)"}}</span></div>
+    {% endfor %}
+    {% for atividade in atividades %}
+        <div class="wrapper-color"><div class="cor" style="background-color: {{atividade.servico.cor}}"></div><span>{{atividade.servico.nome~"(Atividade)"}}</span></div>
+    {% endfor %}
+</div>
+{{ component_render(calendar) }}
 
 {% endblock %}

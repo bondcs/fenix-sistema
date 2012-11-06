@@ -420,7 +420,7 @@ function initDatepicker() {
     $('.datepickerImage input')
         .datetimepicker({
             showOn: "button",
-	    buttonImage: imageUrl+"calendar.gif",
+	    buttonImage: imageUrl+"calendar.png",
 	    buttonImageOnly: true
     });
     
@@ -447,6 +447,8 @@ function initDatepicker() {
     $('.datepicker input').blur();
     $('.picker input').datepicker();
     $('.picker input').blur();
+    $( "#datepicker" ).datepicker();
+    
     return false;
 
 }
