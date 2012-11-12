@@ -23,7 +23,7 @@ class Funcionario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -31,14 +31,14 @@ class Funcionario
      * @ORM\Column(name="nome", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
     
     /**
      * @var string $cpf
      *
      * @ORM\Column(name="cpf", type="string", length=45, nullable=true)
      */
-    private $cpf;
+    protected $cpf;
     
     /**
      * @var string $rg
@@ -46,7 +46,7 @@ class Funcionario
      * @ORM\Column(name="rg", type="string", length=45, nullable=true)
      * @FnxAssert\ApenasNumero()
      */
-    private $rg;
+    protected $rg;
     
     /**
      * @var string $nome
@@ -54,7 +54,7 @@ class Funcionario
      * @ORM\Column(name="dependentes", type="integer")
      * @FnxAssert\ApenasNumero()
      */
-    private $dependentes;
+    protected $dependentes;
     
     /**
      *
@@ -62,7 +62,7 @@ class Funcionario
      * 
      * @ORM\ManyToMany(targetEntity="ServicoEscala")
      */
-    private $servicos;
+    protected $servicos;
 
 
     /**
@@ -71,7 +71,7 @@ class Funcionario
      * @ORM\OneToOne(targetEntity="Fnx\AdminBundle\Entity\Usuario", cascade={"persist"})
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", onDelete="SET NULL")   
      */
-    private $usuario;
+    protected $usuario;
 
     /**
      * @var string $telefone
@@ -79,7 +79,7 @@ class Funcionario
      * @ORM\Column(name="telefone", type="string", length=14)
      * @Assert\NotBlank()
      */
-    private $telefone;
+    protected $telefone;
     
     /**
      *
@@ -90,7 +90,7 @@ class Funcionario
      * )
      * 
      */
-    private $escalas;
+    protected $escalas;
     
     /**
      *
@@ -98,27 +98,27 @@ class Funcionario
      * @ORM\Column(name="tipo", type="string", length=5)
      * 
      */
-    private $tipo;
+    protected $tipo;
        
     /**
      * Escalas excepcionais.
      * @ORM\ManyToMany(targetEntity="EscalaFun", mappedBy="funcionarios", cascade={"persist"})
      */
-    private $escalasEx;
+    protected $escalasEx;
     
     /**
      *
      * @var object $salario
      * @ORM\OneToOne(targetEntity="Salario", inversedBy="funcionario", cascade={"all"})
      */
-    private $salario;
+    protected $salario;
     
     /**
      * 
      * @var object $registro
      * @ORM\Column(name="registro", type="datetime")
      */
-    private $registro;
+    protected $registro;
     
     public function __construct() {
         

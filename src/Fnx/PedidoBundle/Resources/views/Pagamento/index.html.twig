@@ -1,0 +1,23 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+{% block title %} Pedidos {% endblock %}
+
+{% block menuContent %}
+ <div id="menuContent">
+      <h3>Pagamento: Pedido</h3>
+      <ul>
+          <li><a class="back-link" href="{{ path('PedidoEditar', {"id" : pedido.id})}}"><span></span>Voltar</a></li>
+      </ul> 
+</div>
+
+{% endblock %}
+
+{% block conteudo %}
+    <div class="box-form-ajax">
+        {% if (pedido.registro == null) %}
+            {% render 'FnxPedidoBundle:Pagamento:new' with {'id' : pedido.id} %}    
+        {% else %}
+            {% render 'FnxPedidoBundle:Pagamento:edit' with {'id' : pedido.id} %}
+        {% endif%}
+    </div> 
+{% endblock %}
+

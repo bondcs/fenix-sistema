@@ -27,7 +27,7 @@ class Responsavel
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -37,7 +37,7 @@ class Responsavel
      * @Assert\NotBlank(groups={"juridico","register"})
      * @Assert\MinLength(limit=5,groups={"juridico","register"})
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $telefone
@@ -46,7 +46,7 @@ class Responsavel
      * @Assert\NotBlank(groups={"juridico", "register"})
      * @Assert\MaxLength(limit=14,groups={"juridico","register"})
      */
-    private $telefone;
+    protected $telefone;
     
     /**
      * @var string $cpf
@@ -54,7 +54,7 @@ class Responsavel
      * @ORM\Column(name="cpf", type="string", length="15", nullable=true)
      * 
      */
-    private $cpf;
+    protected $cpf;
     
     /**
      * @var objeto $cliente
@@ -62,7 +62,7 @@ class Responsavel
      * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="responsaveis")
      * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
      */
-    private $cliente;
+    protected $cliente;
     
     /**
      * @var objeto $usuario
@@ -70,7 +70,7 @@ class Responsavel
      * @ORM\OneToOne(targetEntity="Usuario", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $usuario;
+    protected $usuario;
     
     /**
      * @var boolean principal
@@ -78,7 +78,7 @@ class Responsavel
      * @ORM\Column(name="principal", type="boolean")
      * 
      */
-    private $principal;
+    protected $principal;
     
     
     

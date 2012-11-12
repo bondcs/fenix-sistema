@@ -1,5 +1,5 @@
-{% extends "FnxPedidoBundle:Default:index.html.twig" %}
-
+{% extends "FnxAdminBundle::layout.html.twig" %}
+{% block title %} Pedidos {% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('Resources/css/TableTools.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ asset('Resources/css/TableTools_JUI.css') }}" type="text/css" rel="stylesheet" />
@@ -40,6 +40,18 @@
 	.clear{
 	    clear: both;
 	}
+        
+        .previsao{
+            width: 20% !important;
+        }
+        
+        .box-table2{
+            margin-top: 1%;
+        }
+        
+        .DTTT_container{
+            margin-right: 0px !important;
+        }
     </style>
 {% endblock %}
 
@@ -53,277 +65,148 @@
         "bPaginate": false,
         "bFilter": false,
         "bRetrieve": true,
+        "sAjaxSource": Routing.generate("ajaxItem"),
+        "aoColumns": [
+                { "mDataProp": "nome"},
+                { "mDataProp": "descricao" },
+                { "mDataProp": "quantidade" },
+                { "mDataProp": "preco" },
+                { "mDataProp": "total",
+                  "sClass" : "center" }
+                    
+             ],
         "bInfo": false,
          "oLanguage": {
             "sEmptyTable": "Não existe nenhum item"
           },
-        "sDom": 'T<"clear">lfrtip',
-        "oTableTools": {
-            "aButtons": [
-                 {
-                    "sExtends":    "text",
-                    "fnClick": function ( nButton, oConfig, oFlash ) {
-                        $("#modal_new_item").dialog('open');
-                    },
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/icojoy/noshadow/standart/png/24x24/001_01.png'/> Novo Item"
-                },
-                {
-                    "sExtends":    "text",
-                    "fnClick": function ( nButton, oConfig, oFlash ) {
-                        alert( 'Editar Item' );
-                    },
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/fatcow/32x32_0660/page_white_edit.png'/> Editar"
-                },
-                {
-                    "sExtends":    "text",
-                    "fnClick": function ( nButton, oConfig, oFlash ) {
-                        alert( 'Deletar Item' );
-                    },
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/diagona/icon/16/101.png'/> Deletar"
+        //"sDom": 'T<"clear">lfrtip',
+        "sDom": '<"H"Tfr>t<"F"ip>',
+        "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+                var total = 0;
+                for (var i=0; i < aaData.length; i++){
+                    total += aaData[i]["totalNumber"]*1;
                 }
+                var nCells = nRow.getElementsByTagName('th');
+		nCells[1].innerHTML = formataDinheiro(total+"");
+            },
+        "oTableTools": {
+            "sRowSelect": "single",
+            "sSelectedClass": "row_selected",
+            "aButtons": [
+                {
+                    "sExtends": "text",
+                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/icojoy/noshadow/standart/png/24x24/001_01.png'/> Novo Item",
+                    "fnClick" : function(){
+                            ajaxLoadDialog(Routing.generate("itemAdd", {"pedido" : $('#tableItens').attr("pedido")}));
+                    }
+                },
+
+                {
+                    "sExtends": "select_single",
+                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/fatcow/32x32_0660/page_white_edit.png'/> Editar",
+                    "fnClick" : function(){
+                         var aaData = this.fnGetSelectedData()
+                         id = aaData[0]["id"];
+                         ajaxLoadDialog(Routing.generate("itemEdit", {"id" : id}));
+
+                    }
+                },
+
+                {
+                    "sExtends": "select_single",
+                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/diagona/icon/16/101.png'/> Deletar",
+                    "fnClick" : function(){
+                        if (clickTableTerminate()){
+                         var aaData = this.fnGetSelectedData()
+                         id = aaData[0]["id"];
+                         $( "#dialog-confirm" ).dialog("open");
+                         $( "#dialog-confirm" ).dialog("option", "buttons", {
+                             "Deletar": function() {
+                                    ajaxDelete(Routing.generate("itemDelete", {"id" : id})); 
+                                    $(this).dialog("close");
+                             },
+                             "Cancelar": function(){
+                                    $(this).dialog("close");
+                             }
+                         } );
+                         return false;
+                        }
+
+                    }
+                }
+
             ]
-        }
+         }
     });
-
-    $( "#frm_cli_nome" ).autocomplete({
-	source: [{{ array_clientes|join(",")|raw }}],
-	minLength: 2
-    });
-
-    $('#form_new_item').submit(function(){
-
-	$('#modal_new_item').dialog('close');
-
-	$(this).ajaxSubmit({ success: addItem });
-
-	limpaDadosItem();
-
-	return false;
-    });
-
-    // variavel que guarda um status da verificação do cliente
-    // 1 = OK , 0 = não verificado ou não existe, -1 = erro na verificação
-    var userRegistered = 0;
-
-    $("#frm_cli_nome").blur(function(){
-	if(userRegistered == -1){
-	    confereCliente($(this));
-	}
-    });
-
-    $('#form_item_preco').blur(function(){
-	if($(this).val() && $('#form_item_qtd').val()){
-	    var aux = desformataDinheiro($(this).val()) * $('#form_item_qtd').val();
-	    $('#label_total_item').text(formataDinheiro(aux));
-	}
-    });
-
-    $('#form_item_qtd').blur(function(){
-	if($('#form_item_preco').val() && $(this).val()){
-	    $('#label_total_item').text(formataDinheiro(desformataDinheiro($('#form_item_preco').val()) * $(this).val()));
-	}
-    });
-
-    $("#frm_cli_nome").keydown(function(){
-	userRegistered = 0;
-    });
-
-function limpaDadosCliente(){
-    $("#frm_cli_tel").text('');
-    $("#frm_cli_desc").text('');
-    $("#frm_cli_tipo").text('');
-    $("#frm_cli_disc").text('');
-
-    $('#is_registered').addClass('hidden');
-}
-
-function confereCliente(elem, user){
-    $.ajax({
-        type: "POST",
-        url: Routing.generate('PedidoVerificaCliente'),
-	data: {'nome' : $(elem).val()},
-        dataType: "JSON",
-        success: function(cliente){
-            if(cliente){
-		console.log(cliente);
-		userRegistered = 1;
-		$("#frm_cli_tel").text(cliente['tel']);
-		$("#frm_cli_desc").text(cliente['desc']);
-		$("#frm_cli_tipo").text(cliente['tipo']);
-		$("#frm_cli_disc").text(cliente['disc']);
-
-		$('#is_registered').removeClass('hidden');
-	    }else{
-		userRegistered = 0;
-		limpaDadosCliente();
-		$('#modal_conf_cli').dialog('open');
-	    }
-        },
-        error: function(){
-	    userRegistered = 0;
-            alert('Não foi possível buscar as informações do cliente');
-	    limpaDadosCliente();
-	    return false;
-        }
-    });
-}
-
-function cadastraCliente(form){
-    $.ajax({
-        type: "POST",
-        url: Routing.generate('PedidoCadastraCliente'),
-        data: {"nome" : form.serialize()},
-        success: function(result){
-            var flag = new Boolean();
-            if(jQuery.parseJSON(result).flag){
-
-            }else{
-
-            }
-        }
-    })
-}
-
-function confereFormulario(){
-    if(!userRegistered == "confirmado"){
-        $("#modal_conf_cli").dialog("open");
-    }
-    return false;
-}
-
-function addItem(table,item){
-    $(table).dataTable().fnAddData([
-	item['nome'],
-	item['descricao'],
-	item['quantidade'],
-	formataDinheiro(item['valor']),
-	formataDinheiro(item['valor']*item['quantidade'])
-    ]);
-}
-
-function limpaDadosItem(){
-    $('#form_item_nome').val('');
-    $('#form_item_preco').val('');
-    $('#form_item_qtd').val('');
-    $('#label_total_item').text('');
-    $('#form_item_desc').val('');
-}
-
-function calculaTotal(table,col,fieldResult){
-    var total = 0.0;
-    $(table).find("tbody tr").each(function(){
-	$col = $(this).find("td:eq("+col+")");
-	if($(col).hasClass('moeda'))
-	    total += desformataDinheiro($($col).text());
-	else
-	    total += $($col).text();
-    });
-
-    $(fieldResult).text(formataDinheiro(total));
-}
-
-$(document).ready(function(){
-    $('.simple_dialog').dialog({ autoOpen : false, modal: true, resizable: false});
-    $('.simple_dialog').removeClass('hidden');
-    $('#modal_conf_cli').dialog({ buttons: [
-	{
-	    text: "Sim",
-	    click: function() { userRegistered = 1;$(this).dialog('close'); }
-	},
-	{
-	    text: "Não",
-	    click: function() { userRegistered = 0;$(this).dialog('close'); }
-	}
-    ]});
-    $('#modal_conf_cli').removeClass('hidden');
-    $('.data').datepicker();
-    $('#frm_ped_id_previsao').datepicker("option", "minDate", 'd +1');
-});
-
+    
 </script>
 {% endblock %}
 
+{% block menuContent %}
+    <div id="menuContent">
+        <h3>Gerenciamento: Formulário de pedidos</h3>
+        <ul>
+            {% if (pedido.id) %} <li><a class="money02-link" href="{{path("PedidoFechar", {'id' : pedido.id})}}"><span></span>{{pedido.status == 'a' ? "Fechar" : "Abrir"}}</a></li> {% endif %}
+            <li><a class="back-link" href="{{ path('PedidoListar')}}"><span></span>Voltar</a></li>
+        </ul> 
+    </div>
+{% endblock %}
+
 {% block conteudo%}
-<form onsubmit="confereformulario();" method="POST">
-    <fieldset>
-        <legend>Cliente</legend>
-	<table>
-	    <thead>
-		<tr>
-		    <td>{{ form_label(form.cliente) }}: {{ form_errors(form.cliente) }}</td>
-		    <td>{{ form_widget(form.cliente, {'attr' : {'class' : 'teste'} } ) }}</td>
-		</tr>
-	    </thead>
-	    <tbody  id="is_registered" class="hidden">
-		<tr>
-		    <td>Telefone: </td>
-		    <td id="frm_cli_tel"></td>
-		</tr>
-		<tr>
-		    <td>Descrição: </td>
-		    <td id="frm_cli_desc"></td>
-		</tr>
-		<tr>
-		    <td id="frm_cli_tipo"></td>
-		    <td id="frm_cli_disc"></td>
-		</tr>
-	    </tbody>
-	</table>
-    </fieldset>
-    {{ form_label(form.previsao) }}
-    {{ form_widget(form.previsao) }}
+{% if (pedido.id) %}
+<div style="text-align: right; float: right; margin:15px 1px 15px 3px;">
+     <a class="button" href="{{ path("PedidoPagamento", {"id" : pedido.id})}}" title="Pagamento">Pagamento</a> 
+</div>
+{% endif %}
 
-    <hr style="margin: 15px;">
+<form method="POST" action="{{ pedido.id ? path('PedidoEditar', {"id" : pedido.id}) :path('PedidoCadastrar')}}" class="cms">
+    <div class="ui-panel-content ui-widget-content " style="width:99.3%">
+       <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
+       <div id="box-form">
+        <div class="myform">
+            {{form_errors(form)}}
+                
+            <div class="complete">
+            {{ form_errors(form.cliente) }}
+            {{ form_label(form.cliente) }}
+            {{ form_widget(form.cliente, {'id' : {'class' : 'teste'} } ) }} <a class="ajax-link button" href="{{ path("clienteAdd")}}" title="Cliente">Adicionar</a> 
+            </div>
+                
+            <div class="picker">
+            {{ form_errors(form.previsao) }}
+            {{ form_label(form.previsao) }}
+            {{ form_widget(form.previsao, {'attr' : {'class' : 'previsao', 'id' : 'cliente'} } ) }}
+            </div>
 
-    <table id="tableItens" class="tablePlugin2" data-col_totalizer=4 data-field_result="#sommatory" data-callback_append="addItem" >
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Valor</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4" style="text-align: right;">Total: </td>
-                <td id="sommatory"></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <input type="submit" value="Salvar"/>
+        </div>
+           
+       </div>
+   </div>
+   <div style="margin: 3px 3px; margin-top: 1.5%;" class="box-table">
+        <table id="tableItens" class="tablePlugin redraw" pedido="{{ pedido.id ? pedido.id : '0' }}" >
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align: right;">Total: </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+   </div>
+    {{form_row(form._token)}}
+    <div class="box-submit">
+        <input type="submit" value="Salvar"/>
+    </div>
 </form>
-
-<div id="modal_conf_cli" class="simple_dialog hidden" title="Esse cliente não está cadastrado">
-
-<p>Esse cliente ainda não está cadastrado
-
-    Deseja cadastra-lo agora?</p>
-</div>
-
-<div id="modal_new_item" class="simple_dialog" title="Adicionar Item" style="width: 500px; height: 400px;">
-    <form id="form_new_item" class="ajax_form" action="{{ path('PedidoAdicionaItem') }}" method="POST">
-	<label for="form_item_nome">Item: </label>
-	<input id="form_item_nome" name="nome"><br class="clear">
-
-	<label for="form_item_preco">Preço: </label>
-	<input id="form_item_preco" class="moeda" name="preco"><br class="clear">
-
-	<label for="form_item_qtd">Quantidade:</label>
-	<input id="form_item_qtd" name="quantidade"><br class="clear">
-
-	<span class="label">Total: </span>
-	<span id="label_total_item" class="input"></span><br class="clear">
-
-	<label for="form_item_desc">Descrição</label>
-	<textarea id="form_item_desc" class="input" name="descricao"></textarea><br class="clear">
-
-	<input type="submit" id="form_item_submit" value="Adicionar">
-    </form>
-</div>
 
 {% endblock %}

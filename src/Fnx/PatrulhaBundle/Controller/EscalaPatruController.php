@@ -34,7 +34,7 @@ class EscalaPatruController extends Controller{
         if ($data != null){
             $data = new \DateTime($data);
             $formFilter["data"]->setData($data);
-            }
+        }
         
         return array("formFilter" => $formFilter->createView(),
                      "entities" => $locais);

@@ -20,7 +20,7 @@ class Parcela
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var date $dt_vencimento
@@ -28,35 +28,35 @@ class Parcela
      * @ORM\Column(name="dt_vencimento", type="date")
      * @Assert\NotBlank()
      */
-    private $dt_vencimento;
+    protected $dt_vencimento;
     
     /**
      * @var integer $numero
      *
      * @ORM\Column(name="numero", type="integer")
      */
-    private $numero;
+    protected $numero;
     
     /**
      * @var date $finalizado
      *
      * @ORM\Column(name="finalizado", type="boolean")
      */
-    private $finalizado;
+    protected $finalizado;
     
     /**
      *
      * @var object $registro
      * @ORM\ManyToOne(targetEntity="Registro", inversedBy="parcelas", cascade={"persist"}, fetch="LAZY")
      */
-    private $registro;
+    protected $registro;
     
     /**
      *
      * @var object $movimentacao
      * @ORM\OneToOne(targetEntity="Movimentacao", mappedBy="parcela", cascade={"all"})
      */
-    private $movimentacao;
+    protected $movimentacao;
     
     public function __construct() {
         $this->finalizado = false;

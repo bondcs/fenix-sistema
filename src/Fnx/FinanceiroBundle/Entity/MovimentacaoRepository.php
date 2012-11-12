@@ -26,6 +26,20 @@ class MovimentacaoRepository extends EntityRepository
                 ->getArrayResult();
     }
     
+    public function loadParcelaPedido($id){
+        
+        return $this->getEntityManager()
+                ->createQuery('SELECT pe,r,p,m,fp
+                               FROM FnxPedidoBundle:Pedido pe
+                               JOIN pe.registro r
+                               JOIN r.parcelas p
+                               JOIN p.movimentacao m
+                               JOIN m.formaPagamento fp
+                               WHERE pe.id = :id')
+                ->setParameter("id", $id)
+                ->getArrayResult();
+    }
+    
     public function getMovimentacoes($inicio, $fim, $tipo, $conta){
         
         

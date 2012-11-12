@@ -22,28 +22,28 @@ class Registro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @var boolean $ativo
      *
      * @ORM\Column(name="ativo", type="boolean")
      */
-    private $ativo;
+    protected $ativo;
 
     /**
      * @var datetime $data
      *
      * @ORM\Column(name="data", type="datetime")
      */
-    private $data;
+    protected $data;
 
     /**
      * @var string $descricao
      *
      * @ORM\Column(name="descricao", type="string", length=255)
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      *
@@ -51,34 +51,34 @@ class Registro
      * @ORM\ManyToOne(targetEntity="Conta", inversedBy="registros", cascade={"persist"}, fetch="LAZY")
      * @Assert\NotBlank()
      */
-    private $conta;
+    protected $conta;
     
     /**
      * @var array collection $parcelas
      * @ORM\OneToMany(targetEntity="Parcela", mappedBy="registro", cascade={"all"}, orphanRemoval=true)
      * 
      */
-    private $parcelas;
+    protected $parcelas;
     
     /**
      * @var object $categoria
      * @ORM\ManyToOne(targetEntity="Fnx\AdminBundle\Entity\Categoria", cascade={"persist"}, fetch="LAZY")
      */
-    private $categoria;
+    protected $categoria;
     
     /**
      * @var date $primeriaParcela
      *
      * @ORM\Column(name="dt_primeiraParcela", type="date")
      */
-    private $primeiraParcela;
+    protected $primeiraParcela;
     
     /**
      * @var date $valor
      *
      * @ORM\Column(name="valorTotal", type="float")
      */
-    private $valor;
+    protected $valor;
 
 
     public function __construct() {

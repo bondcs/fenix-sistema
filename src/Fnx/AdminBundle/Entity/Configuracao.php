@@ -22,7 +22,7 @@ class Configuracao
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float $valorDependente
@@ -30,7 +30,7 @@ class Configuracao
      * @ORM\Column(name="valorDependente", type="float")
      * @Assert\NotBlank()
      */
-    private $valorDependente;
+    protected $valorDependente;
     
     /**
      *
@@ -39,7 +39,7 @@ class Configuracao
      * @ORM\OneToOne(targetEntity="Fnx\FinanceiroBundle\Entity\Conta")
      * @ORM\JoinColumn(name="conta_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $contaSalario;
+    protected $contaSalario;
     
     /**
      *
@@ -48,7 +48,7 @@ class Configuracao
      * @ORM\OneToOne(targetEntity="Fnx\FinanceiroBundle\Entity\FormaPagamento")
      * @ORM\JoinColumn(name="forma_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $formaPagamentoSalario;
+    protected $formaPagamentoSalario;
     
     /**
      * @ORM\PrePersist @ORM\PreUpdate

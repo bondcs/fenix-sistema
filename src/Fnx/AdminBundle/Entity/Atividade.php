@@ -26,7 +26,7 @@ class Atividade
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -34,7 +34,7 @@ class Atividade
      * @ORM\Column(name="nome", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
@@ -42,27 +42,27 @@ class Atividade
      * @ORM\Column(name="descricao", type="string", length=255)
      * @Assert\NotBlank()
      */
-    //private $descricao;
+    //protected $descricao;
 
     /**
      * @var datetime $created
      *
      * @ORM\Column(name="created", type="datetime")
      */
-    private $created;
+    protected $created;
 
     /**
      * @var datetime $updated
      *
      * @ORM\Column(name="updated", type="datetime")
      */
-    private $updated;
+    protected $updated;
     
     /**
      * @ORM\Column(name="arquivado",type="boolean", nullable=false)
      * @var boolean $arquivado
      */
-    private $arquivado;
+    protected $arquivado;
     
     /**
      * @var object $contrato
@@ -70,7 +70,7 @@ class Atividade
      * @ORM\ManyToOne(targetEntity="Contrato", cascade={"all"}, fetch="LAZY")
      * @ORM\JoinColumn(name="contrato_id", referencedColumnName="id")
      */
-    private $contrato;
+    protected $contrato;
     
     
     /**
@@ -81,7 +81,7 @@ class Atividade
      * 
      * @Assert\NotBlank()
      */
-    private $servico;
+    protected $servico;
     
     /**
      * @ORM\ManyToMany(targetEntity="Categoria")
@@ -92,42 +92,42 @@ class Atividade
      * )
      * @var ArrayCollection $categorias
      */
-    private $categorias;
+    protected $categorias;
     
     /**
      * 
      * @ORM\OneToMany(targetEntity="Endereco", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $enderecos
      */
-    private $enderecos;
+    protected $enderecos;
     
     /**
      * 
      * @ORM\OneToMany(targetEntity="Escala", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $escalas
      */
-    private $escalas;
+    protected $escalas;
     
     /**
      * 
      * @ORM\OneToMany(targetEntity="Local", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $locais
      */
-    private $locais;
+    protected $locais;
     
     /**
      * 
      * @ORM\OneToOne(targetEntity="Galeria", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $galerias
      */
-    private $galeria;
+    protected $galeria;
     
     /**
      * 
      * @ORM\OneToMany(targetEntity="Propriedade", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $propriedades
      */
-    private $propriedades;
+    protected $propriedades;
     
     /**
      *
@@ -135,7 +135,7 @@ class Atividade
      * @ORM\OneToOne(targetEntity="Fnx\FinanceiroBundle\Entity\Registro", cascade={"all"})
      * @ORM\JoinColumn(name="registro_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $registro;
+    protected $registro;
     
     /**
      * @var string $cep
@@ -143,7 +143,7 @@ class Atividade
      * @ORM\Column(name="cep", type="string", length=9, nullable=true)
      * @Assert\MinLength(8)
      */
-    private $cep;
+    protected $cep;
     
      /**
      * @var objeto $cidade
@@ -151,49 +151,49 @@ class Atividade
      * @ORM\ManyToOne(targetEntity="Cidade")
      * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id") 
      */
-    private $cidade;
+    protected $cidade;
 
     /**
      * @var string $bairro
      *
      * @ORM\Column(name="bairro", type="string", length=45, nullable=true)
      */
-    private $bairro;
+    protected $bairro;
 
     /**
      * @var string $rua
      *
      * @ORM\Column(name="rua", type="string", length=80, nullable=true)
      */
-    private $rua;
+    protected $rua;
 
     /**
      * @var integer $numero
      *
      * @ORM\Column(name="numero", type="string", length=20, nullable=true)
      */
-    private $numero;
+    protected $numero;
 
     /**
      * @var string $complemento
      *
      * @ORM\Column(name="complemento", type="string", length=80, nullable=true)
      */
-    private $complemento;
+    protected $complemento;
     
     /**
      * @var datetime $dtInicio
      *
      * @ORM\Column(name="dtInicio", type="datetime", nullable=true)
      */
-    private $dtInicio;
+    protected $dtInicio;
 
     /**
      * @var datetime $dtFim
      *
      * @ORM\Column(name="dtFim", type="datetime", nullable=true)
      */
-    private $dtFim;
+    protected $dtFim;
     
    
     public function __construct() {

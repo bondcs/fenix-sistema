@@ -20,7 +20,7 @@ class Categoria
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -28,7 +28,7 @@ class Categoria
      * @ORM\Column(name="nome", type="string", length=50)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
@@ -37,14 +37,14 @@ class Categoria
      * 
      * @Assert\NotBlank()
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      *  
      * @var boolean $editavel
      * @ORM\Column(name="editavel", type="boolean")
      */
-    private $editavel;
+    protected $editavel;
 
     public function __construct() {
         $this->editavel = true;

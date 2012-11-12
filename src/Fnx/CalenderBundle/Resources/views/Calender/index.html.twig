@@ -14,11 +14,12 @@
 {% block conteudo %}
 <div id="legenda">
     {% for servico in servicos %}
-        <div class="wrapper-color"><div class="cor" style="background-color: {{servico.cor}}"></div><span>{{servico.nome~"(Escala)"}}</span></div>
+        <div class="wrapper-color"><div class="cor" style="background-color: {{servico.cor}}"></div><span>{{servico.nome~"[Escala]"}}</span></div>
     {% endfor %}
     {% for atividade in atividades %}
-        <div class="wrapper-color"><div class="cor" style="background-color: {{atividade.servico.cor}}"></div><span>{{atividade.servico.nome~"(Atividade)"}}</span></div>
+        <div class="wrapper-color"><div class="cor" style="background-color: {{atividade.servico.cor}}"></div><span>{{atividade.servico.nome~"[Atividade]"}}</span></div>
     {% endfor %}
+         <div class="wrapper-color"><div class="cor" style="background-color: purple"></div><span>Pedido</span></div>
 </div>
 {{ component_render(calendar) }}
 

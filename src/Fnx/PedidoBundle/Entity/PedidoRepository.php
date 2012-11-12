@@ -12,5 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class PedidoRepository extends EntityRepository
 {
+        public function loadPedido($status) {
 
+            $qb = $this->createQueryBuilder('p')
+                ->select('p', 'c')
+                ->join('p.cliente', 'c');
+
+            if ($status != "t"){
+                $qb->Where("p.status = :param")
+                ->setParameters(array("param" => $status));
+            }
+
+            return $qb->getQuery()->getResult();
+        }
 }

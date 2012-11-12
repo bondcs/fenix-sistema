@@ -94,6 +94,11 @@ class ServicoEscalaController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Serviço não encontrado.');
         }
+        
+        if ($entity->getEditavel() == false){
+           $this->get("session")->setFlash('error', "Este registro não pode ser editado.");
+           return $this->redirect($this->generateUrl('funcionario_servico_escala'));
+        }
 
         $editForm = $this->createForm(new ServicoEscalaType(), $entity);
 

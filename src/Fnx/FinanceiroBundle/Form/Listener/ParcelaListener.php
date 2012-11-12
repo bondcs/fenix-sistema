@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityManager;
  */
 class ParcelaListener implements EventSubscriberInterface{
     
-    private $em;
+    protected $em;
 
 
     public function __construct($em) {

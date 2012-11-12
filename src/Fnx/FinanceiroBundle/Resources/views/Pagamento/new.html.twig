@@ -1,6 +1,7 @@
 <div class="box-form-pagamento">
-    <div class="ui-panel-content ui-widget-content " style="width:auto;">
+    <div class="ui-panel-content ui-widget-content dialog-form" style="width:auto;">
     <h4 class="ui-panel-title ui-widget-header empty-title"></h4>
+    <div id="box-form">
     <form novalidate="" class="cms" style="padding: 15px;" action="{{ path('pagamentoCreate',{'id' : id}) }}" method="post" {{ form_enctype(form) }}>
              {{form_errors(form)}}
             <div class="myform">
@@ -26,13 +27,13 @@
             <div>
                 {{ form_errors(form.valor)}}
                 {{ form_label(form.valor)}}    
-                {{ form_widget(form.valor, {'attr' : { 'style' : 'width:33%'}})}}
+                {{ form_widget(form.valor, {'attr' : { 'style' : 'width:53%'}})}}
             </div>
             
             <div class="picker">
                 {{ form_errors(form.primeiraParcela)}}
                 {{ form_label(form.primeiraParcela)}}    
-                {{ form_widget(form.primeiraParcela)}}
+                {{ form_widget(form.primeiraParcela, {'attr' : { 'style' : 'width:53%'}})}}
             </div>    
             
             <div>
@@ -43,7 +44,10 @@
 
         </div>    
             {{ form_row(form._token) }}
-            <input style="margin-bottom: 5px;" type="submit" value="Submit"/>
+        <div class="box-submit">
+            <input type="submit" value="Enviar"/>
+        </div>
         </form>
-    </div>
+       </div>
+     </div>
 </div>

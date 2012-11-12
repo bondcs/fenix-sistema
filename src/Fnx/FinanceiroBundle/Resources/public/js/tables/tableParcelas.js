@@ -9,6 +9,7 @@ function onTableAjaxParcela(){
         var atividadeId = $('.tableParcelas').attr('atividade')
         oTableParcela = $('.tableParcelas').dataTable({
             "bJQueryUI": true,
+            "bSortClasses": false,
             "sPaginationType": "full_numbers",
             "bPaginate": true,
             "bInfo": false,
@@ -65,13 +66,13 @@ function onTableAjaxParcela(){
             },
             "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                 
-//                if ( aData['movimentacao']['valor'] <= aData['movimentacao']['valor_pago'] )
-//                {
-//                  $(nRow).addClass('verde');
-//                }
-                if ( aData['finalizado'])
+                if (aData['finalizado'])
                 {
-                  $(nRow).addClass('riscado');
+                  $(nRow).addClass('verde');
+                }else{
+                    if (aData['situacao'] == 'Em atraso'){
+                        $(nRow).addClass('vermelho');
+                    }
                 }
             },
             "sDom": '<"H"Tfr>t<"F"ip>',

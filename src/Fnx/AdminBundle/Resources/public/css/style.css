@@ -46,15 +46,15 @@ li{list-style: none;}
 .username {color:white; margin-bottom: 50px; position: relative; bottom: 8px; font-weight: bold; font-size: 13px;}
 
 /* menu inicial */
-#all-menu {margin: 5px; z-index: 1}
-#all-menu a {float: left; text-decoration: none; color: #025A8D; margin-right: 15px;}
-.box-menu{ height: 100px; width: 160px; background-color: #ffffff; border: 1px solid #cccccc; padding-top: 10px;}
+#all-menu {margin: 5px; z-index: 1; margin-top: 10px; width: 70%; margin-left: 10px;}
+#all-menu a {float: left; text-decoration: none; color: #025A8D; margin-right: 15px; margin-bottom: 15px;}
+.box-menu{ height: 100px; width: 190px; background-color: #ffffff; border: 1px solid #cccccc; padding-top: 10px;}
 .box-menu:hover{border-color: black}
 .img {text-align: center;}
 .label{text-align: center;}
 
 /* profile index */
-.profile-index{position: absolute; right: 25px; width: 310px; z-index: 1}
+.profile-index{position: absolute; right: 25px; width: 310px; z-index: 1; border: 1px solid #cccccc; padding: 10px; background-color: white; padding-left: 12px; margin-right: 5px;}
 
 /* legenda Cores */
 .wrapper-color{display: inline-block; margin-bottom: 10px}
@@ -87,6 +87,7 @@ li{list-style: none;}
 .arquive-link > span {background-image: url("../images/unarquive-ico.png");}
 .unarquive-link > span {background-image: url("../images/arquivar-ico.png");}
 .config-link > span {background-image: url("../images/manu-ico.png");}
+.money02-link > span {background-image: url("../images/money2-icon.png");}
 
 
 
@@ -98,7 +99,9 @@ li{list-style: none;}
 
 /* forms */
 #box-form{padding: 10px; margin: 10px; display: inline-block}
-.box-form-dialog{padding:10px 10px 60px 10px; background-color: #DADCFF}
+.box-form-dialog{padding:10px 10px 10px 10px; background-color: #DADCFF}
+.dialog-form{width: 99.4% !important}
+.dialog-form h4 {text-align: left !important}
 form.cms .myform { font-size: 16px; }
 form.cms .myform div{ clear: left; margin-bottom: 10px;}
 form.cms .myform .inputExtendido input {width: 435px !important}
@@ -117,9 +120,10 @@ form.cms .myform input[type="checkbox"] {margin-top: 2%}
 form.cms .myform input[type="file"]
     { width: 250px; line-height: 20px; font-size: 12.5pt; min-height: 26px;  }  
 form.cms .myform textarea {width: 435px; height: 250px; line-height: 26px; font-size: 16px; padding-left: 4px;}
+form.cms .box-submit{text-align: right}
 form.cms input[type="submit"],
 form.cms input[type="button"]
-    {float: right; margin-top: 10px; margin-left: 4px;}
+    {float: none; margin-top: 10px; margin-left: 4px;}
 form.cms .myform ul li { color: #ff0000; margin-bottom: 5px; }
 form.cms .myform fieldset{padding: 15px; border: 1px solid #9FAFD1}
 form.cms .myform fieldset legend {padding: 0.1em 0.2em; border:1px solid; font-size:90%; text-align:right; border: 0px;}
@@ -185,7 +189,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 
 /* hidden id e doubleclick*/
 .id {display: none;}
-.doubleclick thead th:last-child{display: none;}
+/*.doubleclick thead th:last-child{display: none;}*/
 /* menu tabela */
 
 .menuDialog {}
@@ -207,10 +211,13 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 }
 
 /* informações tabela */
-.infos {font-size: 16px; padding: 10px;}
-.infos th{text-align: left; min-width: 100px;}
-.infos th,td {padding: 5px;}
+.infos {font-size: 16px; width: 100%; border-collapse: collapse;}
+.infos tr{ border: 1px solid #E2E4FF}
+.infos th{text-align: left; width: 130px;}
+.infos th,td {padding: 5px; }
 .toolbar01, .toolbar02{text-align: center; margin-left: 15%; font-size: 1.1em}
+.odd{ background-color: #E2E4FF}
+.even{ background-color: white}
 
 
 .menuDialog a:hover, .menuDialogForm a:hover{
@@ -231,14 +238,20 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 }
 
 /* Conteudo */
-.main-col{background-color: #F4F4F4; margin: 8px; min-height: 450px; border: 1px solid #CCCCCC; border-radius: 0px; padding:3px; padding-bottom: 40px;}
+.main-col{background-color: #F4F4F4; margin: 8px; min-height: 480px; border: 1px solid #CCCCCC; border-radius: 0px; padding:3px; padding-bottom: 5px;}
 
 /* ajax */
 .simpleDialog {margin:0; padding:2px 0 0 0 !important;}
 
 /* Footer */
 #footer{text-align: center; padding: 5px; background-color: #F4F4F4; margin: 8px; min-height: 60px; border: 1px solid #CCCCCC; border-radius: 0px}
-
+#box-footer {overflow: auto; width: 100%; text-align: center; margin-left: 7.5%; margin-top: 10px; font-size: 0.9em; color: #A19B9E}
+#box-footer ul{float:left; margin: 15px; text-align: left; border-right: 1px solid #CCCCCC}
+#box-footer li {width: 125px;}
+#box-footer a {text-decoration: none; color: #000}
+#box-footer a:hover{text-decoration: underline}
+#box-footer .has-sub{font-weight: bold; font-size:1.2em}
+#last-ul{border: 0px !important}
 
 /* SmartTwig */
 
@@ -288,6 +301,10 @@ div.innerRow{display: none; }
 #responsavel legend {display: block}
 #fnx_adminbundle_escalapatrutype_inicio{ clear: none}
 #datepicker .ui-corner-all {border-radius: 0px;}
+.tabs {border-radius: 0px !important;}
+.ui-tabs-nav {border-radius: 0px !important;}
+.ui-tabs-nav li{border-radius: 0px !important;}
+.fg-toolbar {border-radius: 0px !important;}
 
 /*.box-table thead tr th:last-child{display: none !important;}
 .box-table tbody tr td:last-child{display: none !important;}*/

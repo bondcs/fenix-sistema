@@ -22,7 +22,7 @@ class Galeria
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -30,32 +30,32 @@ class Galeria
      * @ORM\Column(name="nome", type="string", length=45)
      * 
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
      *
      * @ORM\Column(name="descricao", type="string", length=200, nullable=true)
      */
-    private $descricao;
+    protected $descricao;
       
     /**
      * @var array $files
      * 
      */
-    private $files;
+    protected $files;
     
     /**
      *
      * @ORM\OneToMany(targetEntity="Imagem", mappedBy="galeria", cascade={"all"}, orphanRemoval=true)
      */
-    private $imagens;
+    protected $imagens;
     
     /**
      *
      * @ORM\OneToOne(targetEntity="Atividade", inversedBy="galeria")
      */
-    private $atividade;
+    protected $atividade;
 
 
     public function __construct() {

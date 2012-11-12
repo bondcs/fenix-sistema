@@ -72,7 +72,7 @@ function onTableAjaxEscalaPatru(){
                         },
                         {
                             "sExtends": "text",
-                            "sButtonText": "Escalas",
+                            "sButtonText": "Últimas Escalas",
                             "fnClick" : function(){
                                  loadUltimas();
                             }

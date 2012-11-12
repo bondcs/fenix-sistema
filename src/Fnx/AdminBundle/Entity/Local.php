@@ -24,14 +24,14 @@ class Local
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @var string $bairro
      *
      * @ORM\Column(name="descricao", type="string", length=45, nullable=true)
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      * @var objeto $cidade
@@ -40,7 +40,7 @@ class Local
      * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id") 
      * @Assert\NotBlank()
      */
-    private $cidade;
+    protected $cidade;
 
     /**
      * @var string $bairro
@@ -48,7 +48,7 @@ class Local
      * @ORM\Column(name="bairro", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $bairro;
+    protected $bairro;
 
     /**
      * @var string $rua
@@ -56,21 +56,21 @@ class Local
      * @ORM\Column(name="rua", type="string", length=80)
      * @Assert\NotBlank()
      */
-    private $rua;
+    protected $rua;
 
     /**
      * @var integer $numero
      *
      * @ORM\Column(name="numero", type="string", length=20, nullable=true)
      */
-    private $numero;
+    protected $numero;
 
     /**
      * @var string $complemento
      *
      * @ORM\Column(name="complemento", type="string", length=80, nullable=true)
      */
-    private $complemento;
+    protected $complemento;
     
     /**
      *
@@ -78,7 +78,7 @@ class Local
      * 
      * @ORM\ManyToOne(targetEntity="Atividade", inversedBy="escalas", cascade={"persist"}, fetch="LAZY")
      */
-    private $atividade;
+    protected $atividade;
 
     /**
      * @var decimal $custo
@@ -87,7 +87,7 @@ class Local
      * @Assert\NotBlank()
      * @FnxAssert\Dinheiro()
      */
-    private $custo;
+    protected $custo;
 
     
     /**

@@ -34,8 +34,10 @@
                     {{ form_widget(form.funcionarios, {'attr' : {'class' : 'multiselect'}})}}
                     </div>
              {{ form_row(form._token) }} 
-        <input class="close" type="button" onclick="dialogClose()" value="Fechar"/>
-        <input type="submit" value="Submit"/>
+        <div class="box-submit">
+            <input type="submit" value="Enviar"/>
+            <input class="close" type="button" onclick="dialogClose()" value="Fechar"/>
+        </div>
     </form>
 </div>
 

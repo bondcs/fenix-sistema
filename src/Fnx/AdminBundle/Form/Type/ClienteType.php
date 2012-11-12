@@ -66,7 +66,7 @@ class ClienteType extends AbstractType{
 
             ))
             ->add('pessoa', 'choice', array(
-                'choices'   => array('j' => 'Jurídica', 'f' => 'Física'),
+                'choices'   => array('f' => 'Física', 'j' => 'Jurídica'),
                 'required'  => false,
                 'expanded'  => true,
                 'multiple'  => false,

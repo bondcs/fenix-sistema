@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormError;
 /**
  * Categoria controller
  *
- * @Route("/financeiro/funcionario/categoria")
+ * @Route("/financeiro/categoria")
  */
 class CategoriaController extends Controller
 {
@@ -113,6 +113,11 @@ class CategoriaController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Categoria não encontrada.');
+        }
+        
+        if ($entity->getEditavel() == false){
+           $this->get("session")->setFlash('error', "Este registro não pode ser editado.");
+           return $this->redirect($this->generateUrl('categoriaHome'));
         }
 
         $editForm = $this->createForm(new CategoriaType(), $entity);

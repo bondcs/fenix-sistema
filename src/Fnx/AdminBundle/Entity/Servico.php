@@ -19,70 +19,70 @@ class Servico
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
      *
      * @ORM\Column(name="nome", type="string", length=45)
      */
-    private $nome;
+    protected $nome;
     
     /**
      * @var string $cor
      *
      * @ORM\Column(name="cor", type="string", length=20)
      */
-    private $cor;
+    protected $cor;
 
     /**
      * @var time $descanso
      *
      * @ORM\Column(name="descanso", type="time", nullable=true)
      */
-    private $descanso;
+    protected $descanso;
 
     /**
      * @var time $descansoNoturno
      *
      * @ORM\Column(name="descansoNoturno", type="time", nullable=true)
      */
-    private $descansoNoturno;
+    protected $descansoNoturno;
 
     /**
      * @var integer $horasSemanais
      *
      * @ORM\Column(name="horasSemanais", type="integer", nullable=true)
      */
-    private $horasSemanais;
+    protected $horasSemanais;
 
     /**
      * @var integer $horasContinuas
      *
      * @ORM\Column(name="horasContinuas", type="integer", nullable=true)
      */
-    private $horasContinuas;
+    protected $horasContinuas;
 
     /**
      * @var integer $maxHoraExtra
      *
      * @ORM\Column(name="maxHoraExtra", type="integer", nullable=true)
      */
-    private $maxHoraExtra;
+    protected $maxHoraExtra;
 
     /**
      * @var float $valorHoraExtra
      *
      * @ORM\Column(name="valorHoraExtra", type="float", nullable=true)
      */
-    private $valorHoraExtra;
+    protected $valorHoraExtra;
 
     /**
      * @var float $multiHoraExtra
      *
      * @ORM\Column(name="multiHoraExtra", type="float", nullable=true)
      */
-    private $multiHoraExtra;
+    protected $multiHoraExtra;
 
 
     /**

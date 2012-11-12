@@ -20,14 +20,14 @@ class Cidade
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
      *
      * @ORM\Column(name="nome", type="string", length=255)
      */
-    private $nome;
+    protected $nome;
     
     /**
      * @var objeto $estado
@@ -35,7 +35,7 @@ class Cidade
      * @ORM\ManyToOne(targetEntity="Estado")
      * @ORM\JoinColumn(name="estado", referencedColumnName="id") 
      */
-    private $estado;
+    protected $estado;
 
 
     /**

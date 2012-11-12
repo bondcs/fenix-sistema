@@ -32,6 +32,8 @@
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/tables/tableServicoAdmin.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/tables/tableSalario.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableParcelas.js') }}"></script>
+        <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxpedido/js/tables/tableParcelasPedido.js') }}"></script>
+        <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxpedido/js/tables/tablePedido.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableTransacoes.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxfinanceiro/js/tables/tableTransacoesGeral.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxpatrulha/js/tables/tableEscalaPatru.js') }}"></script>
@@ -64,14 +66,17 @@
                             <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
                         </ul>
                     </li>
-                    <li class='has-sub '><a href='#'><span>Gerência</span></a>
+                    <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a>
                         <ul>
-                            <li><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
-                            <li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
-                            <li><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
-                             <li><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
+                            <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
+                            <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
+                            <li><a href="{{ path("salarioHome")}}">Salários</a></li>
+                            <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
                         </ul>
                     </li>
+                    <li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
+                    <li><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
+                    <li><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
                     <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a>
                         <ul>
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
@@ -79,7 +84,7 @@
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
                         </ul>
                     </li>
-		    <li class='has-sub '><a href='{{path('PedidoListar')}}'><span>Pedidos</span></a></li>
+		    <li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
                     </ul>
                         <div id="info">
                             <span class="username">{{ app.user.username }}</span>
@@ -129,6 +134,12 @@
                                 <div class="label"><span>Calendário</span></div>
                             </div>
                         </a>
+                        <a href="{{path('PedidoCadastrar')}}">
+                            <div class="box-menu">
+                                <div class="img"><img height="60px" src="{{ asset("bundles/fnxadmin/images/box4-icon.png")}}" /></div>
+                                <div class="label"><span>Pedido</span></div>
+                            </div>
+                        </a>
                     </div>
                      <div class="profile-index">
                         <div class="ui-panel-content ui-widget-content " style="width:97.5%;">
@@ -167,7 +178,38 @@
 
             <div id="footer">
                 {% block footer %}
-                    Fenix Sistema 1.0 - Todos os direitos reservados.
+                    Fenix sistema 1.0 - Todos os direitos reservados.
+                    <div id="box-footer">
+                    <ul>
+                        <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a></li>
+                        <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
+                    </ul>
+                    <ul>
+                        <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
+                        <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
+                        <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
+                        <li><a href="{{ path("salarioHome")}}">Salários</a></li>
+                        <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
+                    </ul>
+                    <ul>
+                        <li class='has-sub '><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
+                    </ul>
+                    <ul>
+                        <li class='has-sub '><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
+                    </ul>
+                    <ul>
+                        <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
+                    </ul>
+                    <ul>        
+                        <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a></li>
+                        <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
+                        <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
+                        <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
+                    </ul>
+                    <ul id="last-ul">
+		    <li class='has-sub'><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
+                    </ul>
+                    </div>
                 {% endblock %}
             </div>
         </section>

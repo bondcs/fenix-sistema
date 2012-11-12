@@ -23,35 +23,35 @@ class SalarioPagamento
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float $valorPago
      *
      * @ORM\Column(name="valorPago", type="float", nullable=true)
      */
-    private $valorPago;
+    protected $valorPago;
 
     /**
      * @var datetime $dataPagamento
      *
      * @ORM\Column(name="dataPagamento", type="datetime", nullable=true)
      */
-    private $dataPagamento;
+    protected $dataPagamento;
     
     /**
      * @var datetime $data
      *
      * @ORM\Column(name="data", type="date")
      */
-    private $data;
+    protected $data;
     
     /**
      * @var float $bonus
      *
      * @ORM\Column(name="bonus", type="float", nullable=true)
      */
-    private $bonus;
+    protected $bonus;
     
 
     /**
@@ -59,21 +59,21 @@ class SalarioPagamento
      *
      * @ORM\Column(name="pago", type="boolean")
      */
-    private $pago;
+    protected $pago;
     
     /**
      * @var object $salario
      * 
      * @ORM\ManyToOne(targetEntity="Salario", inversedBy="pagamentos", cascade={"all"}, fetch="LAZY")
      */
-    private $salario;
+    protected $salario;
     
     /**
      *
      * @ORM\OneToOne(targetEntity="Fnx\FinanceiroBundle\Entity\Registro")
      * @ORM\JoinColumn(name="registro_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $registro;
+    protected $registro;
 
 
     public function __construct() {

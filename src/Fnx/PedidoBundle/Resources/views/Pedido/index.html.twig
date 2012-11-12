@@ -1,0 +1,57 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+{% block title %} Pedidos {% endblock %}
+
+{% block menuContent %}
+ <div id="menuContent">
+      <h3>Gerenciamento: Lista de pedidos</h3>
+      <ul>
+         <li><a class="new-link" href="{{ path('PedidoCadastrar')}}"><span ></span>Novo</a></li>
+         <li><a route="PedidoEditar" class="edit-link" href="#"><span></span>Editar</a></li>
+         <li><a route="PedidoDeletar" class="delete-link confirm-link" href="#"><span></span>Deletar</a></li>
+      </ul> 
+</div>
+
+{% endblock %}
+
+{% block conteudo %}
+{#<a href="{{ path("PedidoCadastrar") }}">Novo</a>#}
+
+<form id="extra_filter">
+    <label>Filtrar: </label>
+    <select id="extra_filtering" class="status">
+	<option value="a">Em aberto</option>
+	<option value="t">Todos</option>
+	<option value="f">Fechadas</option>
+    </select>
+    {#<input type="submit" value="Ir" style="padding: 1px 8px;">#}
+</form>
+
+<hr style="margin-top: 1%; margin-bottom:1%">
+
+<div class="box-table">
+<table class="tablePedido doubleclick" route="PedidoEditar">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Data</th>
+	    <th>Previsão</th>
+            <th>Fechamento</th>
+            <th>Valor</th>
+            <th class="id">id</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</div>
+<script>
+
+    //$(document).ready(function(){
+      //  $("#table_pedidos").find("tbody tr").live('dblclick',function(){
+        //    window.location.href = $(this).find('a:first').attr('href');
+        //});
+   // });
+
+</script>
+
+{% endblock %}

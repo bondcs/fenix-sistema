@@ -41,16 +41,20 @@ class EscalaRepository extends EntityRepository
     
     public function loadEscalaByFuncionario($id){
         
+        $hoje = new \DateTime;
         return $this->getEntityManager()
                 ->createQuery('SELECT e,f,a
                                FROM FnxAdminBundle:Escala e
                                JOIN e.funcionarios f
                                JOIN e.atividade a
                                WHERE f.id = :id
-                               AND a.arquivado = :param')
+                               AND a.arquivado = :param
+                               AND e.dtFim > :hoje')
                 ->setParameters(array("id" => $id,
-                                      "param" => false))
+                                      "param" => false,
+                                      "hoje" => $hoje))
                 ->getResult();
     }
+    
   
 }

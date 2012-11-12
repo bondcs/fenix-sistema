@@ -23,27 +23,27 @@ class Contrato
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
      /**
      * @var datetime $created
      *
      * @ORM\Column(name="created", type="datetime")
      */
-    private $created;
+    protected $created;
 
     /**
      * @var datetime $updated
      *
      * @ORM\Column(name="updated", type="datetime")
      */
-    private $updated;
+    protected $updated;
     
     /**
      * @ORM\Column(name="arquivado",type="boolean", nullable=false)
      * @var boolean $arquivado
      */
-    private $arquivado;
+    protected $arquivado;
     
     /**
      * @var object $cliente
@@ -51,7 +51,7 @@ class Contrato
      * @ORM\ManyToOne(targetEntity="Cliente", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
      */
-    private $cliente;
+    protected $cliente;
     
     /**
      * @var ArrayCollection $atividades
@@ -59,7 +59,7 @@ class Contrato
      * @ORM\OneToMany(targetEntity="Atividade", mappedBy="contrato", cascade={"all"})
      * 
      */
-    private $atividades;
+    protected $atividades;
 
 
 

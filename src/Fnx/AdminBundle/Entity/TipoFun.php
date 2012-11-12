@@ -19,14 +19,14 @@ class TipoFun
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
      *
      * @ORM\Column(name="nome", type="string", length=45)
      */
-    private $nome;
+    protected $nome;
 
 
     /**

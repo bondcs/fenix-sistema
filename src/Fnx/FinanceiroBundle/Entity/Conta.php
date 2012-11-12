@@ -21,14 +21,14 @@ class Conta
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
      *
      * @ORM\Column(name="nome", type="string", length=45)
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
@@ -36,14 +36,14 @@ class Conta
      * @ORM\Column(name="descricao", type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $descricao;
+    protected $descricao;
 
     /**
      * @var decimal $valor
      *
      * @ORM\Column(name="valor", type="decimal")
      */
-    private $valor;
+    protected $valor;
     
     /**
      *
@@ -51,14 +51,14 @@ class Conta
      * @ORM\ManyToOne(targetEntity="Instancia", cascade={"persist"}, fetch="LAZY")
      * @Assert\NotBlank()
      */
-    private $instancia;
+    protected $instancia;
     
     /**
      *
      * @var array collection $registros
      * @ORM\OneToMany(targetEntity="Registro", mappedBy="conta", cascade={"all"}, orphanRemoval=true)
      */
-    private $registros;
+    protected $registros;
     
     /**
      * @ORM\PrePersist @ORM\PreUpdate

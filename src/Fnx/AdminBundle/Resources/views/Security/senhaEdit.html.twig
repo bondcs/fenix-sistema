@@ -4,7 +4,7 @@
 
 {% block conteudo %}
 
- <div class="ui-panel-content ui-widget-content " style="width:auto">
+ <div class="ui-panel-content ui-widget-content dialog-form" style="width:auto">
    <h4 class="ui-panel-title ui-widget-header ">Alterar senha</h4>
    <div id="box-form">
     <form novalidate="" class="cms" action="{{ path('_security_change_password_a') }}" method="post" {{ form_enctype(form) }}>
@@ -17,7 +17,9 @@
             </div>
          
         {{ form_row(form._token) }}
-        <input type="submit" value="Submit"/>
+        <div class="box-submit">
+        <input type="submit" value="Enviar"/>
+        </div>
     </form>
      </div>
     </div>

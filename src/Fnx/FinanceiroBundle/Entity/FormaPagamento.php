@@ -19,28 +19,28 @@ class FormaPagamento
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
      *
      * @ORM\Column(name="nome", type="string", length=45)
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var boolean $validado
      *
      * @ORM\Column(name="validado", type="boolean")
      */
-    private $validado;
+    protected $validado;
 
     /**
      * @var boolean $lembrar
      *
      * @ORM\Column(name="lembrar", type="boolean")
      */
-    private $lembrar;
+    protected $lembrar;
     
     public function __construct() {
         $this->validado = false;

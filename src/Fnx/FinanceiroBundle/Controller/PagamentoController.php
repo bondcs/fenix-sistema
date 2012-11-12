@@ -107,6 +107,7 @@ class PagamentoController extends Controller{
         $parcelas['aaData'] = array();
         if ($parcelasBanco != null){
             foreach ($parcelasBanco[0]['registro']['parcelas'] as $key => $value) {
+                $value['situacao'] = $this->verificaSituacao($value['finalizado'], $value['dt_vencimento']);
                 $value['dt_vencimento']= $value['dt_vencimento']->format('d/m/Y');
                 $value['movimentacao']['data'] = $value['movimentacao']['data']->format('d/m/Y H:i:s');
                 $value['movimentacao']['valorNumber'] = $value['movimentacao']['valor'];
@@ -307,6 +308,18 @@ class PagamentoController extends Controller{
         $response = new Response(json_encode($json));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
+    }
+    
+    public function verificaSituacao($param, $vencimento){
+        
+        if ($param){
+            return "Finalizado";
+        }elseif ($vencimento < new \DateTime("-1 days")) {
+            return "Em atraso";
+        }else{
+            return "Em aberto";
+        }
+        
     }
 }
 

@@ -89,9 +89,7 @@ function onTableAjaxTransacaoGeral(){
                 "oTableTools": {
                     "sRowSelect": "single",
                     "sSelectedClass": "row_selected",
-                    "sRowSelect": "single",
                     "sSwfPath": "/"+url_dominio+"/web/bundles/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
-                    "sSelectedClass": "row_selected",
                     "aButtons": [
                         "copy",
                         "print",

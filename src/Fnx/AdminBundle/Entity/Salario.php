@@ -21,7 +21,7 @@ class Salario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float $salario
@@ -29,34 +29,34 @@ class Salario
      * @ORM\Column(name="salario", type="float")
      * @Assert\NotBlank()
      */
-    private $salario;
+    protected $salario;
 
     /**
      * @var float $valorHora
      *
      * @ORM\Column(name="valorHora", type="float", nullable=true)
      */
-    private $valorHora;
+    protected $valorHora;
     
     /**
      *
      * @ORM\Column(name="ativo", type="boolean")
      */
-    private $ativo;
+    protected $ativo;
     
     /**
      * @var datetime $ultimoPagamento
      *
      * @ORM\Column(name="ultimoPagamento", type="datetime", nullable=true)
      */
-    private $ultimoPagamento;
+    protected $ultimoPagamento;
     
     /**
      *
      * @var object $salario
      * @ORM\OneToOne(targetEntity="Funcionario", mappedBy="salario", cascade={"persist"})
      */
-    private $funcionario;
+    protected $funcionario;
     
     /**
      *
@@ -64,7 +64,7 @@ class Salario
      * 
      * @ORM\OneToMany(targetEntity="SalarioPagamento", mappedBy="salario", cascade={"persist"}, orphanRemoval=true) 
      */
-    private $pagamentos;
+    protected $pagamentos;
 
     public function __construct() {
         $this->pagamentos = new \Doctrine\Common\Collections\ArrayCollection();

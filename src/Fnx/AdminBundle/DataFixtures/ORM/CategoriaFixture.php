@@ -39,10 +39,16 @@ class CategoriaFixture implements FixtureInterface{
         $categoria4->setDescricao("Movimentações relacionadas com fornecedores");
         $categoria4->setEditavel(false);
         
+        $categoria5 = new Categoria();
+        $categoria5->setNome("Pedido");
+        $categoria5->setDescricao("Movimentações relacionadas com pedidos");
+        $categoria5->setEditavel(false);
+        
         $manager->persist($categoria);
         $manager->persist($categoria2);
         $manager->persist($categoria3);
         $manager->persist($categoria4);
+        $manager->persist($categoria5);
         $manager->flush();
              
         

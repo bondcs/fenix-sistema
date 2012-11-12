@@ -20,7 +20,7 @@ class Instancia
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -28,14 +28,14 @@ class Instancia
      * @ORM\Column(name="nome", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
      *
      * @ORM\Column(name="descricao", type="string", length=255)
      */
-    private $descricao;
+    protected $descricao;
 
     public function __toString() {
         return $this->nome;

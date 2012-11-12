@@ -9,13 +9,17 @@ class PedidoType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('cliente', 'entity', array(
-		    'class'=>'FnxAdminBundle:Cliente',
-		    'property'=>'nome',
-		    'query_builder'=> function(\Fnx\AdminBundle\Entity\ClienteRepository $repository){
-                        return $repository->createQueryBuilder('s')->orderBy('s.nome', 'ASC');}
-		))
-		->add('previsao','date', array('label' => 'Previsão de Entrega: '));
+        $builder->add('cliente','text', array(
+                'property_path' => false,
+                'required' => false,
+                'label' => 'Cliente:*'
+                ))
+                ->add('previsao', 'date', array(
+                        'label' => 'Previsão:',
+                        'input' => 'datetime',
+                        'widget' => 'single_text',
+                        'format' => 'dd/MM/yyyy',
+             ));
     }
 
     public function getName()

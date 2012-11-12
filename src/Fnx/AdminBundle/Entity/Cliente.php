@@ -27,7 +27,7 @@ class Cliente
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -36,7 +36,7 @@ class Cliente
      * @Assert\NotBlank()
      * @Assert\MinLength(5)
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $telefone
@@ -44,7 +44,7 @@ class Cliente
      * @ORM\Column(name="telefone", type="string", length=14)
      * @Assert\NotBlank()
      */
-    private $telefone;
+    protected $telefone;
 
     /**
      * @var string $cnpj
@@ -53,7 +53,7 @@ class Cliente
      * @Assert\NotBlank(groups="juridico")
      * @Assert\MinLength(limit=14,groups="juridico")
      */
-    private $cnpj;
+    protected $cnpj;
 
     /**
      * @var string $cnpj
@@ -62,7 +62,7 @@ class Cliente
      * @Assert\NotBlank(groups="fisico")
      * @Assert\MinLength(limit=11,groups="fisico")
      */
-    private $cpf;
+    protected $cpf;
 
     /**
      * @var string $cep
@@ -70,7 +70,7 @@ class Cliente
      * @ORM\Column(name="cep", type="string", length=9, nullable=true)
      * @Assert\MinLength(8)
      */
-    private $cep;
+    protected $cep;
 
     /**
      * @var string $cep
@@ -78,7 +78,7 @@ class Cliente
      * @ORM\Column(name="descricao", type="string", length=150, nullable=true)
      * @Assert\Regex(pattern="/[[:alnum:]]{0,}/",message="a descricao deve conter apenas letras e numeros")
      */
-    private $descricao;
+    protected $descricao;
 
     /**
      * @var objeto $cidade
@@ -86,35 +86,35 @@ class Cliente
      * @ORM\ManyToOne(targetEntity="Cidade")
      * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
      */
-    private $cidade;
+    protected $cidade;
 
     /**
      * @var string $bairro
      *
      * @ORM\Column(name="bairro", type="string", length=45, nullable=true)
      */
-    private $bairro;
+    protected $bairro;
 
     /**
      * @var string $rua
      *
      * @ORM\Column(name="rua", type="string", length=80, nullable=true)
      */
-    private $rua;
+    protected $rua;
 
     /**
      * @var string $numero
      *
      * @ORM\Column(name="numero", type="string", length=10, nullable=true)
      */
-    private $numero;
+    protected $numero;
 
     /**
      * @var string $pessoa
      *
      * @ORM\Column(name="pessoa", type="string")
      */
-    private $pessoa;
+    protected $pessoa;
 
     /**
      * @var ArrayCollection $responsaveis
@@ -122,14 +122,14 @@ class Cliente
      * @ORM\OneToMany(targetEntity="Responsavel", mappedBy="cliente", cascade={"persist", "remove"})
      *
      */
-    private $responsaveis;
+    protected $responsaveis;
     /**
      * @var ArrayCollection $contratos
      *
      * @ORM\OneToMany(targetEntity="Contrato", mappedBy="cliente", cascade={"remove"})
      *
      */
-    private $contratos;
+    protected $contratos;
 
     /**
      * @var ArrayCollection $contratos
@@ -137,7 +137,7 @@ class Cliente
      * @ORM\OneToMany(targetEntity="\Fnx\PedidoBundle\Entity\Pedido", mappedBy="cliente", cascade={"persist"})
      *
      */
-    private $pedidos;
+    protected $pedidos;
 
     public function __construct() {
         $this->responsaveis = new ArrayCollection();

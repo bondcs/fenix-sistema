@@ -12,9 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class EscalaFunRepository extends EntityRepository
 {
-       public function loadEscalaFun($status, $servico){
+       public function loadEscalaFun($status, $servico, $inicio){
         
-//        $inicio = new \DateTime($this->conv_data_to_us($inicio));   
+        $inicio = new \DateTime(substr($this->conv_data_to_us($inicio),0,10));   
 //        $fim = new \DateTime($this->conv_data_to_us($fim));
            
             $qb = $this->createQueryBuilder('e')
@@ -35,6 +35,9 @@ class EscalaFunRepository extends EntityRepository
             }
             
             $qb->andWhere("s.nome <> 'Patrulhamento'");
+            $qb->andWhere("e.inicio > :inicio")
+               ->setParameters(array("inicio" => $inicio));
+            
             return $qb->getQuery()->getArrayResult();
                  
        }
@@ -104,6 +107,21 @@ class EscalaFunRepository extends EntityRepository
         
     }
     
+     public function loadEscalaFunByFuncionario($id){
+        
+        $hoje = new \DateTime;
+        return $this->getEntityManager()
+                ->createQuery('SELECT e,f
+                               FROM FnxAdminBundle:EscalaFun e
+                               JOIN e.funcionarios f
+                               WHERE f.id = :id
+                               AND e.ativo = :param
+                               AND e.fim > :hoje')
+                ->setParameters(array("id" => $id,
+                                      "param" => true,
+                                      "hoje" => $hoje))
+                ->getResult();
+    }
     
 
     public static function conv_data_to_us($date){

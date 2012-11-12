@@ -20,7 +20,7 @@ class ServicoEscala
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -28,7 +28,7 @@ class ServicoEscala
      * @ORM\Column(name="nome", type="string", length=80)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
@@ -36,7 +36,7 @@ class ServicoEscala
      * @ORM\Column(name="descricao", type="string", length=100)
      * @Assert\NotBlank()
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      * @var string $cor
@@ -44,14 +44,14 @@ class ServicoEscala
      * @ORM\Column(name="cor", type="string", length=20)
      * @Assert\NotBlank()
      */
-    private $cor;
+    protected $cor;
     
     /**
      *  
      * @var boolean $editavel
      * @ORM\Column(name="editavel", type="boolean")
      */
-    private $editavel;
+    protected $editavel;
 
     public function __construct() {
         return $this->editavel = false;

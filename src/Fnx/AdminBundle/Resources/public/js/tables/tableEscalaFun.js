@@ -43,7 +43,8 @@ function onTableAjaxEscalaFun(){
 //                                                'inicio' : $(".inicio").val(),
 //                                                'fim' : $(".fim").val(),
                                                 'status' : $(".status").val(),
-                                                'servico' : servico
+                                                'servico' : servico,
+                                                'inicio' : $(".inicio").val()
             }),
             "aoColumns": [
                 { "mDataProp": "funcionariosString" },
@@ -185,7 +186,8 @@ function filtrarEscalas(){
 //                                                'inicio' : $(".inicio").val(),
 //                                                'fim' : $(".fim").val(),
                                                 'status' : $(".status").val(),
-                                                'servico' : servico
+                                                'servico' : servico,
+                                                'inicio' : $(".inicio").val()
                         }));
                             
         oTableEscalaFun.dataTable().fnReloadAjax();

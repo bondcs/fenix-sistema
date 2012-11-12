@@ -27,6 +27,7 @@ $(document).ready(function() {
         translateHtml5Validation();
         sempreZero();
         button();
+        zebrarTable();
         
         
         
@@ -189,7 +190,6 @@ function onFnAction(){
 
                 }else{
                     $('#dialogAction').dialog('open');
-                    e.preventdefault()
                     return false;
                 }
 
@@ -837,9 +837,21 @@ function sempreZero(){
 function validarInteiro(valor){
     valor = parseInt(valor)
     if (isNaN(valor)) {
-          return ""
+          return "";
     }else{
           return valor
     }
 } 
+
+function zebrarTable(){
+    $(".infos tr").each(function(key, value){
+        if (key % 2 == 0){
+            $(this).addClass("odd");
+        }else{
+            $(this).addClass("even");
+        }
+    })
+    
+    return false;
+}
 

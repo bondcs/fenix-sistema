@@ -4,6 +4,8 @@ namespace Fnx\PedidoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fnx\PedidoBundle\Entity\Pedido as Pedido;
+use Symfony\Component\Validator\Constraints as Assert;
+use Fnx\AdminBundle\Validator\Constraints as FnxAssert;
 
 /**
  * Fnx\PedidoBundle\Entity\Item
@@ -20,41 +22,57 @@ class Item
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      *
      * @ORM\ManyToOne(targetEntity="Pedido")
      * @ORM\JoinColumn(name="pedido_id", referencedColumnName="id")
      */
-    private $pedido;
+    protected $pedido;
 
     /**
      *
-     * @ORM\Column(name="nome", type="string", length=50, nullable=true)
+     * @ORM\Column(name="nome", type="string", length=50)
+     * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $descricao
      *
-     * @ORM\Column(name="descricao", type="string", length=255)
+     * @ORM\Column(name="descricao", type="string", length=255, nullable=true)
      */
-    private $descricao;
+    protected $descricao;
 
     /**
      * @var decimal $quantidade
      *
      * @ORM\Column(name="quantidade", type="decimal")
+     * @Assert\NotBlank()
+     * @FnxAssert\ApenasNumero()
      */
-    private $quantidade;
+    protected $quantidade;
 
     /**
      * @var float $preco
      *
      * @ORM\Column(name="preco", type="float")
+     * @Assert\NotBlank()
      */
-    private $preco;
+    protected $preco;
+    
+    public function popula($nome, $descricao, $quantidade, $preco){
+        $this->nome = $nome;
+        $this->descricao = $descricao;
+        $this->quantidade = $quantidade;
+        $this->preco = $preco;
+        
+    }
+    
+    public function __toString() {
+        return $this->id."";
+    }
 
     public function setId($id) {
 	$this->id = $id;
@@ -118,7 +136,7 @@ class Item
      */
     public function setPreco($preco)
     {
-        $this->preco = $preco;
+         $this->preco =is_string($preco) ? substr(str_replace(",", ".", $preco),3) : $preco;
     }
 
     /**

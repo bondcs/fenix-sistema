@@ -1,10 +1,13 @@
-   <div class="box-form-dialog">
-         <form novalidate="" class="cms ajaxFormTable" action="{{path("propriedadeCreate", {"id" : id})}}" method="POST" >
-            <div class="myform"> 
-                {{form_errors(form)}}
-                   {% include "FnxAdminBundle:Propriedade:_form.html.twig" %}  
-                {{form_row(form._token)}}
-             </div>
-             <input type="submit" value="Submit"/>       
-         </form>
-   </div>
+<div class="box-form-dialog">
+      <form novalidate="" class="cms ajaxFormTable" action="{{path("propriedadeCreate", {"id" : id})}}" method="POST" >
+         <div class="myform"> 
+             {{form_errors(form)}}
+                {% include "FnxAdminBundle:Propriedade:_form.html.twig" %}  
+             {{form_row(form._token)}}
+          </div>
+          <div class="box-submit">
+            <input type="submit" value="Enviar"/>
+            <input class="close" type="button" onclick="dialogClose()" value="Fechar"/>
+          </div>    
+      </form>
+</div>

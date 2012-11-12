@@ -134,6 +134,11 @@
                 <source>The presented password is invalid.</source>
                 <target>Senha incorreta</target>
             </trans-unit>
+            <trans-unit id="34">
+                <source>The presented password cannot be empty.</source>
+                <target>Senha não pode ser vazia</target>
+            </trans-unit>
+            
         </body>
     </file>
 </xliff>

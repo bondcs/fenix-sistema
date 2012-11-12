@@ -61,7 +61,7 @@ class EscalaPatruListener implements EventSubscriberInterface{
              $data->setFim($amanha->setTime(($inicio->format("H") + $data->getFim()) - 24, 00, 00));
          }
          
-         $data->setLocal("Não definido");
+         $data->setLocal(" - ");
          $data->setServicoEscala($this->em->createQuery("Select s FROM FnxAdminBundle:ServicoEscala s where s.nome = :param")
                                                         ->setParameter("param", "Patrulhamento")
                                                         ->getSingleResult());

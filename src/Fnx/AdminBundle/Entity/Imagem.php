@@ -21,16 +21,16 @@ class Imagem
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $caminho
      *
      * @ORM\Column(name="caminho", type="string", length=255)
      */
-    private $caminho;
+    protected $caminho;
     
-    private $filenameForRemove;
+    protected $filenameForRemove;
 
     /**
      * Get id
@@ -56,7 +56,7 @@ class Imagem
      *
      * @ORM\ManyToOne(targetEntity="Galeria", inversedBy="imagens", cascade={"persist"}, fetch="LAZY")
      */
-    private $galeria;
+    protected $galeria;
     
        /**
      * @ORM\PreRemove()

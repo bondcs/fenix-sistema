@@ -5,6 +5,7 @@ namespace Fnx\PedidoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Fnx\PedidoBundle\Entity\Item as Item;
 use Fnx\AdminBundle\Entity\Cliente;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Fnx\PedidoBundle\Entity\Pedido
@@ -21,53 +22,64 @@ class Pedido
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="\Fnx\AdminBundle\Entity\Cliente")
      */
-    private $cliente;
+    protected $cliente;
 
     /**
      * @var datetime $data
      *
      * @ORM\Column(name="data", type="date", nullable=true)
      */
-    private $data;
+    protected $data;
 
     /**
      * @var date $previsao
      *
      * @ORM\Column(name="previsao", type="date", nullable=true)
      */
-    private $previsao;
+    protected $previsao;
 
     /**
      * @var date $dataPagamento
      *
-     * @ORM\Column(name="data_pagamento", type="date", nullable=true)
+     * @ORM\Column(name="data_fechamento", type="date", nullable=true)
      */
-    private $dataPagamento;
+    protected $dataFechamento;
 
     /**
      *
      * @ORM\OneToMany(targetEntity="Item", mappedBy="pedido",fetch="LAZY", cascade={"all"})
      */
-    private $itens;
+    protected $itens;
 
     /**
      * @ORM\ManyToOne(targetEntity="\Fnx\AdminBundle\Entity\Usuario")
      */
-    private $responsavel;
+    protected $responsavel;
 
     /**
      * @ORM\Column(type="string", length=1, unique=false, options={"default" = "r"})
      * @var string
      */
-    private $status;
+    protected $status;
+    
+    /**
+     *
+     * @var object $registro
+     * @ORM\OneToOne(targetEntity="Fnx\FinanceiroBundle\Entity\Registro", cascade={"all"})
+     * @ORM\JoinColumn(name="registro_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $registro;
 
     public function __construct() {
         $this->itens = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->data = new \DateTime;
+        $this->status = "a";
+        $this->previsao = new \Datetime;
     }
 
 
@@ -77,6 +89,25 @@ class Pedido
 
     public function setResponsavel($responsavel) {
         $this->responsavel = $responsavel;
+    }
+    
+    public function getItensArray(){
+        $itensArray = array();
+        foreach ($this->itens as $i){
+            $itensArray[] = $i;
+        }
+        return $itensArray;
+    }
+    
+    public function fechar(){
+        if ($this->status == "a"){
+            $this->status = "f";
+            $this->dataFechamento = new \DateTime();
+        }elseif ($this->status == "f"){
+            $this->status = "a";
+            $this->dataFechamento = null;    
+        }
+        
     }
 
     /**
@@ -114,7 +145,12 @@ class Pedido
         return $this->itens;
     }
 
-    public function setItens($itens) {
+    public function setItens($itens, $object = true) {
+        if ($object){
+            foreach ($itens as $item){
+                $item->setPedido($this);
+            }
+        }
         $this->itens = $itens;
     }
 
@@ -193,8 +229,49 @@ class Pedido
      *
      * @param Fnx\PedidoBundle\Entity\Item $itens
      */
-    public function addItem(\Fnx\PedidoBundle\Entity\Item $itens)
+    public function addItem(\Fnx\PedidoBundle\Entity\Item $item)
     {
-        $this->itens[] = $itens;
+        $item->setPedido($this);
+        $this->itens[] = $item;
+    }
+
+    /**
+     * Set registro
+     *
+     * @param Fnx\FinanceiroBundle\Entity\Registro $registro
+     */
+    public function setRegistro(\Fnx\FinanceiroBundle\Entity\Registro $registro)
+    {
+        $this->registro = $registro;
+    }
+
+    /**
+     * Get registro
+     *
+     * @return Fnx\FinanceiroBundle\Entity\Registro 
+     */
+    public function getRegistro()
+    {
+        return $this->registro;
+    }
+
+    /**
+     * Set dataFechamento
+     *
+     * @param date $dataFechamento
+     */
+    public function setDataFechamento($dataFechamento)
+    {
+        $this->dataFechamento = $dataFechamento;
+    }
+
+    /**
+     * Get dataFechamento
+     *
+     * @return date 
+     */
+    public function getDataFechamento()
+    {
+        return $this->dataFechamento;
     }
 }

@@ -25,12 +25,17 @@ class EscalaFunController extends Controller{
     
     
     /**
-     * @Route("/", name="escalaFunIndex")
+     * @Route("/index/{data}", name="escalaFunIndex", defaults={"data" = null})
      * @Template()
      */
-    public function indexAction(){
+    public function indexAction($data){
         $formFilter = $this->createForm(new FilterType());
-        
+        if ($data != null){
+            $data = new \DateTime($data);
+            $formFilter["inicio"]->setData($data);
+        }else{
+            $formFilter["inicio"]->setData(new \Datetime("2012-01-01"));
+        }
         return array("formFilter" => $formFilter->createView());
     }
     
@@ -162,12 +167,12 @@ class EscalaFunController extends Controller{
     }
 
     /**
-     * @Route("/ajaxEscalaFun/{status}/{servico}/", name="escalaFunAjax", options={"expose" = true},requirements={"inicio" = ".+", "fim" = ".+"})
+     * @Route("/ajaxEscalaFun/{status}/{servico}/{inicio}", name="escalaFunAjax", options={"expose" = true},requirements={"inicio" = ".+", "fim" = ".+"})
      * @Template()
      */
-    public function ajaxAction($status, $servico){
+    public function ajaxAction($status, $servico, $inicio){
         
-        $escalasBanco = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->loadEscalaFun($status, $servico);
+        $escalasBanco = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->loadEscalaFun($status, $servico, $inicio);
         $escalas['aaData'] = array();
         
         foreach ($escalasBanco as $key => $value) {

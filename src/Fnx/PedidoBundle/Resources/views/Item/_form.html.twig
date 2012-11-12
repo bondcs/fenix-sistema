@@ -1,0 +1,29 @@
+<div>
+      {{ form_errors(form.nome)}}
+      {{ form_label(form.nome)}}    
+      {{ form_widget(form.nome)}}
+</div>
+
+<div>
+      {{ form_errors(form.preco)}}
+      {{ form_label(form.preco)}}    
+      {{ form_widget(form.preco,{'attr' : { 'style' : 'width:20%', 'class' : 'preco moeda'}})}}
+</div>
+
+<div>
+      {{ form_errors(form.quantidade)}}
+      {{ form_label(form.quantidade)}}    
+      {{ form_widget(form.quantidade,{'attr' : { 'style' : 'width:20%', 'class' : 'qtd'}})}}
+</div>
+
+{#<div>
+      {{ form_errors(form.total)}}
+      {{ form_label(form.total)}}    
+      {{ form_widget(form.total,{'attr' : { 'style' : 'width:20%', 'class' : 'total moeda'}})}}
+</div>#}
+
+<div>
+      {{ form_errors(form.descricao)}}
+      {{ form_label(form.descricao)}}    
+      {{ form_widget(form.descricao)}}
+</div>

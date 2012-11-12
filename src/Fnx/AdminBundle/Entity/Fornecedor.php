@@ -20,7 +20,7 @@ class Fornecedor
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -28,7 +28,7 @@ class Fornecedor
      * @ORM\Column(name="nome", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string $telefone
@@ -36,7 +36,7 @@ class Fornecedor
      * @ORM\Column(name="telefone", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $telefone;
+    protected $telefone;
     
     /**
      * @var string $cep
@@ -44,7 +44,7 @@ class Fornecedor
      * @ORM\Column(name="cep", type="string", length=9, nullable=true)
      * @Assert\MinLength(8)
      */
-    private $cep;
+    protected $cep;
     
      /**
      * @var objeto $cidade
@@ -52,35 +52,35 @@ class Fornecedor
      * @ORM\ManyToOne(targetEntity="Cidade")
      * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id") 
      */
-    private $cidade;
+    protected $cidade;
 
     /**
      * @var string $bairro
      *
      * @ORM\Column(name="bairro", type="string", length=80, nullable=true)
      */
-    private $bairro;
+    protected $bairro;
 
     /**
      * @var string $rua
      *
      * @ORM\Column(name="rua", type="string", length=80, nullable=true)
      */
-    private $rua;
+    protected $rua;
 
     /**
      * @var string $numero
      *
      * @ORM\Column(name="numero", type="string", length=10, nullable=true)
      */
-    private $numero;
+    protected $numero;
 
     /**
      * @var string $complemento
      *
      * @ORM\Column(name="complemento", type="string", length=80, nullable=true)
      */
-    private $complemento;
+    protected $complemento;
 
 
     /**

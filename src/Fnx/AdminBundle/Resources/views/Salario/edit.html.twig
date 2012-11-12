@@ -1,4 +1,4 @@
-<div class="box-form-dialog" style="padding-bottom: 60px;">
+<div class="box-form-dialog">
     <form novalidate="" id="form" action="{{ path('funcionarioSalarioEdit', { 'pagamentoId' : pagamentoId})}}" method="post" class="cms ajaxFormTable">
     <div class="myform">
                 <div>
@@ -6,8 +6,10 @@
                     <input type="text" value="0" name="valor" class="moeda zero" style="width: 41%">
                 </div>
     </div>
+        <div class="box-submit">
+            <input type="submit" value="Enviar"/>
             <input class="close" type="button" onclick="dialogClose()" value="Fechar"/>
-            <input type="submit" value="Submit"/>
+        </div>
     </form>
 </div>
 

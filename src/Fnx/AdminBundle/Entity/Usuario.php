@@ -25,7 +25,7 @@ class Usuario implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @var string $username
@@ -36,7 +36,7 @@ class Usuario implements UserInterface
      * @Assert\MaxLength(limit=20,groups={"register","edit"})
      * @Assert\MinLength(limit=4,groups={"register","edit"})
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string $password
@@ -47,21 +47,21 @@ class Usuario implements UserInterface
      * @Assert\MaxLength(limit=15,groups={"register"})
      * @Assert\MinLength(limit=4,groups={"register"})
      */
-    private $password;
+    protected $password;
 
     /**
      * @var datetime $createdAt
      *
      * @ORM\Column(name="createdAt", type="datetime")
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var datetime $updatedAt
      *
      * @ORM\Column(name="updatedAt", type="datetime")
      */
-    private $updatedAt;
+    protected $updatedAt;
     
     /**
      * @ORM\Column(type="string", length="255")

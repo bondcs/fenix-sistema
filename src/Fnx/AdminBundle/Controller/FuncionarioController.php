@@ -116,14 +116,15 @@ class FuncionarioController extends Controller{
                     ->find($id);
         
         $escalas = $this->getDoctrine()->getRepository("FnxAdminBundle:Escala")->loadEscalaByFuncionario($id);
-        
+        $escalasFun = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->loadEscalaFunByFuncionario($id);
         if (!$funcionario){
             throw $this->createNotFoundException("Funcionário não encontrado.");
         }
         
         
         return array("funcionario" => $funcionario,
-                     "escalas" => $escalas);
+                     "escalas" => $escalas,
+                     "escalaFun" => $escalasFun);
     }
     
      /**

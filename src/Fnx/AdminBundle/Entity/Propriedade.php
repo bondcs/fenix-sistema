@@ -21,7 +21,7 @@ class Propriedade
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nome
@@ -29,7 +29,7 @@ class Propriedade
      * @ORM\Column(name="nome", type="string", length=45)
      * @Assert\NotBlank()
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var float $quantidade
@@ -38,14 +38,14 @@ class Propriedade
      * @Assert\NotBlank()
      * @FnxAssert\ApenasNumero()
      */
-    private $quantidade;
+    protected $quantidade;
 
     /**
      * @var string $descricao
      *
      * @ORM\Column(name="descricao", type="string", length=255, nullable=true)
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      *
@@ -53,14 +53,14 @@ class Propriedade
      * 
      * @ORM\ManyToOne(targetEntity="Atividade", inversedBy="escalas", cascade={"persist"}, fetch="LAZY")
      */
-    private $atividade;
+    protected $atividade;
     
     /**
      * @var boolean $checado
      * 
      * @ORM\Column(name="checado", type="boolean")
      */
-    private $checado;
+    protected $checado;
 
     public function __construct() {
         $this->checado = false;

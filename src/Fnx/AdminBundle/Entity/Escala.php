@@ -24,7 +24,7 @@ class Escala
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     
     /**
      * @var datetime $dtInicio
@@ -32,7 +32,7 @@ class Escala
      * @ORM\Column(name="dtInicio", type="datetime")
      * @Assert\NotBlank()
      */
-    private $dtInicio;
+    protected $dtInicio;
 
     /**
      * @var datetime $dtFim
@@ -40,7 +40,7 @@ class Escala
      * @ORM\Column(name="dtFim", type="datetime")
      * @Assert\NotBlank()
      */
-    private $dtFim;
+    protected $dtFim;
     
     /**
      * @var string $local
@@ -48,7 +48,7 @@ class Escala
      * @ORM\Column(type="string", length=45, nullable=false)
      * @Assert\NotBlank()
      */
-    private $local;
+    protected $local;
     
     /**
      *
@@ -57,26 +57,26 @@ class Escala
      * @Assert\NotBlank()
      * @FnxAssert\Dinheiro()
      */
-    private $custoUnitario;
+    protected $custoUnitario;
     
     /**
      *
      * @var float $custoTotal
      * @ORM\Column(type="float", length=10, nullable=false)
      */
-    private $custoTotal;
+    protected $custoTotal;
     
     /**
      *
      * @var integer $qtdFun
      * @ORM\Column(type="integer", length=10, nullable=false)
      */
-    private $qtdFun;
+    protected $qtdFun;
     /**
      *
      * @ORM\ManyToOne(targetEntity="Atividade", inversedBy="escalas", cascade={"persist"}, fetch="LAZY")
      */
-    private $atividade;
+    protected $atividade;
     
     /**
      * 
@@ -87,7 +87,7 @@ class Escala
      * )
      * 
      */
-    private $funcionarios;
+    protected $funcionarios;
     
     public function __construct() {
         $this->funcionarios = new \Doctrine\Common\Collections\ArrayCollection();

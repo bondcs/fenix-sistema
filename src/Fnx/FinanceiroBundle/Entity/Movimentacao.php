@@ -22,14 +22,14 @@ class Movimentacao
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var datetime $data
      *
      * @ORM\Column(name="data", type="datetime")
      */
-    private $data;
+    protected $data;
 
     /**
      * @var decimal $valor
@@ -38,14 +38,14 @@ class Movimentacao
      * @Assert\NotBlank()
      * @FnxAssert\Dinheiro()
      */
-    private $valor;
+    protected $valor;
 
     /**
      * @var string $movimentacao
      *
      * @ORM\Column(name="movimentacao", type="string", length=1)
      */
-    private $movimentacao;
+    protected $movimentacao;
 
     /**
      * @var decimal $valor_pago
@@ -53,35 +53,35 @@ class Movimentacao
      * @ORM\Column(name="valor_pago", type="decimal", nullable=true, precision=8, scale=2)
      * @FnxAssert\Dinheiro(groups={"edit"})
      */
-    private $valor_pago;
+    protected $valor_pago;
 
     /**
      * @var datetime $data_pagamento
      *
      * @ORM\Column(name="data_pagamento", type="datetime", nullable=true)
      */
-    private $data_pagamento;
+    protected $data_pagamento;
 
     /**
      * @var boolean $lembrar
      *
      * @ORM\Column(name="lembrar", type="boolean")
      */
-    private $lembrar;
+    protected $lembrar;
 
     /**
      * @var boolean $validado
      *
      * @ORM\Column(name="validado", type="boolean")
      */
-    private $validado;
+    protected $validado;
     
     /**
      *
      * @var object $parcela
      * @ORM\OneToOne(targetEntity="Parcela", inversedBy="movimentacao", cascade={"all"})
      */
-    private $parcela;
+    protected $parcela;
     
     /**
      *
@@ -89,7 +89,7 @@ class Movimentacao
      * @ORM\ManyToOne(targetEntity="FormaPagamento", cascade={"persist"}, fetch="LAZY")
      * @Assert\NotBlank()
      */
-    private $formaPagamento;
+    protected $formaPagamento;
     
     function __construct() {
         $this->data = new \DateTime();

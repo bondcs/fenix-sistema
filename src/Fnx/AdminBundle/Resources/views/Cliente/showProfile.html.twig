@@ -34,21 +34,21 @@
               <tr>
                   <th>Nome:</th>
                   <td>{{cliente.nome}}</td>
-              <tr>
+              </tr>
               <tr>
                   <th>Telefone:</th>
                   <td>{{cliente.telefone}}</td>
-              <tr>
+              </tr>
 
               {% if cliente.pessoa == "f" %}
                   <tr>
                       <th>Cpf:</th>
                       <td>{{cliente.cpf}}</td>
-                  <tr>
+                  </tr>
                   <tr>
                       <th>Tipo:</th>
                       <td>Físico</td>
-                  <tr>
+                  </tr>
               {% else %}
                   <tr>
                       <th>Cnpj:</th>
@@ -57,7 +57,7 @@
                   <tr>
                       <th>Tipo:</th>
                       <td>Jurídico</td>
-                  <tr>
+                  </tr>
               {% endif %}
         </table>
     </div>

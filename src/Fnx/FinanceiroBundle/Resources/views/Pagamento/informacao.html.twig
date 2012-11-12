@@ -1,8 +1,8 @@
+<div style="text-align: right; float: right; margin-top:3px; margin-right: 1% ">
+    <a href="{{path('PagamentoRemove', {'id' : atividade.id})}}" class="confirm-link dialog-confirm-link" ><img src="{{asset("bundles/fnxadmin/images/delete-money.png")}}" alt="Excluir Pagamento"></a>
+    </div>
 <div class="ui-panel-content ui-widget-content " style="width:99.1%">
     <h4 class="ui-panel-title ui-widget-header">Registro</h4>
-    <div style="text-align: right; float: right; margin-top:3px; ">
-    <a href="{{path('PagamentoRemove', {'id' : atividade.id})}}" class="confirm-link dialog-confirm-link" ><img src="{{asset("bundles/fnxadmin/images/delete-money.png")}}" alt="Excluir Pagamento"></a>
-</div>
     <table class="infos">
                 <tr>
                     <th>Data:</th>
@@ -16,9 +16,5 @@
                     <th>Doc:</th>
                     <td>{{atividade.registro.id}}</td>
                 </tr>
-                {#<tr>
-                    <th>Total:</th>
-                    <td class="moedaTable">{{atividade.registro.getValorTotal}}</td>
-                </tr>#}
     </table>
 </div>

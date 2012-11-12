@@ -43,6 +43,8 @@ class CalenderController extends Controller
         $event->setColor($value->getServicoEscala()->getCor());
         if ($value->getServicoEscala()->getNome() == "Patrulhamento"){
             $event->setUrl($this->generateUrl("escalaPatruIndex", array("data" => $value->getInicio()->format("Y-m-d"))));
+        }else{
+             $event->setUrl($this->generateUrl("escalaFunIndex", array("data" => $value->getInicio()->format("Y-m-d"))));
         }
         
         $calendar->addEvent($event);
@@ -59,6 +61,17 @@ class CalenderController extends Controller
        $calendar->addEvent($event);
     }
    
+    $pedidos = $this->getDoctrine()->getRepository("FnxPedidoBundle:Pedido")->findAll();
+
+    foreach ($pedidos as $key => $value) {
+       $event = new \YsCalendarEvent($key, $value->getCliente()->getNome()." - Valor: ".number_format($value->getValorTotal(),2,',','.')." - Status: ".$value->getStatusToStr());
+       $event->setStart($value->getData());
+       $event->setEnd($value->getPrevisao());
+       $event->setColor("Purple");
+       $event->setUrl($this->generateUrl("PedidoEditar", array("id" => $value->getId())));
+       $calendar->addEvent($event);
+    }
+    
     $servicos = $this->getDoctrine()->getRepository("FnxAdminBundle:ServicoEscala")->findAll();
 
     return array("calendar" => $calendar,

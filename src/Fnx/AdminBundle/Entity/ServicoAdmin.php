@@ -21,7 +21,7 @@ class ServicoAdmin
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $descricao
@@ -29,7 +29,7 @@ class ServicoAdmin
      * @ORM\Column(name="descricao", type="string", length=80)
      * @Assert\NotBlank()
      */
-    private $descricao;
+    protected $descricao;
 
     /**
      * @var float $valor
@@ -37,14 +37,14 @@ class ServicoAdmin
      * @ORM\Column(name="valor", type="float")
      * @Assert\NotBlank()
      */
-    private $valor;
+    protected $valor;
     
     /**
      *
      * @var object $fornecedor
      * @ORM\ManyToOne(targetEntity="Fornecedor", cascade={"persist"}, fetch="LAZY")
      */
-    private $fornecedor;
+    protected $fornecedor;
     
     /**
      *
@@ -52,7 +52,7 @@ class ServicoAdmin
      * 
      * @ORM\ManyToOne(targetEntity="Atividade", inversedBy="servicos", cascade={"persist"}, fetch="LAZY")
      */
-    private $atividade;
+    protected $atividade;
     
     /**
      * @ORM\PrePersist @ORM\PreUpdate

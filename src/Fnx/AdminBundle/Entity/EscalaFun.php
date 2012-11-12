@@ -20,7 +20,7 @@ class EscalaFun
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var datetime $inicio
@@ -28,7 +28,7 @@ class EscalaFun
      * @ORM\Column(name="inicio", type="datetime")
      * @Assert\NotBlank()
      */
-    private $inicio;
+    protected $inicio;
 
     /**
      * @var datetime $fim
@@ -36,7 +36,7 @@ class EscalaFun
      * @ORM\Column(name="fim", type="datetime")
      * @Assert\NotBlank()
      */
-    private $fim;
+    protected $fim;
 
     /**
      * @var string $descricao
@@ -45,7 +45,7 @@ class EscalaFun
      * @Assert\NotBlank()
      * @Assert\MaxLength(60)
      */
-    private $descricao;
+    protected $descricao;
     
     /**
      * @var string $local
@@ -53,7 +53,7 @@ class EscalaFun
      * @ORM\Column(name="local", type="string", length=80)
      * @Assert\NotBlank(groups={"registration"})
      */
-    private $local;
+    protected $local;
     
     /**
      *
@@ -62,7 +62,7 @@ class EscalaFun
      * @ORM\ManyToOne(targetEntity="ServicoEscala", cascade={"persist"})
      * @Assert\NotBlank(groups={"registration"})
      */
-    private $servicoEscala;
+    protected $servicoEscala;
     
     /**
      *
@@ -70,14 +70,14 @@ class EscalaFun
      * @Assert\NotBlank()
      * @ORM\OrderBy({"nome" = "ASC"})
      */
-    private $funcionarios;
+    protected $funcionarios;
     
     /**
      * @var boolean $ativo
      *
      * @ORM\Column(name="ativo", type="boolean")
      */
-    private $ativo;
+    protected $ativo;
     
     public function atualizarEscalaFim(){
         $diferença = $this->getInicio()->diff($this->getFim());
