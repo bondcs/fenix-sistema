@@ -5,6 +5,7 @@ Tips:
         - php app/console cache:clear --env=prod --no-debug
         - php app/console assets:install web_directory
         - php app/console assetic:dump web_directory
+ - Para alterar host do GIT utilizar git remote set-url origin <URL>
 
 fenix-sistema
 
