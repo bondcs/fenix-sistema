@@ -13,11 +13,11 @@ li{list-style: none;}
 
 /*Header*/
 #wrapper{margin:8px; border-radius: 10px; border: solid 1px;}
-#header{background-color: #ABC6DD; border-top-left-radius: 10px; border-top-right-radius:10px;}
+#header{background-color: #A19B9E; background:-moz-linear-gradient(right, #696969 0%, #C1CDCD 100%); background:-webkit-gradient(linear, right, left bottom, color-stop(0%,#696969), color-stop(100%,#C1CDCD)); border-top-left-radius: 10px; border-top-right-radius:10px;  background:-webkit-linear-gradient(right,  #696969 0%, #C1CDCD 100%); background:-o-linear-gradient(right, #696969 0%,#C1CDCD 100%); background:-ms-linear-gradient(right, #696969 0%,#C1CDCD 100%); background:linear-gradient(right,  #696969 0%,#C1CDCD 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#696969', endColorstr='#C1CDCD',GradientType=1 ); }
 #header div:first-child{padding-top: 15px; padding-left: 25px;}
 #header a{font-size:15pt;font-weight: bold; color: #ffffff; text-decoration: none;}
 #header a:hover{text-decoration:underline;}
-#header div:last-child{margin-top: 10px; height: 10px; background-color: #3399ff;}
+#header div:last-child{margin-top: 10px; height: 10px;}
 
 /* Menu */
 #cssmenu{ height:37px; display:block; padding:0; margin:0px auto;  border:1px solid;} 
@@ -36,10 +36,9 @@ li{list-style: none;}
 #cssmenu ul li > ul{width:200px;} 
 #cssmenu ul li > ul li{display:block; list-style:inside none; padding:0; margin:0; position:relative;} 
 #cssmenu ul li > ul li a{ outline:none; display:block; position:relative; margin:0; padding:8px 20px; font:10pt Arial, Helvetica, sans-serif; color:#fff; text-decoration:none; text-shadow:1px 1px 0 rgba(0,0,0, 0.5); } 
-#cssmenu, #cssmenu > ul > li > ul > li a:hover{ background:#3e698c; background:-moz-linear-gradient(top,  #3e698c 0%, #30576e 100%); background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#3e698c), color-stop(100%,#30576e)); background:-webkit-linear-gradient(top,  #3e698c 0%,#30576e 100%); background:-o-linear-gradient(top, #3e698c 0%,#30576e 100%); background:-ms-linear-gradient(top, #3e698c 0%,#30576e 100%); background:linear-gradient(top,  #3e698c 0%,#30576e 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e698c', endColorstr='#30576e',GradientType=0 ); } 
+#cssmenu, #cssmenu > ul > li > ul > li a:hover{ background:#3e698c; background:-moz-linear-gradient(top,  #CCCCCC 0%, gray 100%); background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#CCCCCC), color-stop(100%,gray)); background:-webkit-linear-gradient(top,  #CCCCCC 0%, gray 100%); background:-o-linear-gradient(top, #CCCCCCc 0%,gray 100%); background:-ms-linear-gradient(top, #CCCCCC 0%,gray 100%); background:linear-gradient(top,  #CCCCCC 0%,gray 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#CCCCCC', endColorstr='gray',GradientType=0 ); } 
 #cssmenu{border-color:#1b313d;} 
 #cssmenu > ul > li > a{border-right:1px solid #1b313d; color:#fff;} 
-#cssmenu > ul > li > a:after{border-color:#6696bd;} 
 #cssmenu > ul > li > a:hover{background:#436f93;} 
 #info{float:right;}
 #logout img{ margin-top: 6px; margin-right: 5px;}
@@ -54,7 +53,7 @@ li{list-style: none;}
 .label{text-align: center;}
 
 /* profile index */
-.profile-index{position: absolute; right: 25px; width: 310px; z-index: 1; border: 1px solid #cccccc; padding: 10px; background-color: white; padding-left: 12px; margin-right: 5px;}
+.profile-index{position: absolute; right: 25px; width: 310px; z-index: 1; border: 1px solid #cccccc; padding: 6px; background-color: white; padding-right: 3px;}
 
 /* legenda Cores */
 .wrapper-color{display: inline-block; margin-bottom: 10px}
@@ -99,9 +98,9 @@ li{list-style: none;}
 
 /* forms */
 #box-form{padding: 10px; margin: 10px; display: inline-block}
-.box-form-dialog{padding:10px 10px 10px 10px; background-color: #DADCFF}
-.dialog-form{width: 99.4% !important}
-.dialog-form h4 {text-align: left !important}
+.box-form-dialog{padding:10px 10px 10px 10px;}
+.dialog-form{width: 100% !important;}
+.dialog-form h4 {text-align: center !important}
 form.cms .myform { font-size: 16px; }
 form.cms .myform div{ clear: left; margin-bottom: 10px;}
 form.cms .myform .inputExtendido input {width: 435px !important}
@@ -125,7 +124,7 @@ form.cms input[type="submit"],
 form.cms input[type="button"]
     {float: none; margin-top: 10px; margin-left: 4px;}
 form.cms .myform ul li { color: #ff0000; margin-bottom: 5px; }
-form.cms .myform fieldset{padding: 15px; border: 1px solid #9FAFD1}
+form.cms .myform fieldset{padding: 15px; border: 1px solid; border-radius: 5px;}
 form.cms .myform fieldset legend {padding: 0.1em 0.2em; border:1px solid; font-size:90%; text-align:right; border: 0px;}
 
 form.cms .myform a.button{font-size: 0.8em;}
@@ -244,7 +243,8 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 .simpleDialog {margin:0; padding:2px 0 0 0 !important;}
 
 /* Footer */
-#footer{text-align: center; padding: 5px; background-color: #F4F4F4; margin: 8px; min-height: 60px; border: 1px solid #CCCCCC; border-radius: 0px}
+#footer{text-align: center; padding: 15px; background-color: #F4F4F4; margin: 8px; min-height: 60px; border: 1px solid #CCCCCC; border-radius: 0px}
+#footer span:first-child {font-style: italic}
 #box-footer {overflow: auto; width: 100%; text-align: center; margin-left: 7.5%; margin-top: 10px; font-size: 0.9em; color: #A19B9E}
 #box-footer ul{float:left; margin: 15px; text-align: left; border-right: 1px solid #CCCCCC}
 #box-footer li {width: 125px;}
@@ -256,7 +256,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 /* SmartTwig */
 
 .ui-expander-content{ padding: 5px 5px !important;}
-.ui-panel-content{margin: 10px; background: #E0E2FF !important}
+.ui-panel-content{margin: 10px; padding: 0.2em 0.2em 0;}
 
 /* DataTables */
 
@@ -274,8 +274,8 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 
 /* multiselect */
 .multiselect {width: 98%;height: 300px;}
-.ui-multiselect{padding: 0px !important; border: 1px solid #ADD8E6 !important; }
-.available{border-color:#ADD8E6 !important}
+.ui-multiselect{padding: 0px !important; border: 1px solid #CCCCCC !important; }
+.available{border-color:#CCCCCC !important}
 .erro-multiselect ul{color: red; font-size: 16px;}
 .timepicker div{clear: none !important}
 .linhaEscala{margin-bottom: 5px; margin-top: 1px; }
@@ -305,6 +305,9 @@ div.innerRow{display: none; }
 .ui-tabs-nav {border-radius: 0px !important;}
 .ui-tabs-nav li{border-radius: 0px !important;}
 .fg-toolbar {border-radius: 0px !important;}
+.ui-panel-title{height: 30px !important; font-size: 1.2em;}
+.ui-tabs-panel{padding: 5px 0px 5px 0px  !important;}
+.linha{margin-top: 0.5% ; margin-bottom: 1%; border-color: #E2E4FF}
 
 /*.box-table thead tr th:last-child{display: none !important;}
 .box-table tbody tr td:last-child{display: none !important;}*/

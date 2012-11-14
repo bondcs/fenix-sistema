@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 
 /**
- * @Route("/admin")
  */
 class PageController extends Controller
 {
@@ -19,10 +18,16 @@ class PageController extends Controller
     public function indexAction()
     {
         $usuarioLogado = $this->get('security.context')->getToken()->getUser();
-        $funcionario = $this->getDoctrine()->getRepository("FnxAdminBundle:Funcionario")->loadFuncionarioByUsuario($usuarioLogado->getId());
-        if($funcionario == array()){
-            $funcionario[0] = null;
+        if( $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
+            $funcionario = $this->getDoctrine()->getRepository("FnxAdminBundle:Funcionario")->loadFuncionarioByUsuario($usuarioLogado->getId());
+            if($funcionario == array()){
+                $funcionario[0] = null;
+            }
+            return array("funcionario" => $funcionario[0]);
+        }else{
+            return $this->redirect($this->generateUrl("_security_login_a"));
         }
-        return array("funcionario" => $funcionario[0]);
+        
+        
     }
 }

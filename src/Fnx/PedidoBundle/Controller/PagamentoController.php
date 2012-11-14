@@ -51,7 +51,7 @@ class PagamentoController extends Controller{
         $pedido = $this->getDoctrine()->getRepository("FnxPedidoBundle:Pedido")->find($id);
         
         $registro = new Registro();
-        $categoria = $this->em->createQuery("SELECT c FROM FnxAdminBundle:Categoria c WHERE c.nome = :param")->setParameter("param", "Pedido")->getSingleResult();
+        $categoria = $em->createQuery("SELECT c FROM FnxAdminBundle:Categoria c WHERE c.nome = :param")->setParameter("param", "Pedido")->getSingleResult();
         $registro->setCategoria($categoria);
         $pedido->setRegistro($registro);
         $registro->setDescricao($pedido->getCliente()->getNome()." - pedido: ". $pedido->getData()->format("d/m/Y"));

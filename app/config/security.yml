@@ -31,10 +31,10 @@ security:
             form_login:
                 check_path: /adm/login_check
                 login_path: /adm/login
-                default_target_path: /admin
+                default_target_path: /
             logout:
                 path: /adm/logout
-                target: /admin
+                target: /
             remember_me:
                 key:      "%secret%"
                 lifetime: 31536000 # 365 days in seconds
@@ -55,7 +55,7 @@ security:
     access_control:
         - { path: /adm/change-password, roles: [ROLE_ADMIN,ROLE_FUNCIONARIO] }
         - { path: /adm/funcionario/show/, role: [ROLE_ADMIN,ROLE_FUNCIONARIO]}
-        - { path: ^/admin/, roles: [ROLE_ADMIN,ROLE_FUNCIONARIO]}
+        - { path: ^/admin, roles: [ROLE_ADMIN,ROLE_FUNCIONARIO]}
         - { path: ^/adm/, role: ROLE_ADMIN}
         - { path: ^/financeiro, role: ROLE_ADMIN }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

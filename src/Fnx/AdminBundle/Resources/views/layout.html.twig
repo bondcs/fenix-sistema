@@ -15,7 +15,8 @@
         </script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/table/js/jquery.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/jquery.tools.min.js') }}"></script>
-        <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/jquery-ui-1.8.22.custom.min.js') }}"></script>
+        {#<script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/jquery-ui-1.8.22.custom.min.js') }}"></script>#}
+        <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/css/blacktie/jquery-ui-1.9.1.custom.min.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/chosen/chosen.jquery.min.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/timepicker.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
@@ -44,7 +45,8 @@
 	<script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/script.js') }}"></script>
         <link href="{{ asset('bundles/fnxadmin/multiselect/css/ui.multiselect.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/css/style.css') }}" type="text/css" rel="stylesheet" />
-        <link href="{{ asset('bundles/fnxadmin/css/redmond/jquery-ui-1.8.22.custom.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/fnxadmin/css/smootess/jquery-ui-1.9.1.custom.min.css') }}" type="text/css" rel="stylesheet" />
+        {#<link href="{{ asset('bundles/fnxadmin/css/redmond/jquery-ui-1.8.22.custom.css') }}" type="text/css" rel="stylesheet" />#}
         <link href="{{ asset('bundles/fnxadmin/table/css/jquery.dataTables_themeroller.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/pnotify/jquery.pnotify.default.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/pnotify/jquery.pnotify.default.icons.css') }}" type="text/css" rel="stylesheet" />
@@ -142,7 +144,7 @@
                         </a>
                     </div>
                      <div class="profile-index">
-                        <div class="ui-panel-content ui-widget-content " style="width:97.5%;">
+                        <div class="ui-panel-content ui-widget-content " style="width:96.5%;">
                            <h4 class="ui-panel-title ui-widget-header ">Minhas Informações</h4>
                            <table class="infos">
                                <tr>
@@ -178,7 +180,7 @@
 
             <div id="footer">
                 {% block footer %}
-                    Fenix sistema 1.0 - Todos os direitos reservados.
+                    <span>Fenix sistema 1.0 - Todos os direitos reservados.</span>
                     <div id="box-footer">
                     <ul>
                         <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a></li>
