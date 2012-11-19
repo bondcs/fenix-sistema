@@ -60,23 +60,23 @@ function onTableAjaxServicoAdmin(){
                     "aButtons": [
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
                                 if (clickTableTerminate()){
-                                    ajaxLoadDialog(Routing.generate("funcionario_servico_admin_new",{"id" : $(".tableServicoAdmin").attr("atividade")}));
+                                    ajaxLoadDialog(Routing.generate("funcionario_servico_admin_new",{"id" : $(".tableServicoAdmin").attr("atividade")}),"Adicionar serviço");
                                 }
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                if (clickTableTerminate()){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialog(Routing.generate("funcionario_servico_admin_edit", {"id" : id}));
+                                 ajaxLoadDialog(Routing.generate("funcionario_servico_admin_edit", {"id" : id}), "Editar serviço");
                                }
                                  
                             }
@@ -84,19 +84,22 @@ function onTableAjaxServicoAdmin(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                 if (clickTableTerminate()){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
                                  $( "#dialog-confirm" ).dialog("open");
+                                  $( "#dialog-confirm" ).dialog("option", "title", "Deletar serviço");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
                                             ajaxDelete(Routing.generate("funcionario_servico_admin_delete", {"id" : id})); 
+                                            $( "#dialog-confirm" ).dialog("option", "title", "");
                                             $(this).dialog("close");
                                      },
                                      "Cancelar": function(){
+                                            $( "#dialog-confirm" ).dialog("option", "title", "");
                                             $(this).dialog("close");
                                      }
                                  } );

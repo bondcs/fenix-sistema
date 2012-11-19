@@ -12,7 +12,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Fnx\AdminBundle\Entity\Atividade;
 use Fnx\AdminBundle\Entity\Contrato;
 use Fnx\AdminBundle\Form\Type\AtividadeType;
+use Fnx\AdminBundle\Form\Type\ContratoType;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Description of AtividadeController
  *
@@ -272,6 +275,68 @@ class AtividadeController extends Controller{
         $em->flush();
                
         
+    }
+    
+    /**
+     * @Route("/upload/{id}", name="uploadContrato", options={"expose" = true})
+     * @Template()
+     */
+    public function uploadAction($id){
+        $atividade = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->find($id);
+        $form = $this->createForm(new ContratoType, $atividade->getContrato());
+        
+        $request = $this->getRequest();
+        if ($request->getMethod() == "POST"){
+            $form->bindRequest($request);
+            if ($form->isValid()){
+                $em = $this->getDoctrine()->getEntityManager();
+                $atividade->getContrato()->upload();
+                $em->persist($atividade);
+                $em->flush();
+                
+                $this->get("session")->setFlash("success", "Contrato registrado");
+                return $this->redirect($this->generateUrl("atividadeShow", array("id" => $id)));
+            }
+        }
+        
+        return $this->render("FnxAdminBundle:Atividade:addContrato.html.twig", array(
+               "form" => $form->createView(),
+               "atividade" => $atividade));
+    }
+    
+    /**
+     * @Route("/download/{id}", name="downloadContrato", options={"expose" = true})
+     * @Template()
+     */
+    public function downloadAction($id){
+        
+        $atividade = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->find($id);
+        $content = file_get_contents($atividade->getContrato()->getAbsolutePath());
+
+        $response = new Response();
+
+        //set headers
+        $response->headers->set('Content-Type', 'mime/type');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$atividade->getContrato()->getPath());
+
+        $response->setContent($content);
+        return $response;
+   }
+   
+   /**
+     * @Route("/remove-upload/{id}", name="removeUpload", options={"expose" = true})
+     * @Template()
+     */
+    public function removeUploadAction($id){
+        $atividade = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->find($id);
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $atividade->getContrato()->removeUpload();
+        $em->persist($atividade);
+        $em->flush();
+                
+        $this->get("session")->setFlash("success", "Contrato excluído");
+        return $this->redirect($this->generateUrl("atividadeShow", array("id" => $id)));
     }
     
 }

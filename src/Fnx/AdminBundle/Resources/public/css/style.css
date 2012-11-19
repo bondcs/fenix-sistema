@@ -24,29 +24,29 @@ li{list-style: none;}
 #cssmenu > ul {list-style:inside none; padding:0; margin:0;} 
 #cssmenu > ul > li {list-style:inside none; padding:0; margin:0; float:left; display:block; position:relative;} 
 #cssmenu > ul > li > a{ outline:none; display:block; position:relative; padding:12px 20px; font:bold 13px/100% Arial, Helvetica, sans-serif; text-align:center; text-decoration:none; text-shadow:1px 1px 0 rgba(0,0,0, 0.4); } 
-#cssmenu > ul > li:first-child > a{border-radius:5px 0 0 5px;} 
 #cssmenu > ul > li > a:after{ content:''; position:absolute; border-right:1px solid; top:-1px; bottom:-1px; right:-2px; z-index:99; } 
 #cssmenu ul li.has-sub:hover > a:after{top:0; bottom:0;} 
 #cssmenu > ul > li.has-sub > a:before{ content:''; position:absolute; top:18px; right:6px; border:5px solid transparent; border-top:5px solid #fff; } 
 #cssmenu > ul > li.has-sub:hover > a:before{top:19px;} 
-#cssmenu ul li.has-sub:hover > a{ background:#3f3f3f; border-color:#3f3f3f; padding-bottom:13px; padding-top:13px; top:-1px; z-index:999; } 
+#cssmenu ul li.has-sub:hover > a{ background:#696969; border-color:#696969; padding-bottom:13px; padding-top:13px; top:-1px; z-index:999; } 
 #cssmenu ul li.has-sub:hover > ul, #cssmenu ul li.has-sub:hover > div{display:block;} 
-#cssmenu ul li.has-sub > a:hover{background:#3f3f3f; border-color:#3f3f3f;} 
-#cssmenu ul li > ul, #cssmenu ul li > div{ display:none; width:auto; position:absolute; top:38px; padding:10px 0; background:#3f3f3f; border-radius:0 0 5px 5px; z-index:999; } 
+#cssmenu ul li.has-sub > a:hover{background:#696969; border-color:#696969;} 
+#cssmenu ul li > ul, #cssmenu ul li > div{ display:none; width:auto; position:absolute; top:38px; padding:10px 0; background:#696969; border-radius:0 0 5px 5px; z-index:999; } 
 #cssmenu ul li > ul{width:200px;} 
 #cssmenu ul li > ul li{display:block; list-style:inside none; padding:0; margin:0; position:relative;} 
 #cssmenu ul li > ul li a{ outline:none; display:block; position:relative; margin:0; padding:8px 20px; font:10pt Arial, Helvetica, sans-serif; color:#fff; text-decoration:none; text-shadow:1px 1px 0 rgba(0,0,0, 0.5); } 
 #cssmenu, #cssmenu > ul > li > ul > li a:hover{ background:#3e698c; background:-moz-linear-gradient(top,  #CCCCCC 0%, gray 100%); background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#CCCCCC), color-stop(100%,gray)); background:-webkit-linear-gradient(top,  #CCCCCC 0%, gray 100%); background:-o-linear-gradient(top, #CCCCCCc 0%,gray 100%); background:-ms-linear-gradient(top, #CCCCCC 0%,gray 100%); background:linear-gradient(top,  #CCCCCC 0%,gray 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#CCCCCC', endColorstr='gray',GradientType=0 ); } 
 #cssmenu{border-color:#1b313d;} 
 #cssmenu > ul > li > a{border-right:1px solid #1b313d; color:#fff;} 
-#cssmenu > ul > li > a:hover{background:#436f93;} 
+#cssmenu > ul > li > a:hover{background:#696969;} 
 #info{float:right;}
+#dateInfo{color:#fff; position: relative; bottom: 5px; margin-right: 10px;}
 #logout img{ margin-top: 6px; margin-right: 5px;}
 .username {color:white; margin-bottom: 50px; position: relative; bottom: 8px; font-weight: bold; font-size: 13px;}
 
 /* menu inicial */
 #all-menu {margin: 5px; z-index: 1; margin-top: 10px; width: 70%; margin-left: 10px;}
-#all-menu a {float: left; text-decoration: none; color: #025A8D; margin-right: 15px; margin-bottom: 15px;}
+#all-menu a {float: left; text-decoration: none; color: #4f4f4f; margin-right: 15px; margin-bottom: 15px;}
 .box-menu{ height: 100px; width: 190px; background-color: #ffffff; border: 1px solid #cccccc; padding-top: 10px;}
 .box-menu:hover{border-color: black}
 .img {text-align: center;}
@@ -87,6 +87,8 @@ li{list-style: none;}
 .unarquive-link > span {background-image: url("../images/arquivar-ico.png");}
 .config-link > span {background-image: url("../images/manu-ico.png");}
 .money02-link > span {background-image: url("../images/money2-icon.png");}
+.fechar-link > span {background-image: url("../images/fechar-icon.png");}
+.abrir-link > span {background-image: url("../images/abrir-icon.png");}
 
 
 
@@ -164,10 +166,10 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 
 /* login */
 #wrapper-login{margin-left: 30%; display:inline-block }
-#header-login{font-size: 16pt; padding-top: 5px; text-align: center; background-color: #6696bd; margin-top: 5%; border: 1px solid; height: 30px; vertical-align: middle; border-bottom: 0px;}
+#header-login{font-size: 16pt; padding-top: 5px; text-align: center; background-color: #CCCCCC; margin-top: 5%; border: 1px solid; height: 30px; vertical-align: middle; border-bottom: 0px;}
 #box-login{border: 1px solid;padding: 30px; background-color: #ffffff}
 #box-login input[type="submit"]{float: none; margin-left: 26%;}
-.error{margin-left: 26%; margin-bottom: 4px; font-weight: bold; color:red;}
+.error{margin-left: 24%; margin-bottom: 4px; font-weight: bold; color:red;}
 
 /* tabela */
 .box-table {font-size: 14px; background-color: #ABC6DD;}
@@ -215,7 +217,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 .infos th{text-align: left; width: 130px;}
 .infos th,td {padding: 5px; }
 .toolbar01, .toolbar02{text-align: center; margin-left: 15%; font-size: 1.1em}
-.odd{ background-color: #E2E4FF}
+.odd{ background-color: #e4e4e4}
 .even{ background-color: white}
 
 
@@ -243,26 +245,27 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 .simpleDialog {margin:0; padding:2px 0 0 0 !important;}
 
 /* Footer */
-#footer{text-align: center; padding: 15px; background-color: #F4F4F4; margin: 8px; min-height: 60px; border: 1px solid #CCCCCC; border-radius: 0px}
-#footer span:first-child {font-style: italic}
-#box-footer {overflow: auto; width: 100%; text-align: center; margin-left: 7.5%; margin-top: 10px; font-size: 0.9em; color: #A19B9E}
+#footer{text-align: center; background-color:#F4F4F4; padding-bottom: 10px; margin: 8px; min-height: 60px; border: 1px solid #CCCCCC; border-radius: 0px}
+#footer #text {font-style: italic;}
+#box-footer {overflow: auto; margin-left: 7.5%; text-align: center; margin-top: 5px; font-size: 0.9em; color: #A19B9E}
 #box-footer ul{float:left; margin: 15px; text-align: left; border-right: 1px solid #CCCCCC}
 #box-footer li {width: 125px;}
 #box-footer a {text-decoration: none; color: #000}
 #box-footer a:hover{text-decoration: underline}
-#box-footer .has-sub{font-weight: bold; font-size:1.2em}
-#last-ul{border: 0px !important}
+#box-footer .has-sub{font-size:1.2em}
+#last-ul{border: 0px !important;}
 
 /* SmartTwig */
 
 .ui-expander-content{ padding: 5px 5px !important;}
-.ui-panel-content{margin: 10px; padding: 0.2em 0.2em 0;}
+.ui-panel-content{margin: 10px; padding: 0.2em;}
 
 /* DataTables */
 
-.DTTT_button{padding: 5px !important; margin-right: 10px !important;}
+.DTTT_button{padding: 5px !important; margin-right: 10px !important; text-align: center;vertical-align: middle;}
 .DTTT_button:hover{border: 1px solid !important;}
 .DTTT_disabled{display: none !important;}
+.DTTT_button img{width: 16px;height: 16px;margin-right:1px;}
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
@@ -307,7 +310,9 @@ div.innerRow{display: none; }
 .fg-toolbar {border-radius: 0px !important;}
 .ui-panel-title{height: 30px !important; font-size: 1.2em;}
 .ui-tabs-panel{padding: 5px 0px 5px 0px  !important;}
-.linha{margin-top: 0.5% ; margin-bottom: 1%; border-color: #E2E4FF}
+.linha{margin-top: 0.5% ; margin-bottom: 1%; border-color: #CCCCCCc}
+.ui-pnotify-history-container button span{ padding: 0px !important; font-size: 0.8em !important;}
+
 
 /*.box-table thead tr th:last-child{display: none !important;}
 .box-table tbody tr td:last-child{display: none !important;}*/

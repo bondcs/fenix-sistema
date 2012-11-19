@@ -59,23 +59,23 @@ function onTableAjaxLocal(){
                     "aButtons": [
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
                                 if (clickTableTerminate()){
-                                   ajaxLoadDialog(urlAdd, "Local");
+                                   ajaxLoadDialog(urlAdd, "Adicionar local");
                                 }
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                if (clickTableTerminate()){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}), "Local");
+                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}), "Editar local");
                                }
                                  
                             }
@@ -83,19 +83,22 @@ function onTableAjaxLocal(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                 if (clickTableTerminate()){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
                                  $( "#dialog-confirm" ).dialog("open");
+                                 $( "#dialog-confirm" ).dialog("option", "title", "Deletar local");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
-                                            ajaxDelete(Routing.generate(routeDelete, {"id" : id})); 
+                                            ajaxDelete(Routing.generate(routeDelete, {"id" : id}));
+                                            $( "#dialog-confirm" ).dialog("option", "title", "");
                                             $(this).dialog("close");
                                      },
                                      "Cancelar": function(){
+                                            $( "#dialog-confirm" ).dialog("option", "title", "");
                                             $(this).dialog("close");
                                      }
                                  } );

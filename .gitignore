@@ -14,3 +14,4 @@ app/config/parameters.ini
 /net-metadados/
 /tcc-fenix-meta/nbproject/private/
 /tcc-fenix-meta/
+!/app/bootstrap.php.cache

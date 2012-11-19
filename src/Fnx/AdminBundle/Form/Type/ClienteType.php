@@ -37,6 +37,10 @@ class ClienteType extends AbstractType{
                 'max_length' => 10,
                 'label' => 'Telefone:*'
             ))
+            ->add('celular','text', array(
+                'max_length' => 10,
+                'label' => 'Celular:'
+            ))
             ->add('cpf','text', array(
                 'max_length' => 11,
                 'label' => 'Cpf:*'

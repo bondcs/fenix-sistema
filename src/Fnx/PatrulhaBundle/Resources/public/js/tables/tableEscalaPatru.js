@@ -62,47 +62,51 @@ function onTableAjaxEscalaPatru(){
                     "sSwfPath": "/"+url_dominio+"/web/bundles/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
                     "sSelectedClass": "row_selected",
                     "aButtons": [
-                        "copy",
-                        "print",
+                        {
+                            "sExtends": "print",
+                            "sButtonText": '<img src="'+imageUrl+'print-icone.png">Print'
+                        },
                         {
                             "sExtends": "pdf",
                             "mColumns": "visible",
                             "sPdfOrientation": "landscape",
-                            "sPdfMessage": "Escalas"
+                            "sPdfMessage": "Escalas",
+                            "sButtonText": '<img src="'+imageUrl+'pdf-icone.png">PDF'
                         },
                         {
                             "sExtends": "text",
-                            "sButtonText": "Últimas Escalas",
+                            "sButtonText": '<img src="'+imageUrl+'timer-icone.png">Últimas escalas',
                             "fnClick" : function(){
                                  loadUltimas();
                             }
                         }, 
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
-                                 ajaxLoadDialog(Routing.generate("escalaPatruAdd",{'data' : $(".data").val()}), "Escala para Patrulhamento");
+                                 ajaxLoadDialog(Routing.generate("escalaPatruAdd",{'data' : $(".data").val()}), "Escala para patrulhamento");
                             }
                         }, 
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialog(Routing.generate("escalaPatruEdit", {"id" : id, 'data' : $(".data").val()}), "Escala para Patrulhamento");
+                                 ajaxLoadDialog(Routing.generate("escalaPatruEdit", {"id" : id, 'data' : $(".data").val()}), "Escala para patrulhamento");
                                  
                             }
                         },
                          {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
                                  $( "#dialog-confirm" ).dialog("open");
+                                 $( "#dialog-confirm" ).dialog("option", "title", "Deletar escala");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
                                             ajaxDelete(Routing.generate("escalaPatruRemove", {"id" : id})); 

@@ -45,6 +45,13 @@ class Cliente
      * @Assert\NotBlank()
      */
     protected $telefone;
+    
+    /**
+     * @var string $celular
+     *
+     * @ORM\Column(name="celular", type="string", length=14, nullable="true")
+     */
+    protected $celular;
 
     /**
      * @var string $cnpj
