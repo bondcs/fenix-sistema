@@ -16,6 +16,7 @@ use Fnx\FinanceiroBundle\Form\Type\FilterType;
 use Symfony\Component\HttpFoundation\Response;
 use Fnx\FinanceiroBundle\Entity\Parcela;
 use Fnx\FinanceiroBundle\Entity\Registro;
+
 /**
  * Description of MovimentacaoController
  *
@@ -222,6 +223,12 @@ class MovimentacaoController extends Controller{
         }else{
             return "Em aberto";
         }
+        
+    }
+    
+    public function transferirAction(){
+        
+        
         
     }
  

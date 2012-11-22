@@ -446,4 +446,24 @@ class Cliente
     {
         $this->pedidos[] = $pedidos;
     }
+
+    /**
+     * Set celular
+     *
+     * @param string $celular
+     */
+    public function setCelular($celular)
+    {
+        $this->celular = $celular;
+    }
+
+    /**
+     * Get celular
+     *
+     * @return string 
+     */
+    public function getCelular()
+    {
+        return $this->celular;
+    }
 }

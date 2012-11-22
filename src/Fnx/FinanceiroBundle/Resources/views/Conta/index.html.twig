@@ -40,7 +40,7 @@
         <tr>
             <td>{{ entity.nome }}</td>
             <td>{{ entity.descricao }}</td>
-            <td class="moedaTable">{{ entity.valor }}</td>
+            <td>{{ entity.valor|number_format(2, ',', '.') }}</td>
             <td>{{ entity.instancia.nome }}</td>
             <td class="id">{{ entity.id }}</td>
         </tr>

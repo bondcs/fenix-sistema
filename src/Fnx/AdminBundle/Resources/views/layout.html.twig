@@ -9,9 +9,9 @@
         <![endif]-->
 
         <script type="text/javascript"> 
-            var url_dominio = "tcc-fenix";
+            var url_dominio = "{{asset('/')}}";
             var urlSource = "";
-            var imageUrl = '/tcc-fenix/web/bundles/fnxadmin/images/';
+            var imageUrl = "{{ asset('bundles/fnx/admin/images/') }}";
         </script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/table/js/jquery.js') }}"></script>
         <script type="text/javascript" language="javascript" src="{{ asset('bundles/fnxadmin/js/jquery.tools.min.js') }}"></script>
@@ -85,6 +85,7 @@
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
                             <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
+                            <li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
                         </ul>
                     </li>
 		    <li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
@@ -147,7 +148,7 @@
                     </div>
                      <div class="profile-index">
                         <div class="ui-panel-content ui-widget-content " style="width:96.5%;">
-                            <h4 class="ui-panel-title ui-widget-header" style="text-align: center; padding-top: 1.5%">Minhas Informações</h4>
+                            <h4 class="ui-panel-title ui-widget-header" style="text-align: center; padding-top: 1.5%">Informações</h4>
                            <table class="infos">
                                <tr>
                                    <th>Nome</th>
@@ -200,6 +201,7 @@
                         </ul>
                         <ul>
                             <li class='has-sub '><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
+                            <li><a href="{{ path("atividadeArquivado")}}">Arquivadas</a></li>
                         </ul>
                         <ul>
                             <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
@@ -209,6 +211,7 @@
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
                             <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
+                            <li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
                         </ul>
                         <ul id="last-ul">
                         <li class='has-sub'><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>

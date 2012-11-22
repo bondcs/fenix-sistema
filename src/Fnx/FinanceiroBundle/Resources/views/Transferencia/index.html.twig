@@ -1,0 +1,48 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+{% block title %}Transferências{% endblock %}
+
+{% block menuContent %}
+
+    <div id="menuContent">
+        <h3>Financeiro: Lista de transferências</h3>
+        <ul>
+            <li><a class="new-link" href="{{ path('financeiro_transferencia_new')}}"><span ></span>Novo</a></li>
+            {#<li><a route="financeiro_conta_show" class="show-link" href="#"><span></span>Profile</a></li>
+            <li><a route="financeiro_transferencia_edit" class="edit-link" href="#"><span></span>Editar</a></li>#}
+            <li><a route="financeiro_transferencia_delete" class="delete-link confirm-link" href="#"><span></span>Deletar</a></li>
+        </ul> 
+    </div>
+
+{% endblock %}
+
+{% block conteudo %}
+<div class="box-table doubleclick" route="financeiro_conta_show">
+<table class="tablePlugin">
+    <thead>
+        <tr>
+            <th>Conta(saque)</th>
+            <th>Conta(depósito)</th>
+            <th>Valor</th>
+            <th class="hide">id</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.contaSaque.nome }}</td>
+            <td>{{ entity.contaRecebimento }}</td>
+            <td>{{ entity.valor|number_format(2, ',', '.') }}</td>
+            <td class="id">{{ entity.id }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+           $(".moedaTable").html(formataDinheiro($(".moedaTable").html()));
+</script>
+
+{% endblock %}
+
+

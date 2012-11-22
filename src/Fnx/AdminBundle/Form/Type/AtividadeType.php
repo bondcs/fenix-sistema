@@ -38,7 +38,6 @@ class AtividadeType extends AbstractType{
 //                "label" => "Descrição:*"
 //            ))
             ->add("servico", "entity", array(
-                "empty_value" => "Escolha uma opção",
                 "property" => "nome",
                 "class" => "FnxAdminBundle:Servico",
                 "label" => "Serviço:*"

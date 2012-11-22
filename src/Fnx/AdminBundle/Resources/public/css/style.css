@@ -53,7 +53,8 @@ li{list-style: none;}
 .label{text-align: center;}
 
 /* profile index */
-.profile-index{position: absolute; right: 25px; width: 310px; z-index: 1; border: 1px solid #cccccc; padding: 6px; background-color: white; padding-right: 3px;}
+.profile-index{position: absolute; right: 25px; width: 30.5%; z-index: 1; border: 1px solid #cccccc; padding: 6px; background-color: white; padding-right: 3px;}
+#datepicker .ui-datepicker { width: 96.5% !important}
 
 /* legenda Cores */
 .wrapper-color{display: inline-block; margin-bottom: 10px}
@@ -281,7 +282,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 .available{border-color:#CCCCCC !important}
 .erro-multiselect ul{color: red; font-size: 16px;}
 .timepicker div{clear: none !important}
-.linhaEscala{margin-bottom: 5px; margin-top: 1px; }
+.linhaEscala{margin-bottom: 5px; margin-top: 1px;}
 
 
 /* específicos */
@@ -310,7 +311,7 @@ div.innerRow{display: none; }
 .fg-toolbar {border-radius: 0px !important;}
 .ui-panel-title{height: 30px !important; font-size: 1.2em;}
 .ui-tabs-panel{padding: 5px 0px 5px 0px  !important;}
-.linha{margin-top: 0.5% ; margin-bottom: 1%; border-color: #CCCCCCc}
+.linha{margin-top: 1% ; margin-bottom: 1%; border-color: #F4F4F4}
 .ui-pnotify-history-container button span{ padding: 0px !important; font-size: 0.8em !important;}
 
 
