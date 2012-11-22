@@ -1,0 +1,48 @@
+{% extends 'FnxAdminBundle::layout.html.twig' %}
+
+{% block title %} Tranferência {% endblock %}
+
+{% block menuContent %}
+    <div id="menuContent">
+        <h3>Financeiro: Formulário de Transfêrencia</h3>
+        <ul>
+            <li><a class="back-link" href="{{ path('financeiro_transferencia')}}"><span></span>Voltar</a></li>
+        </ul> 
+    </div>
+{% endblock %}
+
+{% block conteudo %}
+ <div class="ui-panel-content ui-widget-content" style="width:auto">
+    <h4 class="ui-panel-title ui-widget-header "></h4>
+    <div id="box-form">
+        <form class="cms" action="{{ path('financeiro_transferencia_create') }}" method="post" {{ form_enctype(form) }}>
+            <div class="myform">
+                {{form_errors(form)}}
+                <div>
+                     {{ form_errors(form.contaSaque)}}
+                     {{ form_label(form.contaSaque)}}    
+                     {{ form_widget(form.contaSaque)}}
+                </div>
+                
+                <div>
+                     {{ form_errors(form.contaRecebimento)}}
+                     {{ form_label(form.contaRecebimento)}}    
+                     {{ form_widget(form.contaRecebimento)}}
+                </div>
+                
+                <div>
+                     {{ form_errors(form.valor)}}
+                     {{ form_label(form.valor)}}    
+                     {{ form_widget(form.valor, {'attr' : {'class' : 'moeda', 'style' : 'width:30%'}})}}
+                </div>
+     
+            </div>
+
+            {{ form_rest(form)}}
+            <div class="box-submit">
+                <input type="submit" value="Enviar"/>
+            </div>
+        </form>
+    </div>
+ </div>
+{% endblock %}

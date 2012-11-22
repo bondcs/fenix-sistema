@@ -29,6 +29,10 @@ class FuncionarioType extends AbstractType{
             ->add('telefone', 'text', array(
                  'label' => 'Telefone:*'
             ))
+            ->add('celular','text', array(
+                'max_length' => 10,
+                'label' => 'Celular:'
+            ))
             ->add('cpf', 'text', array(
                'label' => 'Cpf:',
             ))

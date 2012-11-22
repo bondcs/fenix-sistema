@@ -21,7 +21,8 @@ function onTableAjaxTransacaoGeral(){
                                                 'fim' : $(".fim").val(),
                                                 'tipo' : $(".tipo").val(),
                                                 'data' : $(".tipoData input:checked").val() ? $(".tipoData input:checked").val() : 'a',
-                                                'conta' : $(".conta").val(),
+//                                                'conta' : $(".conta").val(),
+                                                'conta' : "a",
                                                 'categoria' : $(".categoria").val() ? $(".categoria").val() : 0,
                                                 'doc' : $(".doc").val() ? $(".doc").val() : 0
             }),

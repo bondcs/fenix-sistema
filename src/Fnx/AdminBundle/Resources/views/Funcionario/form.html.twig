@@ -37,6 +37,12 @@
                 </div>
             
                 <div> 
+                    {{ form_errors(form.celular)}}
+                    {{ form_label(form.celular)}}    
+                    {{ form_widget(form.celular, {'attr' : {'class' : 'telefone', 'style' : 'width:30%'}})}}
+                </div>
+            
+                <div> 
                     {{ form_errors(form.cpf)}}
                     {{ form_label(form.cpf)}}    
                     {{ form_widget(form.cpf, {'attr' : {'class' : 'cpf', 'style' : 'width:30%'}})}}

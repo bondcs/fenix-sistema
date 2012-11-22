@@ -37,7 +37,13 @@
                 <div> 
                     {{ form_errors(form.telefone)}}
                     {{ form_label(form.telefone)}}    
-                    {{ form_widget(form.telefone, {'attr' : {'class' : 'telefone'}})}}
+                    {{ form_widget(form.telefone, {'attr' : {'class' : 'telefone', 'style' : 'width:30%'}})}}
+                </div>
+            
+                <div> 
+                    {{ form_errors(form.celular)}}
+                    {{ form_label(form.celular)}}    
+                    {{ form_widget(form.celular, {'attr' : {'class' : 'telefone', 'style' : 'width:30%'}})}}
                 </div>
                 
                 <div id="juridico">
@@ -59,7 +65,7 @@
                 <div> 
                     {{ form_errors(form.cep)}}
                     {{ form_label(form.cep)}}    
-                    {{ form_widget(form.cep, {'attr' : {'class' : 'cep'}})}}
+                    {{ form_widget(form.cep, {'attr' : {'class' : 'cep', 'style' : 'width:20%'}})}}
                 </div>
                 
                 <div> 
@@ -89,7 +95,7 @@
                 <div> 
                     {{ form_errors(form.numero)}}
                     {{ form_label(form.numero)}}    
-                    {{ form_widget(form.numero)}}
+                    {{ form_widget(form.numero,{'attr' : {'style' : 'width:10%'}})}}
                 </div>
                  
                
