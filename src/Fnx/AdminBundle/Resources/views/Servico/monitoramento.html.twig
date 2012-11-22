@@ -4,6 +4,7 @@
         <li><a href="#tabs-1">Informações</a></li>
         <li><a href="#tabs-2">Locais</a></li>
         <li><a href="#tabs-3">Pagamento</a></li>
+        <li><a href="#tabs-4">Contrato</a></li>
     </ul>
     
     <div id="tabs-1" style="padding: 0px;"> 
@@ -42,6 +43,10 @@
                 {% render 'FnxFinanceiroBundle:Pagamento:edit' with {'id' : atividade.id} %}
             {% endif%}
             </div> 
+     </div>
+        
+     <div id="tabs-4">
+            {% render 'FnxAdminBundle:Atividade:upload' with {'id' : atividade.id} %}    
      </div>
 
         <script type="text/javascript">

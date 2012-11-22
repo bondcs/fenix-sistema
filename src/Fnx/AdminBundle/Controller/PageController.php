@@ -18,7 +18,7 @@ class PageController extends Controller
     public function indexAction()
     {
         $usuarioLogado = $this->get('security.context')->getToken()->getUser();
-        if( $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
+        if($usuarioLogado != "anon."){
             $funcionario = $this->getDoctrine()->getRepository("FnxAdminBundle:Funcionario")->loadFuncionarioByUsuario($usuarioLogado->getId());
             if($funcionario == array()){
                 $funcionario[0] = null;

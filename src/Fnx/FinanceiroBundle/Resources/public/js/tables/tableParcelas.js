@@ -82,17 +82,17 @@ function onTableAjaxParcela(){
                     "aButtons": [
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
-                                    ajaxLoadDialog(Routing.generate("parcelaNew", {'id' : atividadeId}));
+                                    ajaxLoadDialog(Routing.generate("parcelaNew", {'id' : atividadeId}),"Adicionar nova parcela");
                                  }
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Finalizar",
+                            "sButtonText": '<img src="'+imageUrl+'finish-icone.png">Finalizar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
@@ -108,13 +108,13 @@ function onTableAjaxParcela(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]['movimentacao']["id"];
-                                    ajaxLoadDialogParcela(Routing.generate("parcelaEdit", {'id' : id}));
+                                    ajaxLoadDialogParcela(Routing.generate("parcelaEdit", {'id' : id}),"Editar parcela");
                                  }
                                  
                             }
@@ -122,19 +122,22 @@ function onTableAjaxParcela(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]['movimentacao']["id"];
                                     $( "#dialog-confirm" ).dialog("open");
+                                    $( "#dialog-confirm" ).dialog("option", "title", "Deletar parcela");
                                     $( "#dialog-confirm" ).dialog("option", "buttons", {
                                         "Deletar": function() {
                                                ajaxDeleteParcela(Routing.generate("removeParcela", {"id" : id})); 
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         },
                                         "Cancelar": function(){
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         }
                                     } );
@@ -192,7 +195,7 @@ function ajaxFinalizarParcela(url){
     
 }
 
-function ajaxLoadDialogParcela(url){
+function ajaxLoadDialogParcela(url, title){
     
     $.ajax({
             type: 'GET',
@@ -205,6 +208,7 @@ function ajaxLoadDialogParcela(url){
                 }
                 
                 $(".simpleDialog").html(result);
+                $(".simpleDialog").dialog( "option", "title", title || "" );
                 $(".simpleDialog").dialog('open');
                 onReadyAjax();
                 return false;

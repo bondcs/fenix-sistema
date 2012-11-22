@@ -1,0 +1,27 @@
+<div class="box-form">
+    <div class="ui-panel-content ui-widget-content" style="width:auto;">
+    <h4 class="ui-panel-title ui-widget-header"></h4>
+    <div id="box-form">
+        {% if (atividade.contrato.hasPath) %}
+            <a class="button" href="{{path("downloadContrato", {"id" : atividade.id})}}">Contrato</a>
+            <a class="dialog-confirm-link" href="{{path("removeUpload", {"id" : atividade.id})}}">Remover</a>
+        {% else %}
+        <form novalidate="" class="cms" action="{{ path('uploadContrato',{'id' : atividade.id}) }}" method="post" {{ form_enctype(form) }}>
+            {{form_errors(form)}}
+            <div class="myform">
+                <div>
+                    {{ form_errors(form.file)}}
+                    {{ form_label(form.file)}}    
+                    {{ form_widget(form.file)}}
+                </div>
+            </div>    
+                {{ form_row(form._token) }}
+            <div class="box-submit" style="text-align: left; padding-left: 5%">
+                <input type="submit" value="Enviar"/>
+            </div>
+          </form>
+         {% endif %}
+     </div>
+     </div>
+ </div>
+

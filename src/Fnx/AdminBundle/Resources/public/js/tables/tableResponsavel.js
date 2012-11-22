@@ -48,44 +48,45 @@ function onTableResponsavel(){
                     "aButtons": [
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
-                                 ajaxLoadDialog(urlAdd);
+                                 ajaxLoadDialog(urlAdd, "Adicionar responsável");
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]['id'];
-                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}));
+                                 ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}), "Editar responsável");
                                  
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Usuário",
+                            "sButtonText": '<img src="'+imageUrl+'user-icone.png">Usuário',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]['id'];
-                                 ajaxLoadDialog(Routing.generate(routeUsuario, {"id" : id}));
+                                 ajaxLoadDialog(Routing.generate(routeUsuario, {"id" : id}),"Usuário");
                                  
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]['id'];
                                  $( "#dialog-confirm" ).dialog("open");
+                                 $( "#dialog-confirm" ).dialog("option", "title", "Deletar responsável");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
                                             ajaxDelete(Routing.generate(routeDelete, {"id" : id})); 

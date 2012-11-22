@@ -4,17 +4,6 @@
     <link href="{{ asset('Resources/css/TableTools.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ asset('Resources/css/TableTools_JUI.css') }}" type="text/css" rel="stylesheet" />
     <style>
-        .ui-button{
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .ui-button img{
-            width: 16px;
-            height: 16px;
-            margin: 0;
-        }
-
         .hidden{
             visibility: hidden;
             display: none;
@@ -95,34 +84,35 @@
             "aButtons": [
                 {
                     "sExtends": "text",
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/icojoy/noshadow/standart/png/24x24/001_01.png'/> Novo Item",
+                    "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                     "fnClick" : function(){
-                            ajaxLoadDialog(Routing.generate("itemAdd", {"pedido" : $('#tableItens').attr("pedido")}));
+                            ajaxLoadDialog(Routing.generate("itemAdd", {"pedido" : $('#tableItens').attr("pedido")}), "Adicionar item");
                     }
                 },
 
                 {
                     "sExtends": "select_single",
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/fatcow/32x32_0660/page_white_edit.png'/> Editar",
+                    "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                     "fnClick" : function(){
                          var aaData = this.fnGetSelectedData()
                          id = aaData[0]["id"];
-                         ajaxLoadDialog(Routing.generate("itemEdit", {"id" : id}));
+                         ajaxLoadDialog(Routing.generate("itemEdit", {"id" : id}), "Editar item");
 
                     }
                 },
 
                 {
                     "sExtends": "select_single",
-                    "sButtonText": "<img src='http://cdn1.iconfinder.com/data/icons/diagona/icon/16/101.png'/> Deletar",
+                    "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                     "fnClick" : function(){
                         if (clickTableTerminate()){
                          var aaData = this.fnGetSelectedData()
                          id = aaData[0]["id"];
-                         $( "#dialog-confirm" ).dialog("open");
-                         $( "#dialog-confirm" ).dialog("option", "buttons", {
+                         $("#dialog-confirm").dialog("open");
+                         $("#dialog-confirm").dialog("option", "title", "Deletar item");
+                         $("#dialog-confirm").dialog("option", "buttons", {
                              "Deletar": function() {
-                                    ajaxDelete(Routing.generate("itemDelete", {"id" : id})); 
+                                    ajaxDelete(Routing.generate("itemDelete", {"id" : id}),"Deletar Item"); 
                                     $(this).dialog("close");
                              },
                              "Cancelar": function(){
@@ -146,7 +136,8 @@
     <div id="menuContent">
         <h3>Gerenciamento: Formulário de pedidos</h3>
         <ul>
-            {% if (pedido.id) %} <li><a class="money02-link" href="{{path("PedidoFechar", {'id' : pedido.id})}}"><span></span>{{pedido.status == 'a' ? "Fechar" : "Abrir"}}</a></li> {% endif %}
+            {% if (pedido.id) %} <li><a class="money02-link" href="{{ path('PedidoPagamento', {"id" : pedido.id})}}"><span></span>Pagar</a></li>
+            <li><a class="{{pedido.status == 'a' ? "fechar-link" : "abrir-link"}} dialog-confirm-link" href="{{path("PedidoFechar", {'id' : pedido.id})}}"><span></span>{{pedido.status == 'a' ? "Fechar" : "Abrir"}}</a></li> {% endif %}
             <li><a class="back-link" href="{{ path('PedidoListar')}}"><span></span>Voltar</a></li>
         </ul> 
     </div>
@@ -154,9 +145,9 @@
 
 {% block conteudo%}
 {% if (pedido.id) %}
-<div style="text-align: right; float: right; margin:15px 1px 15px 3px;">
+{#<div style="text-align: right; float: right; margin:45px 1px 15px 8px;">
      <a class="button" href="{{ path("PedidoPagamento", {"id" : pedido.id})}}" title="Pagamento">Pagamento</a> 
-</div>
+</div>#}
 {% endif %}
 
 <form method="POST" action="{{ pedido.id ? path('PedidoEditar', {"id" : pedido.id}) :path('PedidoCadastrar')}}" class="cms">
@@ -182,7 +173,7 @@
            
        </div>
    </div>
-   <div style="margin: 3px 3px; margin-top: 1.5%;" class="box-table">
+   <div style="margin-top: 1.0%;" class="box-table">
         <table id="tableItens" class="tablePlugin redraw" pedido="{{ pedido.id ? pedido.id : '0' }}" >
             <thead>
                 <tr>

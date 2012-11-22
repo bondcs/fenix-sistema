@@ -82,6 +82,13 @@ class Funcionario
     protected $telefone;
     
     /**
+     * @var string $celular
+     *
+     * @ORM\Column(name="celular", type="string", length=14, nullable="true")
+     */
+    protected $celular;
+    
+    /**
      *
      * @ORM\ManyToMany(targetEntity="Escala", mappedBy="funcionarios", cascade={"persist"})
      * @ORM\JoinTable(name="escala_funcionario",

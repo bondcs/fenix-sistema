@@ -16,6 +16,11 @@ class ContratoType extends AbstractType{
     
     function buildForm(FormBuilder $builder, array $options) {
         
+        $builder->add("file", "file", array(
+                      "label" => "Contrato:",
+                      "required" => false
+        ));
+        
     }
 
 

@@ -52,6 +52,7 @@
         <link href="{{ asset('bundles/fnxadmin/pnotify/jquery.pnotify.default.icons.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/chosen/chosen.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/gallery/css/jquery.galleryview-3.0-dev.css') }}" type="text/css" rel="stylesheet" />
+        
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -88,10 +89,11 @@
                     </li>
 		    <li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
                     </ul>
-                        <div id="info">
-                            <span class="username">{{ app.user.username }}</span>
-                            <a id="logout" href="{{ path('_security_logout_a')}}"><img src="{{ asset('bundles/fnxadmin/images/logout-ico8.png') }}"/></a>
-                        </div>
+                    <div id="info">
+                        <span id="dateInfo">{{ "now"|date("d/m/Y") }}</span>
+                        <span class="username">{{ app.user.username }}</span>
+                        <a id="logout" href="{{ path('_security_logout_a')}}"><img src="{{ asset('bundles/fnxadmin/images/logout-ico8.png') }}"/></a>
+                    </div>
                 </div>
             {% endblock %}
 
@@ -145,7 +147,7 @@
                     </div>
                      <div class="profile-index">
                         <div class="ui-panel-content ui-widget-content " style="width:96.5%;">
-                           <h4 class="ui-panel-title ui-widget-header ">Minhas Informações</h4>
+                            <h4 class="ui-panel-title ui-widget-header" style="text-align: center; padding-top: 1.5%">Minhas Informações</h4>
                            <table class="infos">
                                <tr>
                                    <th>Nome</th>
@@ -180,38 +182,40 @@
 
             <div id="footer">
                 {% block footer %}
-                    <span>Fenix sistema 1.0 - Todos os direitos reservados.</span>
+                    {% if app.user %}
                     <div id="box-footer">
-                    <ul>
-                        <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a></li>
-                        <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
-                    </ul>
-                    <ul>
-                        <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
-                        <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
-                        <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
-                        <li><a href="{{ path("salarioHome")}}">Salários</a></li>
-                        <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
-                    </ul>
-                    <ul>
-                        <li class='has-sub '><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
-                    </ul>
-                    <ul>
-                        <li class='has-sub '><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
-                    </ul>
-                    <ul>
-                        <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
-                    </ul>
-                    <ul>        
-                        <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a></li>
-                        <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
-                        <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
-                        <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
-                    </ul>
-                    <ul id="last-ul">
-		    <li class='has-sub'><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
-                    </ul>
-                    </div>
+                        <ul>
+                            <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a></li>
+                            <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
+                        </ul>
+                        <ul>
+                            <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
+                            <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
+                            <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
+                            <li><a href="{{ path("salarioHome")}}">Salários</a></li>
+                            <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
+                        </ul>
+                        <ul>
+                            <li class='has-sub '><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
+                        </ul>
+                        <ul>
+                            <li class='has-sub '><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
+                        </ul>
+                        <ul>
+                            <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
+                        </ul>
+                        <ul>        
+                            <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a></li>
+                            <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
+                            <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
+                            <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
+                        </ul>
+                        <ul id="last-ul">
+                        <li class='has-sub'><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
+                        </ul>
+                        </div>
+                    {#<span id="text">Fenix sistema 1.0 - Todos os direitos reservados.</span>#}
+                    {% endif %}
                 {% endblock %}
             </div>
         </section>

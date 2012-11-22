@@ -69,17 +69,20 @@ function onTableAjaxSalario(){
                     "sSwfPath": "/"+url_dominio+"/web/bundles/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
                     "sSelectedClass": "row_selected",
                     "aButtons": [
-                        "copy",
-                        "print",
+                        {
+                            "sExtends": "print",
+                            "sButtonText": '<img src="'+imageUrl+'print-icone.png">Print'
+                        },
                         {
                             "sExtends": "pdf",
                             "mColumns": "visible",
                             "sPdfOrientation": "landscape",
-                            "sPdfMessage": "Escalas"
-                        }, 
+                            "sPdfMessage": "Escalas",
+                            "sButtonText": '<img src="'+imageUrl+'pdf-icone.png">PDF'
+                        },
                         {
                             "sExtends": "text",
-                            "sButtonText": "Pagar",
+                            "sButtonText": '<img src="'+imageUrl+'money-icone.png">Pagar',
                             "fnClick" : function(){
                                   var form = $("#formSalario")
                                   $.ajax({
@@ -100,7 +103,7 @@ function onTableAjaxSalario(){
                         },
                         {
                             "sExtends": "text",
-                            "sButtonText": "Gerar",
+                            "sButtonText": '<img src="'+imageUrl+'eng-icone.png">Gerar',
                             "fnClick" : function(){
                                   var form = $("#formSalario")
                                   $.ajax({
@@ -121,7 +124,7 @@ function onTableAjaxSalario(){
                         },
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Bônus",
+                            "sButtonText": '<img src="'+imageUrl+'money-add-icone.png">Bônus',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()

@@ -5,6 +5,7 @@
         <li><a href="#tabs-2">Propriedade</a></li>
         <li><a href="#tabs-3">Galeria</a></li>
         <li><a href="#tabs-4">Pagamento</a></li>
+        <li><a href="#tabs-5">Contrato</a></li>
     </ul>
     
     <div id="tabs-1">
@@ -29,6 +30,9 @@
         {% endif%}
         </div>
       
+    </div>
+    <div id="tabs-5">
+            {% render 'FnxAdminBundle:Atividade:upload' with {'id' : atividade.id} %}    
     </div>
 
 

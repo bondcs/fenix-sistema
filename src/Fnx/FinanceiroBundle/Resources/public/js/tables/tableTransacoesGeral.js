@@ -91,25 +91,28 @@ function onTableAjaxTransacaoGeral(){
                     "sSelectedClass": "row_selected",
                     "sSwfPath": "/"+url_dominio+"/web/bundles/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
                     "aButtons": [
-                        "copy",
-                        "print",
+                        {
+                            "sExtends": "print",
+                            "sButtonText": '<img src="'+imageUrl+'print-icone.png">Print'
+                        },
                         {
                             "sExtends": "pdf",
                             "mColumns": "visible",
                             "sPdfOrientation": "landscape",
-                            "sPdfMessage": "Movimentações de Conta"
+                            "sPdfMessage": "Escalas",
+                            "sButtonText": '<img src="'+imageUrl+'pdf-icone.png">PDF'
                         },
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
-                                 ajaxLoadDialog(Routing.generate("movimentacaoNew"));
+                                 ajaxLoadDialog(Routing.generate("movimentacaoNew"),"Adicionar movimentação");
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Finalizar",
+                            "sButtonText": '<img src="'+imageUrl+'finish-icone.png">Finalizar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
@@ -122,24 +125,25 @@ function onTableAjaxTransacaoGeral(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialogParcela(Routing.generate("parcelaGeralEdit", {'id' : id}));
+                                 ajaxLoadDialogParcela(Routing.generate("parcelaGeralEdit", {'id' : id}),"Editar movimentação");
                                  
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
                                  $( "#dialog-confirm" ).dialog("open");
+                                 $( "#dialog-confirm" ).dialog("option", "title", "Deletar movimentação");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
                                             ajaxDeleteParcela(Routing.generate("removeParcelaGeral", {"id" : id})); 

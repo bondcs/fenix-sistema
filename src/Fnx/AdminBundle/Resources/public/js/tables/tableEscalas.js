@@ -58,25 +58,26 @@ function onTableAjaxEscala(){
                     "sRowSelect": "single",
                     "sSelectedClass": "row_selected",
                     "aButtons": [
+                        
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
-                                    ajaxLoadDialog(urlAdd);
+                                    ajaxLoadDialog(urlAdd, "Adicionar escala");
                                  }
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]["id"];
-                                    ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}));
+                                    ajaxLoadDialog(Routing.generate(routeEdit, {"id" : id}),"Editar escala");
                                  }
                                  
                             }
@@ -84,19 +85,22 @@ function onTableAjaxEscala(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]["id"];
                                     $( "#dialog-confirm" ).dialog("open");
+                                    $( "#dialog-confirm" ).dialog("option", "title", "Deletar escala");
                                     $( "#dialog-confirm" ).dialog("option", "buttons", {
                                         "Deletar": function() {
-                                               ajaxDelete(Routing.generate(routeDelete, {"id" : id})); 
+                                               ajaxDelete(Routing.generate(routeDelete, {"id" : id}));
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         },
                                         "Cancelar": function(){
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         }
                                     } );

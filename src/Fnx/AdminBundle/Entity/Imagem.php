@@ -58,7 +58,7 @@ class Imagem
      */
     protected $galeria;
     
-       /**
+    /**
      * @ORM\PreRemove()
      */
     public function storeFilenameForRemove()

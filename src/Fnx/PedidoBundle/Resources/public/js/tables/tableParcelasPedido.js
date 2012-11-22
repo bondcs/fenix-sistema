@@ -81,17 +81,17 @@ function onTableAjaxParcelaPedido(){
                     "aButtons": [
                         {
                             "sExtends": "text",
-                            "sButtonText": "Adicionar",
+                            "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
-                                    ajaxLoadDialog(Routing.generate("parcelaPedidoNew", {'id' : pedidoId}));
+                                    ajaxLoadDialog(Routing.generate("parcelaPedidoNew", {'id' : pedidoId}),"Adicionar nova parcela");
                                  }
                             }
                         },
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Finalizar",
+                            "sButtonText": '<img src="'+imageUrl+'finish-icone.png">Finalizar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
@@ -107,13 +107,13 @@ function onTableAjaxParcelaPedido(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Editar",
+                            "sButtonText": '<img src="'+imageUrl+'edit-icone.png">Editar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]['movimentacao']["id"];
-                                    ajaxLoadDialogParcela(Routing.generate("parcelaPedidoEdit", {'id' : id}));
+                                    ajaxLoadDialogParcela(Routing.generate("parcelaPedidoEdit", {'id' : id}),"Editar parcela");
                                  }
                                  
                             }
@@ -121,19 +121,22 @@ function onTableAjaxParcelaPedido(){
                         
                         {
                             "sExtends": "select_single",
-                            "sButtonText": "Deletar",
+                            "sButtonText": '<img src="'+imageUrl+'delete-icone.png">Deletar',
                             "sButtonClass": "hidden",
                             "fnClick" : function(){
                                  if (clickTableTerminate()){
                                     var aaData = this.fnGetSelectedData()
                                     id = aaData[0]['movimentacao']["id"];
                                     $( "#dialog-confirm" ).dialog("open");
+                                    $( "#dialog-confirm" ).dialog("option", "title", "Deletar parcela");
                                     $( "#dialog-confirm" ).dialog("option", "buttons", {
                                         "Deletar": function() {
-                                               ajaxDeleteParcela(Routing.generate("removeParcelaPedido", {"id" : id})); 
+                                               ajaxDeleteParcela(Routing.generate("removeParcelaPedido", {"id" : id}));
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         },
                                         "Cancelar": function(){
+                                               $( "#dialog-confirm" ).dialog("option", "title", "");
                                                $(this).dialog("close");
                                         }
                                     } );

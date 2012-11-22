@@ -12,8 +12,8 @@
 {% endblock %}
 
 {% block conteudo %}
- <div class="ui-panel-content ui-widget-content dialog-form " style="width:auto">
-    <h4 class="ui-panel-title ui-widget-header ">Funcionário</h4>
+ <div class="ui-panel-content ui-widget-content" style="width:auto">
+    <h4 class="ui-panel-title ui-widget-header "></h4>
     <div id="box-form">
     <form novalidate="" id="form" action="{{ funcionario.id ? path('funcionarioEdit', { 'id' : funcionario.id}) : path('funcionarioAdd')}}" method="post" class="cms">
     <div class="myform">
