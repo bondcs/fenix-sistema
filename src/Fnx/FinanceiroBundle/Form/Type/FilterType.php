@@ -62,6 +62,7 @@ class FilterType extends AbstractType
                 'attr' => array('class' => 'tipoData')
              ))
            ->add('conta', 'entity', array(
+                'empty_value' => "Todas",
                 'label' => 'Conta:',
                 'class' => 'FnxFinanceiroBundle:Conta',
                 'property' => 'nome',

@@ -148,7 +148,14 @@ class Movimentacao
             }
         }
     }
-
+    
+    public function getMovimentacaoToLabel(){
+        if ($this->movimentacao == 'r'){
+            return "Recebimento";
+        }elseif ($this->movimentacao == 'p'){
+            return "Pagamento";
+        }
+    }
 
     /**
      * Get id

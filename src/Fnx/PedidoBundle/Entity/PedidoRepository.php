@@ -25,4 +25,19 @@ class PedidoRepository extends EntityRepository
 
             return $qb->getQuery()->getResult();
         }
+        
+        public function getByAgenda($data){
+            
+            $data = new \DateTime($data);
+            return $this->createQueryBuilder('p')
+                ->select('p', 'c')
+                ->join('p.cliente', 'c')
+                ->Where("p.status = :status")
+                ->andWhere("p.data < :data")
+                ->setParameters(array("data" => $data,
+                                      "status" => "a"))
+                ->getQuery()
+                ->getResult();
+                
+        }
 }

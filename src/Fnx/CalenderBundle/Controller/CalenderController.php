@@ -69,6 +69,7 @@ class CalenderController extends Controller
        $event->setEnd($value->getPrevisao());
        $event->setColor("Purple");
        $event->setUrl($this->generateUrl("PedidoEditar", array("id" => $value->getId())));
+       $event->setClassName("pedido");
        $calendar->addEvent($event);
     }
     

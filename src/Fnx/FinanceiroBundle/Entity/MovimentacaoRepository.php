@@ -116,6 +116,12 @@ class MovimentacaoRepository extends EntityRepository
             ->setParameter("categoria", $categoria);
         }
         
+        if ($conta != 0){
+            
+            $qb->andWhere('c.id = :conta')
+            ->setParameter("conta", $conta);
+        }
+        
         if ($doc != 0){
             $qb->andWhere("r.id = :doc")
             ->setParameter("doc", $doc);
@@ -145,14 +151,35 @@ class MovimentacaoRepository extends EntityRepository
                 break;
         }
         
-        $qb->andWhere('c.id = :conta');
         $qb->andWhere('r.ativo = :true');
-        $qb->setParameters(array("conta" => $conta,
-                                 "true" => true));
+        $qb->setParameters(array("true" => true));
         
         //var_dump($qb->getDQL());
         return $qb->getQuery()->getArrayResult();
         
+    }
+    
+    public function getByAgenda($data){
+            
+            
+            $inicio = new \DateTime($data." 00:00:00");
+            $fim = new \DateTime($data." 23:59:00");
+            
+            return $this->createQueryBuilder('m')
+                ->select('m','p','r','fp')
+                ->innerJoin('m.parcela', 'p')
+                ->innerJoin('p.registro', 'r')
+                ->innerJoin('r.conta', 'c')
+                ->innerJoin('m.formaPagamento', 'fp')
+                ->andWhere("p.finalizado = :false")
+                ->andwhere("p.dt_vencimento >= :inicio")
+                ->andWhere("p.dt_vencimento <= :fim")
+                ->setParameters(array("false" => false,
+                                            "inicio" => $inicio,
+                                            "fim" => $fim))
+                ->getQuery()
+                ->getResult();
+                
     }
     
     public static function conv_data_to_us($date){

@@ -26,11 +26,11 @@ use Fnx\FinanceiroBundle\Entity\Registro;
 class MovimentacaoController extends Controller{
     
     /**
-     * @Route("/", name="financeiroShow")
+     * @Route("/{doc}", name="financeiroShow", defaults={"doc" = null})
      * @Template()
      *
      */
-    function indexAction(){
+    function indexAction($doc){
         
         $formFilter = $this->createForm(new FilterType(), null, array(
                     'choices' => array(
@@ -40,6 +40,10 @@ class MovimentacaoController extends Controller{
                         'quitada' => 'Quitadas' 
                      )
         ));
+        
+        if ($doc != null){
+            $formFilter["doc"]->setData($doc);
+        }
         
         return array('formFilter' => $formFilter->createView());
     }
@@ -225,12 +229,7 @@ class MovimentacaoController extends Controller{
         }
         
     }
-    
-    public function transferirAction(){
-        
-        
-        
-    }
+
  
 }
 

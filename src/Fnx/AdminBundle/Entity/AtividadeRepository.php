@@ -34,4 +34,26 @@ class AtividadeRepository extends EntityRepository
                                    ->setParameters(array("false" => false))
                                    ->getResult();
     }
+    
+    public function getByAgenda($data){
+            
+            
+            $inicio = new \DateTime($data." 00:00:00");
+            $fim = new \DateTime($data." 23:59:00");
+            
+            return $this->createQueryBuilder('a')
+                ->select('a', 'cli', 'c', 's')
+                ->join('a.contrato', 'c')
+                ->join('c.cliente', 'cli')
+                ->join('a.servico', 's')
+                ->andWhere("a.arquivado = :false")
+                ->andwhere("a.dtInicio <= :inicio")
+                ->andWhere("a.dtFim >= :fim")
+                ->setParameters(array("false" => false,
+                                            "inicio" => $inicio,
+                                            "fim" => $fim))
+                ->getQuery()
+                ->getResult();
+                
+    }
 }
