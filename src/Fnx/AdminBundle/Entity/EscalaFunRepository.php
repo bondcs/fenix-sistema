@@ -123,6 +123,40 @@ class EscalaFunRepository extends EntityRepository
                 ->getResult();
     }
     
+    public function getByAgenda($data, $patru = false){
+            
+            
+            $inicio = new \DateTime($data." 00:00:00");
+            $fim = new \DateTime($data." 23:59:00");
+            
+            $qb = $this->createQueryBuilder('e')
+                ->select('e', 'f', 's')
+                ->join('e.funcionarios', 'f')
+                ->join('e.servicoEscala', 's')
+                ->andWhere("e.ativo = :true");
+            
+            if ($patru == false){
+                $qb->andWhere("s.nome <> :param")
+                   ->andwhere("e.inicio >= :inicio")
+                   ->andWhere("e.fim <= :fim")
+                   ->setParameters(array("inicio" => $inicio,
+                                         "fim" => $fim)) ; 
+            }else{
+                $data = new \DateTime($data);
+                $data->modify("1 day");
+                $qb->andWhere("s.nome = :param")
+                   ->andwhere("e.inicio <= :data")
+                   ->andWhere("e.fim >= :data")
+                   ->setParameters(array("data" => $data)) ;   
+                
+            }
+            return  $qb->setParameters(array("param" => "Patrulhamento",
+                                             "true" => true))
+                ->getQuery()
+                ->getResult();
+                
+    }
+    
 
     public static function conv_data_to_us($date){
 	$dia = substr($date,0,2);

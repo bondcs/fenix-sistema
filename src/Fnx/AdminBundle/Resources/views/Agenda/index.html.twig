@@ -1,0 +1,160 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+{% block title %} Agenda {% endblock %}
+{% block menuContent %}
+ <div id="menuContent">
+      <h3>Gerenciamento: Agenda {{"("~data|date("d/m/Y")~")"}}</h3>
+      <ul>
+         <li><a class="back-link" href="{{ path('adminHome')}}"><span></span>Voltar</a></li>
+      </ul> 
+</div>
+
+{% endblock %}
+
+{% block conteudo %}
+
+
+<div class="tabs">
+    <ul>
+        <li><a href="#tabs-1">Movimentações</a></li>
+        <li><a href="#tabs-2">Escalas</a></li>
+        <li><a href="#tabs-3">Atividades</a></li>
+        <li><a href="#tabs-4">Patrulhamento</a></li>
+        <li><a href="#tabs-5">Pedido</a></li>
+    </ul>
+    
+    <div id="tabs-1" style="padding: 0px;"> 
+        <div class="ui-panel-content ui-widget-content agenda" style="width:auto;">
+        <h4 class="ui-panel-title ui-widget-header">Movimentações</h4>
+         <div class="box-table">
+             <table class="tablePlugin">
+             <thead>
+                 <tr>
+
+                     <th style="width: 400px;">Descrição</th>
+                     <th>Doc</th>
+                     <th>Valor</th>
+                     <th>Tipo</th>
+                 </tr>
+             </thead>
+             <tbody>
+             {% for parcela in parcelas %}
+                 <tr>
+                     <td><a class="link-name" href="{{path("financeiroShow", {"doc" : parcela.parcela.registro.id})}}">{{parcela.parcela.registro.descricao}}</a></td>
+                     <td>{{parcela.parcela.registro.id}}</td>
+                     <td>{{parcela.valor}}</td>
+                     <td>{{parcela.getMovimentacaoToLabel()}}</td>
+                 </tr>
+             {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>  
+    </div>    
+    <div id="tabs-2" style="padding: 0px;">
+        
+    <div class="ui-panel-content ui-widget-content agenda" style="width: auto">
+        <h4 class="ui-panel-title ui-widget-header">Escalas específicas</h4>
+         <div class="box-table">
+            <table class="tablePlugin">
+             <thead>
+                 <tr>
+
+                     <th style="width: 400px;">Funcionário</th>
+                     <th>Serviço</th>
+                     <th>Descrição</th>
+                 </tr>
+             </thead>
+             <tbody>
+             {% for escala in escalas %}
+                 <tr>
+                     <td>{{escala.funcionarios|join(" - ")}}</a></td>
+                     <td>{{escala.servicoEscala.nome}} </td>
+                     <td>{{escala.descricao|default("-")}}</td>
+                 </tr>
+             {% endfor %}
+             </tbody>
+            </table>
+        </div>
+    </div>
+    
+    </div>
+     <div id="tabs-3">
+         <div class="ui-panel-content ui-widget-content agenda" style="width:auto">
+            <h4 class="ui-panel-title ui-widget-header">Atividades</h4>
+             <div class="box-table">
+                 <table class="tablePlugin">
+                 <thead>
+                     <tr>
+
+                         <th style="width: 400px;">Nome</th>
+                         <th>Cliente</th>
+                         <th>Tipo</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                 {% for atividade in atividades %}
+                     <tr>
+                         <td><a class="link-name" href="{{path("atividadeShow", {"id" : atividade.id})}}">{{atividade.nome}}</a></td>
+                         <td><a class="link-name" href="{{path("clienteShow", {"id" : atividade.contrato.cliente.id})}}">{{atividade.contrato.cliente.nome}}</a></td>
+                         <td>{{atividade.servico.nome|default("-")}}</td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+            </div>
+        </div>
+     </div>
+     <div id="tabs-4">
+            <div class="ui-panel-content ui-widget-content agenda" style="width:auto">
+                <h4 class="ui-panel-title ui-widget-header">Patrulhamento</h4>
+                 <div class="box-table">
+                    <table class="tablePlugin">
+                        <thead>
+                            <tr>
+
+                                <th style="width: 400px;">Funcionário</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for patru in patrus %}
+                            <tr>
+                                <td>{{patru.funcionarios|join(" - ")}}</a></td>
+                                <td>{{patru.descricao|default("-")}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                   </table>
+                </div>
+            </div>  
+     </div>
+        
+     <div id="tabs-5">
+         <div class="ui-panel-content ui-widget-content agenda" style="width:auto">
+            <h4 class="ui-panel-title ui-widget-header">Pedidos</h4>
+             <div class="box-table">
+                 <table class="tablePlugin">
+                 <thead>
+                     <tr>
+
+                         <th style="width: 400px;">Cliente</th>
+                         <th>Previsão</th>
+                         <th>Detalhes</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                 {% for pedido in pedidos %}
+                     <tr>
+                         <td><a class="link-name" href="{{path("clienteShow", {"id" : pedido.cliente.id})}}">{{pedido.cliente.nome}}</a></td>
+                         <td>{{pedido.previsao|date("d/m/Y") }} </td>
+                         <td><a class="link-name" href="{{path("PedidoEditar", {"id" : pedido.id})}}">detalhes</a></td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+             </div>
+        </div>    
+     </div>
+</div>
+
+{% endblock %}

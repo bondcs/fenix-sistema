@@ -21,8 +21,7 @@ function onTableAjaxTransacaoGeral(){
                                                 'fim' : $(".fim").val(),
                                                 'tipo' : $(".tipo").val(),
                                                 'data' : $(".tipoData input:checked").val() ? $(".tipoData input:checked").val() : 'a',
-//                                                'conta' : $(".conta").val(),
-                                                'conta' : "a",
+                                                'conta' : $(".conta").val() ? $(".conta").val() : 0,
                                                 'categoria' : $(".categoria").val() ? $(".categoria").val() : 0,
                                                 'doc' : $(".doc").val() ? $(".doc").val() : 0
             }),
@@ -191,7 +190,7 @@ function filtrarGeral(){
                              'fim' : $(".fim").val(),
                              'tipo' : $(".tipo").val(),
                              'data' : $(".tipoData input:checked").val() ? $(".tipoData input:checked").val() : 'a',    
-                             'conta' : $(".conta").val(),
+                             'conta' : $(".conta").val() ? $(".conta").val() : 0,
                              'categoria' : $(".categoria").val() ? $(".categoria").val() : 0,
                              'doc' : $(".doc").val() ? $(".doc").val() : 0
                             }));

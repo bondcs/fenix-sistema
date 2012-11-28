@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+        
         onTable();
         onTabs();
         onFnAction();
@@ -29,7 +29,9 @@ $(document).ready(function() {
         button();
         zebrarTable();
         
-        
+        $(".wrapper-color").click(function(){
+            $(".pedido").hide();
+        })
         
 } );
 
@@ -447,7 +449,11 @@ function initDatepicker() {
     $('.datepicker input').blur();
     $('.picker input').datepicker();
     $('.picker input').blur();
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({
+        onSelect: function(dateText, inst){
+            window.location = Routing.generate("agendaIndex" , {"data": dateText});
+        }
+    });
     
     return false;
 
