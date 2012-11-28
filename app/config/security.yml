@@ -37,7 +37,7 @@ security:
                 target: /
             remember_me:
                 key:      "%secret%"
-                lifetime: 31536000 # 365 days in seconds
+                lifetime: 86400
                 path:     /
                 domain:   ~ # Defaults to the current domain from $_SERVER
        
