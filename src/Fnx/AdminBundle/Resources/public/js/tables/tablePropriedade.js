@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 function onTableAjaxPropriedade(){
         
-        var imageUrl = '/tcc-fenix/web/bundles/fnxadmin/images/';
         oTableProp = $('.tablePropriedade').dataTable({
             "bJQueryUI": true,
             "oLanguage": {

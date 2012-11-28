@@ -5,7 +5,7 @@
     <div id="menuContent">
         <h3>Funcionário : {{ funcionario.nome }}</h3>
         <ul>
-            <li><a class="addUser-link ajax-link" href="{{ path('usuarioManagerFuncionario', {'id' : funcionario.id})}}"><span></span>Usuário</a></li>
+            <li><a class="addUser-link ajax-link" title="Adicionar usuário" href="{{ path('usuarioManagerFuncionario', {'id' : funcionario.id})}}"><span></span>Usuário</a></li>
             <li><a class="back-link" href="{{ path('funcionarioHome')}}"><span></span>Voltar</a></li>
         </ul> 
     </div>

@@ -50,7 +50,7 @@ class FuncionarioType extends AbstractType{
                )
             ))
             ->add('servicos', 'entity', array(
-               'label' => 'Tipo:',
+               'label' => 'Categoria:',
                'class' => 'FnxAdminBundle:ServicoEscala',
                'expanded' => true,
                'multiple' => true,
