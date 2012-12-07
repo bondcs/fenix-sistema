@@ -37,7 +37,7 @@ class EscalaFunType extends AbstractType
                  ))
             ->add('servicoEscala','entity',array(
                         'empty_value' => 'Selecione uma opcão',
-                        'label' => 'Serviço:*',
+                        'label' => 'Categoria:*',
                         'class' => 'FnxAdminBundle:ServicoEscala',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('s')

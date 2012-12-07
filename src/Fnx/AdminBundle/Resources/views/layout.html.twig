@@ -9,7 +9,7 @@
         <![endif]-->
 
         <script type="text/javascript"> 
-            var url_dominio = "{{asset('/')}}";
+            var url_dominio = "{{asset('bundles')}}";
             var urlSource = "";
             var imageUrl = "{{ asset('bundles/fnxadmin/images/') }}";
         </script>
@@ -71,10 +71,9 @@
                     </li>
                     <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a>
                         <ul>
-                            <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
-                            <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
-                            <li><a href="{{ path("salarioHome")}}">Salários</a></li>
+                            <li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
                             <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
+                            <li><a href="{{ path("escalaFunIndex")}}">Escala</a></li>
                         </ul>
                     </li>
                     <li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
@@ -84,6 +83,7 @@
                         <ul>
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
                             <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
+                            <li><a href="{{ path("salarioHome")}}">Salário</a></li>
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
                             <li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
                         </ul>
@@ -190,18 +190,16 @@
                             <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
                         </ul>
                         <ul>
-                            <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
-                            <li><a href="{{ path("escalaFunIndex")}}">Escalas</a></li>
-                            <li><a href="{{ path("funcionario_servico_escala")}}">Serviços</a></li>
-                            <li><a href="{{ path("salarioHome")}}">Salários</a></li>
+                            <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>                       
+                            <li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
                             <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
+                            <li><a href="{{ path("escalaFunIndex")}}">Escala</a></li>
                         </ul>
                         <ul>
                             <li class='has-sub '><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
                         </ul>
                         <ul>
                             <li class='has-sub '><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
-                            <li><a href="{{ path("atividadeArquivado")}}">Arquivadas</a></li>
                         </ul>
                         <ul>
                             <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
@@ -210,6 +208,7 @@
                             <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a></li>
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
                             <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
+                            <li><a href="{{ path("salarioHome")}}">Salário</a></li>
                             <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
                             <li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
                         </ul>

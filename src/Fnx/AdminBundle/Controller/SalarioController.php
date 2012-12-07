@@ -24,7 +24,7 @@ use Fnx\AdminBundle\Form\Type\SalarioType;
  * Description of SalarioController
  *
  * @author bondcs
- * @Route("/adm/funcionario/salario")
+ * @Route("/financeiro/salario")
  */
 class SalarioController extends Controller{
     

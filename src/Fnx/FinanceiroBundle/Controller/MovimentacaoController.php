@@ -49,14 +49,14 @@ class MovimentacaoController extends Controller{
     }
 
     /**
-     * @Route("/new", name="movimentacaoNew", options={"expose" = true})
+     * @Route("/new/movimentacao", name="movimentacaoNew", options={"expose" = true})
      * @Template()
      */
     function newAction(){
         
         $movimentacao = new Movimentacao();
         $form = $this->createForm(new MovimentacaoType(), $movimentacao);
-        
+
         return array('form' => $form->createView());
         
     }

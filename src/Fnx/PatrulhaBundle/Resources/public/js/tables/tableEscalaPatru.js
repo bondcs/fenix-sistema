@@ -59,7 +59,7 @@ function onTableAjaxEscalaPatru(){
             "sDom": '<"H"Tfr>t<"F"ip>',
             "oTableTools": {
                     "sRowSelect": "single",
-                    "sSwfPath": "/"+url_dominio+"/web/bundles/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
+                    "sSwfPath": url_dominio+"/fnxadmin/table/tools/swf/copy_csv_xls_pdf.swf",
                     "sSelectedClass": "row_selected",
                     "aButtons": [
                         {

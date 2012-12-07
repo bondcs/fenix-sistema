@@ -37,31 +37,6 @@ class TransferenciaController extends Controller{
     }
 
     /**
-     * Finds and displays a Transferencia entity.
-     *
-     * @Route("/{id}/show", name="financeiro_conta_show", options={"expose" = true})
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('FnxFinanceiroBundle:Conta')->find($id);
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Conta entity.');
-        }
-        
-        $formFilter = $this->createForm(new FilterType(), null, array(
-                    'choices' => array('finalizadas' => 'Finalizadas' 
-                     )
-        ));
-        
-        return array(
-            'entity' => $entity,
-            'formFilter' => $formFilter->createView());
-    }
-
-    /**
      * Displays a form to create a new Transferencia entity.
      *
      * @Route("/new", name="financeiro_transferencia_new", options={"expose" = true})

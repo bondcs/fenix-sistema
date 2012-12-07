@@ -13,7 +13,7 @@ use Fnx\AdminBundle\Form\Type\ServicoEscalaType;
 /**
  * ServicoEscala controller.
  *
- * @Route("/adm/funcionario/servico-escala")
+ * @Route("/adm/funcionario/categoria")
  */
 class ServicoEscalaController extends Controller
 {
