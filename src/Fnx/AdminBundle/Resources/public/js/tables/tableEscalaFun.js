@@ -118,7 +118,7 @@ function onTableAjaxEscalaFun(){
                             "sExtends": "text",
                             "sButtonText": '<img src="'+imageUrl+'add-icone.png">Adicionar',
                             "fnClick" : function(){
-                                 ajaxLoadDialog(Routing.generate("escalaFunAdd"), "Adicionar escala específica");
+                                 ajaxLoadDialog(Routing.generate("escalaFunAdd"), "Adicionar compromisso");
                             }
                         }, 
                         {
@@ -128,7 +128,7 @@ function onTableAjaxEscalaFun(){
                             "fnClick" : function(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
-                                 ajaxLoadDialog(Routing.generate("escalaFunEdit", {"id" : id}),"Editar escala específica");
+                                 ajaxLoadDialog(Routing.generate("escalaFunEdit", {"id" : id}),"Editar compromisso");
                                  
                             }
                         },
@@ -140,7 +140,7 @@ function onTableAjaxEscalaFun(){
                                  var aaData = this.fnGetSelectedData()
                                  id = aaData[0]["id"];
                                  $( "#dialog-confirm" ).dialog("open");
-                                 $("#dialog-confirm").dialog("option", "title", "Remover escala específica");
+                                 $("#dialog-confirm").dialog("option", "title", "Remover compromisso");
                                  $( "#dialog-confirm" ).dialog("option", "buttons", {
                                      "Deletar": function() {
                                             ajaxDelete(Routing.generate("escalaFunRemove", {"id" : id})); 
@@ -157,8 +157,7 @@ function onTableAjaxEscalaFun(){
                     ]
                 }
         });
-        
-         $("div.toolbar02").html('<b>Escalas</b>');
+
         
 }
 

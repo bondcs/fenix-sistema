@@ -138,6 +138,10 @@
                 <source>The presented password cannot be empty.</source>
                 <target>Senha não pode ser vazia</target>
             </trans-unit>
+            <trans-unit id="35">
+                <source>This value is already used</source>
+                <target>Valor em uso</target>
+            </trans-unit>
             
         </body>
     </file>

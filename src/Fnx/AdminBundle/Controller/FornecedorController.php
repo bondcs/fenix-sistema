@@ -171,26 +171,18 @@ class FornecedorController extends Controller
      * Deletes a Fornecedor entity.
      *
      * @Route("/{id}/delete", name="adm_fornecedor_delete", options={"expose" = true})
-     * @Method("post")
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository('FnxAdminBundle:Fornecedor')->find($id);
 
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('FnxAdminBundle:Fornecedor')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Fornecedor entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Fornecedor entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         $this->get("session")->setFlash("success", "Fornecedor excluído.");
         return $this->redirect($this->generateUrl('adm_fornecedor'));

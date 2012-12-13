@@ -419,13 +419,7 @@ function initDatepicker() {
 //	    changeYear: true
 //        });
 
-    $('.datepickerImage input')
-        .datetimepicker({
-            showOn: "button",
-	    buttonImage: imageUrl+"calendar.png",
-	    buttonImageOnly: true
-    });
-    
+   
     $('.picker input').attr("readonly", 'readonly');
 
 
@@ -441,10 +435,11 @@ function initDatepicker() {
 	closeText: 'Add',
 	ampm: false
     };
-
+    
     $.timepicker.setDefaults($.timepicker.regional['pt-BR']);
     
-        
+    
+    
     $('.datepicker input').datetimepicker();
     $('.datepicker input').blur();
     $('.picker input').datepicker();
@@ -453,6 +448,13 @@ function initDatepicker() {
         onSelect: function(dateText, inst){
             window.location = Routing.generate("agendaIndex" , {"data": dateText});
         }
+    });
+    
+    $('.datepickerImage input')
+        .datetimepicker({
+            showOn: "button",
+	    buttonImage: imageUrl+"calendar.png",
+	    buttonImageOnly: true
     });
     
     return false;
@@ -519,7 +521,6 @@ function ajaxSubmitTable(){
                     url: $('.ajaxFormTable').attr("action"),
                     data: $('.ajaxFormTable').serialize(),
                     success: function(result){
-
                         if (result['dialogName']){
                            if (result['message'] == 'erroSaldo'){
                                notifity(result['message']);

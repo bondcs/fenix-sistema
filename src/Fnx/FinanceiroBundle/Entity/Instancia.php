@@ -34,6 +34,7 @@ class Instancia
      * @var string $descricao
      *
      * @ORM\Column(name="descricao", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $descricao;
 

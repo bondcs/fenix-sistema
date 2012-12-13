@@ -73,7 +73,7 @@
                         <ul>
                             <li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
                             <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
-                            <li><a href="{{ path("escalaFunIndex")}}">Escala</a></li>
+                            <li><a href="{{ path("escalaFunIndex")}}">Compromisso</a></li>
                         </ul>
                     </li>
                     <li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
@@ -112,7 +112,7 @@
                 </div>
             {% endif %}
             {% block subMenu %}{% endblock %}
-            <section class="main-col">
+            <section class="main-col clear_fix">
                 {% block conteudo %}
                     <div id="all-menu">
                         <a href="{{path('atividadeAdd')}}">
