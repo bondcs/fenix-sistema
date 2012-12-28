@@ -15,19 +15,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  * @author bondcs
  */
 class AgendaController extends Controller{
-    
+
     /**
      * @Route("/agenda/{data}", name="agendaIndex", defaults={"data" = null}, options={"expose" = true}, requirements={"data" = ".+"})
      * @Template()
      */
     public function indexAction($data){
         $data = $this->conv_data_to_us($data);
-        $pedidos = $this->getDoctrine()->getRepository("FnxPedidoBundle:Pedido")->getByAgenda($data);
-        $escalas = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->getByAgenda($data);
-        $atividades = $this->getDoctrine()->getRepository("FnxAdminBundle:Atividade")->getByAgenda($data);
-        $patrus = $this->getDoctrine()->getRepository("FnxAdminBundle:EscalaFun")->getByAgenda($data, true);
-        $parcelas = $this->getDoctrine()->getRepository("FnxFinanceiroBundle:Movimentacao")->getByAgenda($data);
-        
+	$doctrine = $this->getDoctrine();
+        $pedidos    = $doctrine->getRepository("FnxPedidoBundle:Pedido")->getByAgenda($data);
+        $escalas    = $doctrine->getRepository("FnxAdminBundle:EscalaFun")->getByAgenda($data);
+        $atividades = $doctrine->getRepository("FnxAdminBundle:Atividade")->getByAgenda($data);
+        $patrus	    = $doctrine->getRepository("FnxAdminBundle:EscalaFun")->getByAgenda($data, true);
+        $parcelas   = $doctrine->getRepository("FnxFinanceiroBundle:Movimentacao")->getByAgenda($data);
+
         return array(
             "pedidos" => $pedidos,
             "escalas" => $escalas,
@@ -37,7 +38,7 @@ class AgendaController extends Controller{
             "parcelas" => $parcelas
         );
     }
-    
+
     public static function conv_data_to_us($date){
 	$dia = substr($date,0,2);
 	$mes = substr($date,3,2);

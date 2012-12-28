@@ -844,13 +844,10 @@ function validarInteiro(valor){
 }
 
 function zebrarTable(){
-    $(".infos tr").each(function(key, value){
-        if (key % 2 == 0){
-            $(this).addClass("odd");
-        }else{
-            $(this).addClass("even");
-        }
-    })
+    var $trs = $(".infos tr");
+
+    $trs.filter(':odd').addClass('odd');
+    $trs.filter(':even').addClass('even');
 
     return false;
 }
