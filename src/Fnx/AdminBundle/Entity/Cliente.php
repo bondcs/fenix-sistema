@@ -13,7 +13,6 @@ use Fnx\PedidoBundle\Entity\Pedido;
 
 /**
  * Fnx\AdminBundle\Entity\Cliente
- *
  * @ORM\Table(name="cliente")
  * @ORM\Entity(repositoryClass="Fnx\AdminBundle\Entity\ClienteRepository")
  * @Assert\Callback(methods={"validaPessoa"})
@@ -45,7 +44,7 @@ class Cliente
      * @Assert\NotBlank()
      */
     protected $telefone;
-    
+
     /**
      * @var string $celular
      *
@@ -122,6 +121,14 @@ class Cliente
      * @ORM\Column(name="pessoa", type="string")
      */
     protected $pessoa;
+
+    /**
+     * @var object Usuario
+     *
+     * @ORM\OneToOne(targetEntity="Fnx\AdminBundle\Entity\Usuario", cascade={"persist"})
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $usuario;
 
     /**
      * @var ArrayCollection $responsaveis
@@ -460,10 +467,18 @@ class Cliente
     /**
      * Get celular
      *
-     * @return string 
+     * @return string
      */
     public function getCelular()
     {
         return $this->celular;
+    }
+
+    public function getUsuario() {
+	return $this->usuario;
+    }
+
+    public function setUsuario($usuario) {
+	$this->usuario = $usuario;
     }
 }

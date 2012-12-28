@@ -1,11 +1,11 @@
 {% extends "FnxAdminBundle::layout.html.twig" %}
-{% block title %} Agenda {% endblock %}
+{% block title %}Agenda{% endblock %}
 {% block menuContent %}
  <div id="menuContent">
       <h3>Gerenciamento: Agenda {{"("~data|date("d/m/Y")~")"}}</h3>
       <ul>
          <li><a class="back-link" href="{{ path('adminHome')}}"><span></span>Voltar</a></li>
-      </ul> 
+      </ul>
 </div>
 
 {% endblock %}
@@ -21,8 +21,8 @@
         <li><a href="#tabs-4">Patrulhamento</a></li>
         <li><a href="#tabs-5">Pedido</a></li>
     </ul>
-    
-    <div id="tabs-1" style="padding: 0px;"> 
+
+    <div id="tabs-1" style="padding: 0px;">
         <div class="ui-panel-content ui-widget-content agenda" style="width:auto;">
         <h4 class="ui-panel-title ui-widget-header">Movimentações</h4>
          <div class="box-table">
@@ -48,10 +48,10 @@
             </tbody>
             </table>
         </div>
-    </div>  
-    </div>    
+    </div>
+    </div>
     <div id="tabs-2" style="padding: 0px;">
-        
+
     <div class="ui-panel-content ui-widget-content agenda" style="width: auto">
         <h4 class="ui-panel-title ui-widget-header">Escalas específicas</h4>
          <div class="box-table">
@@ -76,7 +76,7 @@
             </table>
         </div>
     </div>
-    
+
     </div>
      <div id="tabs-3">
          <div class="ui-panel-content ui-widget-content agenda" style="width:auto">
@@ -126,9 +126,9 @@
                         </tbody>
                    </table>
                 </div>
-            </div>  
+            </div>
      </div>
-        
+
      <div id="tabs-5">
          <div class="ui-panel-content ui-widget-content agenda" style="width:auto">
             <h4 class="ui-panel-title ui-widget-header">Pedidos</h4>
@@ -153,7 +153,7 @@
                  </tbody>
              </table>
              </div>
-        </div>    
+        </div>
      </div>
 </div>
 

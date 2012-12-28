@@ -1,5 +1,5 @@
 $(document).ready(function() {
-        
+
         onTable();
         onTabs();
         onFnAction();
@@ -28,11 +28,11 @@ $(document).ready(function() {
         sempreZero();
         button();
         zebrarTable();
-        
+
         $(".wrapper-color").click(function(){
             $(".pedido").hide();
         })
-        
+
 } );
 
 function button(){
@@ -71,8 +71,6 @@ function onReadyAjax(){
         translateHtml5Validation();
         sempreZero();
         button();
-
-
 }
 
 function onTable(){
@@ -404,10 +402,10 @@ function initDatepicker() {
 		isRTL: false,
 		showMonthAfterYear: false,
 		yearSuffix: ''
-                
-            
+
+
       };
-                
+
     $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
 
 //    $('#datepicker')
@@ -425,7 +423,7 @@ function initDatepicker() {
 	    buttonImage: imageUrl+"calendar.png",
 	    buttonImageOnly: true
     });
-    
+
     $('.picker input').attr("readonly", 'readonly');
 
 
@@ -443,8 +441,8 @@ function initDatepicker() {
     };
 
     $.timepicker.setDefaults($.timepicker.regional['pt-BR']);
-    
-        
+
+
     $('.datepicker input').datetimepicker();
     $('.datepicker input').blur();
     $('.picker input').datepicker();
@@ -454,7 +452,7 @@ function initDatepicker() {
             window.location = Routing.generate("agendaIndex" , {"data": dateText});
         }
     });
-    
+
     return false;
 
 }
@@ -481,7 +479,7 @@ function ajaxLoadDialog(url, title){
 }
 
 function ajaxDelete(url){
-    
+
         $.ajax({
                 type: 'POST',
                 url: url,
@@ -498,12 +496,12 @@ function ajaxDelete(url){
 }
 
 function clickTableTerminate(){
-    
+
     if ($("#status").html() == 'Arquivado'){
         notifity('arquivado');
         return false;
     }
-    
+
     return true;
 }
 
@@ -524,8 +522,8 @@ function ajaxSubmitTable(){
                            if (result['message'] == 'erroSaldo'){
                                notifity(result['message']);
                                return false;
-                           } 
-                            
+                           }
+
                            $('.redraw').each(function(){
                                $(this).dataTable().fnReloadAjax();
                            });
@@ -662,7 +660,7 @@ function onSubmitForm(){
 
         return false;
     }
-    
+
 function onSubmitFormPagamento(){
             $(".ajax-form-pagamento").submit(function(){
                         var url = $('.ajax-form-pagamento').attr("action");
@@ -676,7 +674,7 @@ function onSubmitFormPagamento(){
                                          notifity("arquivado");
                                          return false;
                                      }
-                                     
+
                                      window.location.href = result['url'];
                                      notifity(result['notifity']);
                                      return false;
@@ -689,10 +687,10 @@ function onSubmitFormPagamento(){
 
                         return false;
             })
-        
+
         return false;
     }
-    
+
 function onLoadingAjax(){
 
         $(".ajaxLoader").hide();
@@ -742,7 +740,7 @@ function moeda(){
 	     $(this).val(formataDinheiro($(this).val()));
 	 }
     });
-    
+
     var moedaTable = $('.moedaTable');
         moedaTable.each(function(){
             if($(this).html()){
@@ -808,7 +806,7 @@ function masks(){
 }
 
 function translateHtml5Validation(){
-    
+
     var elements = document.getElementsByTagName("INPUT");
     for (var i = 0; i < elements.length; i++) {
         elements[i].oninvalid = function(e) {
@@ -825,19 +823,19 @@ function translateHtml5Validation(){
 }
 
 function sempreZero(){
-    
+
     $('.zero').focusout(function(){
         if ($(this).val() == ""){
         $(this).val(0)
         }
     })
-    
+
     $('.um').focusout(function(){
         if (validarInteiro($(this).val()) == "" || $(this).val() == 0){
         $(this).val(1)
         }
     })
-    
+
 }
 
 function validarInteiro(valor){
@@ -847,7 +845,7 @@ function validarInteiro(valor){
     }else{
           return valor
     }
-} 
+}
 
 function zebrarTable(){
     $(".infos tr").each(function(key, value){
@@ -857,7 +855,7 @@ function zebrarTable(){
             $(this).addClass("even");
         }
     })
-    
+
     return false;
 }
 

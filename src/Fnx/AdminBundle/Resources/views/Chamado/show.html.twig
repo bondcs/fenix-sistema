@@ -1,0 +1,31 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+
+{% block menuContent %}
+ <div id="menuContent">
+      <h3>Gerenciamento</h3>
+      <ul>
+         <li><a class="back-link" href="{{ path('adminHome')}}"><span></span>Voltar</a></li>
+      </ul>
+</div>
+{% endblock %}
+
+{% block conteudo %}
+<h1>Chamado</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Assunto</th>
+            <td>{{ entity.assunto }}</td>
+        </tr>
+        <tr>
+            <th>Conteudo</th>
+            <td>{{ entity.conteudo }}</td>
+        </tr>
+	<tr>
+            <th>editar</th>
+            <td><a href="{{ path('chamado_edit', { 'id': entity.id }) }}">editar</a></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,14 +1,14 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="{{ asset('bundles/fnxadmin/images/faviconr.ico') }}" />
         <title>{% block title %}Home{% endblock %} - Fenix</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        <script type="text/javascript"> 
+        <script type="text/javascript">
             var url_dominio = "{{asset('bundles')}}";
             var urlSource = "";
             var imageUrl = "{{ asset('bundles/fnxadmin/images/') }}";
@@ -52,7 +52,7 @@
         <link href="{{ asset('bundles/fnxadmin/pnotify/jquery.pnotify.default.icons.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/chosen/chosen.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/fnxadmin/gallery/css/jquery.galleryview-3.0-dev.css') }}" type="text/css" rel="stylesheet" />
-        
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -89,6 +89,7 @@
                         </ul>
                     </li>
 		    <li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
+		    <li><a href='{% if(app.user.userRoles) %}{{path('chamado')}}{% else %}{{path('chamado_new')}}{% endif %}'><span>Chamados</span></a></li>
                     </ul>
                     <div id="info">
                         <span id="dateInfo">{{ "now"|date("d/m/Y") }}</span>
@@ -173,11 +174,11 @@
                            </table>
                         </div>
                         <div>
-                            <div id="datepicker" style="margin-top:10px;">  
+                            <div id="datepicker" style="margin-top:10px;">
                             </div>
                         </div>
                      </div>
-                    
+
                 {% endblock %}
             </section>
 
@@ -190,7 +191,7 @@
                             <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
                         </ul>
                         <ul>
-                            <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>                       
+                            <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a></li>
                             <li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
                             <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
                             <li><a href="{{ path("escalaFunIndex")}}">Escala</a></li>
@@ -204,7 +205,7 @@
                         <ul>
                             <li class='has-sub '><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
                         </ul>
-                        <ul>        
+                        <ul>
                             <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a></li>
                             <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
                             <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>

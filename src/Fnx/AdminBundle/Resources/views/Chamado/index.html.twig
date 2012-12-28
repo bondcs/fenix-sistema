@@ -1,0 +1,31 @@
+{% extends "FnxAdminBundle::layout.html.twig" %}
+
+{% block conteudo %}
+<table class="tablePlugin">
+    <thead>
+        <tr>
+            <th>Assunto</th>
+            <th>Conteudo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('chamado_show', { 'id': entity.id }) }}">{{ entity.assunto }}</a></td>
+            <td>{{ entity.conteudo }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('chamado_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('chamado_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

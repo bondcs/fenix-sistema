@@ -29,7 +29,7 @@ class FuncionarioRepository extends EntityRepository {
 
         return $qb->getQuery()->getArrayResult();
     }
-    
+
     public function loadFuncionarioByUsuario($id){
         return $this->createQueryBuilder("f")
                 ->select("f", "u")
@@ -38,7 +38,6 @@ class FuncionarioRepository extends EntityRepository {
                 ->setParameters(array("id" => $id))
                 ->getQuery()
                 ->getResult();
-        
     }
 
 
