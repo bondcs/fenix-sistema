@@ -53,7 +53,7 @@ class EscalaType extends AbstractType{
                      
                 ))
                  ->add('local','text', array(
-                        'label' => 'Local:*'
+                        'label' => 'Posto:*'
                 ))
                  ->add('custoUnitario','text', array(
                         'label' => 'Custo:*'

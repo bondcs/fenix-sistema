@@ -44,8 +44,7 @@ class EscalaPatruType extends AbstractType
                         'label' => 'Descrição:*',
                         'required' => false,
                         'choices' => array("Vigilante" => "Vigilante",
-                                           "Piloto" => "Piloto",
-                                           "Co-piloto" => "Co-piloto")
+                                           "Piloto" => "Piloto")
             ))
             ->add('funcionarios','entity',array(
                         'empty_value' => 'Selecione uma opcão',

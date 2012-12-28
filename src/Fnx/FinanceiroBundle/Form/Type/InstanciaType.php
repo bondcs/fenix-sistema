@@ -14,7 +14,7 @@ class InstanciaType extends AbstractType
                 'label' => 'Nome:*'
             ))
             ->add('descricao','textarea', array(
-                'label' => 'Descrição:',
+                'label' => 'Descrição:*',
                 'required' => false
             ))
         ;

@@ -55,6 +55,10 @@ class SalarioController extends Controller{
             throw $this->createNotFoundException("Pagamento não encontrado.");
         }
         
+        if ($pagamento->getPago() == true){
+            throw $this->createNotFoundException("Salario ja foi pago.");
+        }
+        
         $request = $this->getRequest();
         if ($request->getMethod() == "POST"){
                 $valor =  substr(str_replace(",", ".", $this->get('request')->request->get('valor')),3);

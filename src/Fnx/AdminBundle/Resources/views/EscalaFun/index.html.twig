@@ -1,5 +1,5 @@
 {% extends "FnxAdminBundle::layout.html.twig" %}
-{% block title %} Escala {% endblock %}
+{% block title %} Compromissos {% endblock %}
 
 {% block javascripts %}
      {{ parent() }}
@@ -15,7 +15,7 @@
 {% block menuContent %}
 
     <div id="menuContent">
-        <h3>Gerenciamento: Escala de Funcionários</h3>
+        <h3>Gerenciamento: Compromissos de Funcionários</h3>
         <ul>
             <li><a class="back-link" href="{{ path('funcionarioHome')}}"><span></span>Voltar</a></li>
         </ul> 
@@ -63,7 +63,7 @@
                     <tr>
                         <th rowspan="2" class="left">Nome</th>
                         
-                        <th colspan="4" class="ui-state-default">Escala</th>
+                        <th colspan="4" class="ui-state-default">Compromisso</th>
                         <th rowspan="2"> </th>
                         <th rowspan="2">id</th>
                     </tr>
@@ -71,7 +71,7 @@
                         <th>Serviço</th>
                         <th>Local</th>
                         <th>Descrição</th>
-                        <th style="width: 24%;">Turno</th>
+                        <th style="width: 24%;">Horário</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -62,7 +62,7 @@ class MovimentacaoController extends Controller{
     }
     
     /**
-     * @Route("/create", name="movimentacaoCreate")
+     * @Route("/create/movimentacao", name="movimentacaoCreate")
      * @Template("FnxFinanceiroBundle:Movimentacao:new.html.twig")
      */
     function createAction(){
@@ -95,7 +95,6 @@ class MovimentacaoController extends Controller{
             return $this->responseAjax($responseSuccess);
             
         }
-
         return array('form' => $form->createView());
         
     }

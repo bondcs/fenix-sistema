@@ -166,7 +166,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 .flash-success {border-color: #0a0; background-color: palegreen;}
 
 /* login */
-#wrapper-login{margin-left: 30%; display:inline-block }
+#wrapper-login{margin-left: 20%; display:inline-block }
 #header-login{font-size: 16pt; padding-top: 5px; text-align: center; background-color: #CCCCCC; margin-top: 5%; border: 1px solid; height: 30px; vertical-align: middle; border-bottom: 0px;}
 #box-login{border: 1px solid;padding: 30px; background-color: #ffffff}
 #box-login input[type="submit"]{float: none; margin-left: 26%;}
@@ -240,7 +240,7 @@ form.cms .myform > .repeats > ul{margin-left: 26%;}
 }
 
 /* Conteudo */
-.main-col{background-color: #F4F4F4; margin: 8px; min-height: 480px; border: 1px solid #CCCCCC; border-radius: 0px; padding:3px; padding-bottom: 5px;}
+.main-col{background-color: #F4F4F4; margin: 8px; min-height: 520px; border: 1px solid #CCCCCC; border-radius: 0px; padding:3px; padding-bottom: 5px;}
 
 /* ajax */
 .simpleDialog {margin:0; padding:2px 0 0 0 !important;}
@@ -365,3 +365,15 @@ div.innerRow{display: none; }
     background-color: white;
 }
 
+.clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+    display: table;
+    content: "";
+    }
+    &:after {
+    clear: both;
+    }
+}
+    

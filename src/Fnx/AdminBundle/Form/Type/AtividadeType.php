@@ -80,14 +80,14 @@ class AtividadeType extends AbstractType{
                         'input' => 'datetime',
                         'widget' => 'single_text',
                         'required' => true,
-                        'format' => 'dd/MM/yyyy HH:mm'
+                        'format' => 'dd/MM/yyyy HH:mm:ss'
              ))
             ->add('dtFim', 'date', array(
                         'label' => 'Fim:',
                         'input' => 'datetime',
                         'widget' => 'single_text',
                         'required' => true,
-                        'format' => 'dd/MM/yyyy HH:mm'    
+                        'format' => 'dd/MM/yyyy HH:mm:ss'    
             ));
          
     }
