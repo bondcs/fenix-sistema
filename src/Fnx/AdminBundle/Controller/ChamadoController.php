@@ -88,6 +88,9 @@ class ChamadoController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+
+	    $entity->setAutor( $request->getLocale() );
+	    
             $em->persist($entity);
             $em->flush();
 

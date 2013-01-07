@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="{{ asset('bundles/fnxadmin/images/faviconr.ico') }}" />
-        <title>{% block title %}Home{% endblock %} - Fenix</title>
+        <title>{% block title %}Home{% endblock %} - Phoenix</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -64,32 +64,36 @@
             {% block menu %}
                 <div id='cssmenu'>
                     <ul>
-                    <li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a>
-                        <ul>
-                            <li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
-                        </ul>
-                    </li>
-                    <li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a>
-                        <ul>
-                            <li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
-                            <li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
-                            <li><a href="{{ path("escalaFunIndex")}}">Compromisso</a></li>
-                        </ul>
-                    </li>
-                    <li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
-                    <li><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
-                    <li><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
-                    <li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a>
-                        <ul>
-                            <li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
-                            <li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
-                            <li><a href="{{ path("salarioHome")}}">Salário</a></li>
-                            <li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
-                            <li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
-                        </ul>
-                    </li>
-		    <li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
-		    <li><a href='{% if(app.user.userRoles) %}{{path('chamado')}}{% else %}{{path('chamado_new')}}{% endif %}'><span>Chamados</span></a></li>
+			<li class='has-sub '><a href='{{ path('adminHome')}}'><span>Home</span></a>
+			    <ul>
+				<li><a href={{path('_security_change_password_a')}}><span>Alterar Senha</span></a></li>
+			    </ul>
+			</li>
+			<li class='has-sub '><a href='{{ path('funcionarioHome')}}'><span>Funcionário</span></a>
+			    <ul>
+				<li><a href="{{ path("funcionario_servico_escala")}}">Categoria</a></li>
+				<li><a href="{{ path("escalaPatruIndex")}}">Patrulhamento</a></li>
+				<li><a href="{{ path("escalaFunIndex")}}">Compromisso</a></li>
+			    </ul>
+			</li>
+			<li><a href='{{ path('clienteHome')}}'><span>Cliente</span></a></li>
+			<li><a href='{{ path('atividadeHome')}}'><span>Atividade</span></a></li>
+			<li><a href='{{ path('adm_fornecedor')}}'><span>Fornecedor</span></a></li>
+			<li class='has-sub '><a href='{{path('financeiroShow')}}'><span>Financeiro</span></a>
+			    <ul>
+				<li><a href='{{ path('financeiro_instancia')}}'><span>Instância</span></a></li>
+				<li><a href='{{ path('financeiro_conta')}}'><span>Conta</span></a></li>
+				<li><a href="{{ path("salarioHome")}}">Salário</a></li>
+				<li><a href='{{ path('categoriaHome')}}'><span>Categoria</span></a></li>
+				<li><a href='{{ path('financeiro_transferencia')}}'><span>Transferência</span></a></li>
+			    </ul>
+			</li>
+			<li><a href='{{path('PedidoListar')}}'><span>Pedido</span></a></li>
+			<li>
+			    <a href='{% if( app.session.get('chamado_flag_admin') ) %}{{path('chamado')}}{% else %}{{path('chamado_new')}}{% endif %}'>
+				<span>Chamados</span>
+			    </a>
+			</li>
                     </ul>
                     <div id="info">
                         <span id="dateInfo">{{ "now"|date("d/m/Y") }}</span>

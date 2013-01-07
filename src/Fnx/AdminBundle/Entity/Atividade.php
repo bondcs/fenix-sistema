@@ -57,32 +57,38 @@ class Atividade
      * @ORM\Column(name="updated", type="datetime")
      */
     protected $updated;
-    
+
     /**
      * @ORM\Column(name="arquivado",type="boolean", nullable=false)
      * @var boolean $arquivado
      */
     protected $arquivado;
-    
+
     /**
      * @var object $contrato
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Contrato", cascade={"all"}, fetch="LAZY")
      * @ORM\JoinColumn(name="contrato_id", referencedColumnName="id")
      */
     protected $contrato;
-    
-    
+
+
     /**
      * @var object $servico
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Servico", cascade={"persist"}, fetch="LAZY")
      * @ORM\JoinColumn(name="servico_id", referencedColumnName="id")
-     * 
+     *
      * @Assert\NotBlank()
      */
     protected $servico;
-    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Funcionario", cascade={"persist"}, fetch="LAZY")
+     * @ORM\JoinColumn(name="responsavel_id", referencedColumnName="id")
+     */
+    protected $responsavel;
+
     /**
      * @ORM\ManyToMany(targetEntity="Categoria")
      * @ORM\JoinTable(name="atividade_categoria",
@@ -93,42 +99,42 @@ class Atividade
      * @var ArrayCollection $categorias
      */
     protected $categorias;
-    
+
     /**
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Endereco", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $enderecos
      */
     protected $enderecos;
-    
+
     /**
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Escala", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $escalas
      */
     protected $escalas;
-    
+
     /**
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Local", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $locais
      */
     protected $locais;
-    
+
     /**
-     * 
+     *
      * @ORM\OneToOne(targetEntity="Galeria", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $galerias
      */
     protected $galeria;
-    
+
     /**
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Propriedade", mappedBy="atividade", cascade={"all"})
      * @var ArrayCollection $propriedades
      */
     protected $propriedades;
-    
+
     /**
      *
      * @var object $registro
@@ -136,7 +142,7 @@ class Atividade
      * @ORM\JoinColumn(name="registro_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $registro;
-    
+
     /**
      * @var string $cep
      *
@@ -144,12 +150,12 @@ class Atividade
      * @Assert\MinLength(8)
      */
     protected $cep;
-    
+
      /**
      * @var objeto $cidade
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Cidade")
-     * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
      */
     protected $cidade;
 
@@ -180,7 +186,7 @@ class Atividade
      * @ORM\Column(name="complemento", type="string", length=80, nullable=true)
      */
     protected $complemento;
-    
+
     /**
      * @var datetime $dtInicio
      *
@@ -194,8 +200,8 @@ class Atividade
      * @ORM\Column(name="dtFim", type="datetime", nullable=true)
      */
     protected $dtFim;
-    
-   
+
+
     public function __construct() {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
@@ -205,13 +211,13 @@ class Atividade
         $this->enderecos = new ArrayCollection();
         $this->locais = new ArrayCollection();
         $this->propriedades = new ArrayCollection();
-        
+
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -231,7 +237,7 @@ class Atividade
     /**
      * Get nome
      *
-     * @return string 
+     * @return string
      */
     public function getNome()
     {
@@ -251,7 +257,7 @@ class Atividade
     /**
      * Get descricao
      *
-     * @return string 
+     * @return string
      */
     public function getDescricao($length = null)
     {
@@ -274,7 +280,7 @@ class Atividade
     /**
      * Get created
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreated()
     {
@@ -294,21 +300,21 @@ class Atividade
     /**
      * Get updated
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdated()
     {
         return $this->updated;
     }
-    
+
     /**
      * @ORM\PreUpdate
      */
     public function setUpdatedValue(){
         $this->updated = new \datetime();
-        
+
     }
-    
+
     /**
      * Set arquivado
      *
@@ -322,21 +328,21 @@ class Atividade
     /**
      * Get arquivado
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getArquivado()
     {
         return $this->arquivado;
     }
-    
+
     /**
      * @ORM\PreRemove
      */
     public function setRemovedValue(){
         $this->arquivado = true;
-        
+
     }
-    
+
     /**
      * Set contrato
      *
@@ -350,7 +356,7 @@ class Atividade
     /**
      * Get contrato
      *
-     * @return Fnx\AdminBundle\Entity\Contrato 
+     * @return Fnx\AdminBundle\Entity\Contrato
      */
     public function getContrato()
     {
@@ -370,7 +376,7 @@ class Atividade
     /**
      * Get categorias
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
 //    public function getCategorias()
 //    {
@@ -390,7 +396,7 @@ class Atividade
     /**
      * Get servico
      *
-     * @return Fnx\AdminBundle\Entity\Servico 
+     * @return Fnx\AdminBundle\Entity\Servico
      */
     public function getServico()
     {
@@ -410,7 +416,7 @@ class Atividade
     /**
      * Get categorias
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCategorias()
     {
@@ -430,7 +436,7 @@ class Atividade
     /**
      * Get escalas
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getEscalas()
     {
@@ -450,7 +456,7 @@ class Atividade
     /**
      * Get enderecos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getEnderecos()
     {
@@ -460,7 +466,7 @@ class Atividade
     /**
      * Get galeria
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getGaleria()
     {
@@ -490,7 +496,7 @@ class Atividade
     /**
      * Get locais
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getLocais()
     {
@@ -510,7 +516,7 @@ class Atividade
     /**
      * Get propriedades
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPropriedades()
     {
@@ -530,7 +536,7 @@ class Atividade
     /**
      * Get registro
      *
-     * @return Fnx\FinanceiroBundle\Entity\Registro; 
+     * @return Fnx\FinanceiroBundle\Entity\Registro;
      */
     public function getRegistro()
     {
@@ -550,7 +556,7 @@ class Atividade
     /**
      * Get bairro
      *
-     * @return string 
+     * @return string
      */
     public function getBairro()
     {
@@ -570,7 +576,7 @@ class Atividade
     /**
      * Get rua
      *
-     * @return string 
+     * @return string
      */
     public function getRua()
     {
@@ -590,7 +596,7 @@ class Atividade
     /**
      * Get numero
      *
-     * @return string 
+     * @return string
      */
     public function getNumero()
     {
@@ -610,7 +616,7 @@ class Atividade
     /**
      * Get complemento
      *
-     * @return string 
+     * @return string
      */
     public function getComplemento()
     {
@@ -630,7 +636,7 @@ class Atividade
     /**
      * Get cidade
      *
-     * @return Fnx\AdminBundle\Entity\Cidade 
+     * @return Fnx\AdminBundle\Entity\Cidade
      */
     public function getCidade()
     {
@@ -650,7 +656,7 @@ class Atividade
     /**
      * Get cep
      *
-     * @return string 
+     * @return string
      */
     public function getCep()
     {
@@ -670,7 +676,7 @@ class Atividade
     /**
      * Get servicos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getServicos()
     {
@@ -690,7 +696,7 @@ class Atividade
     /**
      * Get dtInicio
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDtInicio()
     {
@@ -710,7 +716,7 @@ class Atividade
     /**
      * Get dtFim
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDtFim()
     {

@@ -1,20 +1,25 @@
 {% extends "FnxAdminBundle::layout.html.twig" %}
 
 {% block conteudo %}
-<form action="{{ path('chamado_create') }}" method="post" {{ form_enctype(form) }}>
-
-    <div>
-	{{ form_label(form.assunto) }}
-	{{ form_errors(form.assunto) }}
-	{{ form_widget(form.assunto) }}
-    </div>
-    <div>
-	{{ form_label(form.conteudo) }}
-	{{ form_errors(form.conteudo) }}
-	{{ form_widget(form.conteudo) }}
-    </div>
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
+<div class="ui-panel-content dialog-form ui-widget-content" style="width:auto">
+   <h4 class="ui-panel-title ui-widget-header">Abertura de Chamado</h4>
+    <form action="{{ path('chamado_create') }}" method="post" {{ form_enctype(form) }} class="cms">
+	<br>
+	<div class="myform">
+	    <div>
+		{{ form_label(form.assunto) }}
+		{{ form_errors(form.assunto) }}
+		{{ form_widget(form.assunto) }}
+	    </div>
+	    <div>
+		{{ form_label(form.conteudo) }}
+		{{ form_errors(form.conteudo) }}
+		{{ form_widget(form.conteudo) }}
+	    </div>
+	</div>
+	<p>
+	    <button type="submit">Enviar</button>
+	</p>
+    </form>
+</div>
 {% endblock %}

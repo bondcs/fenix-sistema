@@ -97,9 +97,7 @@ function onTable(){
                   },
                 "iDisplayLength": 25
             }
-        });
-
-        $("table.tablePlugin tbody tr").click( function() {
+        }).on('click', 'tbody tr', function() {
 
             // alterar a cor do fundo da linha
             if ( $(this).hasClass('row_selected') ) {
@@ -111,6 +109,17 @@ function onTable(){
             }
         });
 
+//        $("table.tablePlugin tbody tr").click( function() {
+//
+//            // alterar a cor do fundo da linha
+//            if ( $(this).hasClass('row_selected') ) {
+//                $(this).removeClass('row_selected');
+//            }
+//            else {
+//                oTable.$('tr.row_selected').removeClass('row_selected');
+//                $(this).addClass('row_selected');
+//            }
+//        });
 }
 
 function onTabs(){

@@ -11,13 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 use \Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Role\Role as CoreRole;
 use Symfony\Component\Validator\Constraints as Assert;
-/**
- * Description of Role
- *
- * @author bondcs
- */
 
-    /**
+
+/**
  * @ORM\Entity
  * @ORM\Table(name="role")
  */
@@ -26,11 +22,9 @@ class Role extends CoreRole implements RoleInterface{
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
-     * @var integer $id
      */
     protected $id;
- 
+
     /**
      * @ORM\Column(type="string", length="255")
      *
@@ -38,20 +32,14 @@ class Role extends CoreRole implements RoleInterface{
      * @Assert\NotBlank()
      */
     protected $nome;
- 
+
     /**
      * @ORM\Column(type="datetime", name="created_at")
      *
      * @var DateTime $createdAt
      */
     protected $createdAt;
- 
-    /**
-     * Gets the id.
-     *
-     * @return integer The id.
-     */
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="userRoles")
      * @ORM\JoinTable(name="usuario_role",
@@ -62,11 +50,11 @@ class Role extends CoreRole implements RoleInterface{
      */
     protected $usuarios;
 
-        public function getId()
+    public function getId()
     {
         return $this->id;
     }
- 
+
     /**
      * Gets the role name.
      *
@@ -76,7 +64,7 @@ class Role extends CoreRole implements RoleInterface{
     {
         return $this->nome;
     }
- 
+
     /**
      * Sets the role name.
      *
@@ -86,7 +74,7 @@ class Role extends CoreRole implements RoleInterface{
     {
         $this->nome = $value;
     }
- 
+
     /**
      * Gets the DateTime the role was created.
      *
@@ -96,7 +84,7 @@ class Role extends CoreRole implements RoleInterface{
     {
         return $this->createdAt;
     }
- 
+
     /**
      * Consturcts a new instance of Role.
      */
@@ -105,10 +93,10 @@ class Role extends CoreRole implements RoleInterface{
         $this->createdAt = new \DateTime();
         $this->usuarios = new ArrayCollection();
     }
- 
+
     /**
      * Implementation of getRole for the RoleInterface.
-     * 
+     *
      * @return string The role.
      */
     public function getRole()
@@ -125,12 +113,12 @@ class Role extends CoreRole implements RoleInterface{
     {
         $this->createdAt = $createdAt;
     }
-    
+
     public function __toString()
     {
         $role = explode("_", $this->nome);
-        
-        return $role[1] == "USUARIO" ? "USUÁRIO" : $role[1];
+
+        return ($role[1] == "USUARIO") ? "USUÁRIO" : $role[1];
     }
 
     /**
@@ -146,7 +134,7 @@ class Role extends CoreRole implements RoleInterface{
     /**
      * Get users
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUsuarios()
     {
